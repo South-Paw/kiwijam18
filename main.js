@@ -6,7 +6,7 @@ var tileSize = 64;
 var editing=true;
 var entities= [];
 function toggleFullScreen () {
-  
+
   var canvas=document.querySelector("#main");
   var reqFullScreen = canvas.requestFullscreen || canvas.mozRequestFullScreen || canvas.webkitRequestFullScreen;
   if (document.fullScreenElement || document.webkitFullScreenElement || document.mozFullScreenElement || document.msFullScreenElement) {
@@ -34,7 +34,7 @@ function toggleFullScreen () {
     }
     else if (canvas.msRequestFullscreen) {
       canvas.msRequestFullscreen();
-    }    
+    }
   }
 }
 
@@ -54,12 +54,12 @@ function init(){
   ctx.lineTo(0,0);
 
   ctx.stroke();
- 
+
 
   canvas.addEventListener("mousemove", canvasMouseMove);
   canvas.addEventListener("mousedown", canvasMouseDown);
   canvas.addEventListener("mouseup", canvasMouseUp);
-  canvas.addEventListener("contextmenu", e=>(e.preventDefault()))                   
+  canvas.addEventListener("contextmenu", e=>(e.preventDefault()))
   window.gameMode=waitForImages;
   requestAnimationFrame(update);
 
@@ -67,7 +67,7 @@ function init(){
     return [x/canvas.clientWidth*canvas.width,y/canvas.clientHeight*canvas.height];
   }
 
-  
+
   let viewPosition = [3000,3000];
   let desiredViewPosition=[960+tileSize*300,540+tileSize*300];
 
@@ -83,7 +83,7 @@ function init(){
 
 
     for (let tx of intRange(1,worldSize-1)) {
-      for (let ty of intRange(1,worldSize-1)) {         
+      for (let ty of intRange(1,worldSize-1)) {
          setTile([tx,ty],randInt(4));
       }
     }
@@ -119,12 +119,12 @@ function init(){
   let selectedTile = undefined;
   let swapList = [];
   let particles = [];
-  
+
   window.particles=particles;
   function canvasToGame(canvasPos){
     let canvasTopLeft = vdiff([canvas.width/2,canvas.height/2],viewPosition);
     let gamePos = vdiff(canvasPos,canvasTopLeft);
-    return gamePos; 
+    return gamePos;
   }
 
   function gameToTile(gamePos) {
@@ -138,12 +138,12 @@ function init(){
   function canvasMouseMove(e) {
     let canvasPos =screenToCanvas([e.offsetX,e.offsetY]);
     let gamePos= canvasToGame(canvasPos);
-    let tilePos = gameToTile(gamePos);  
-    let buttons = e.buttons;  
+    let tilePos = gameToTile(gamePos);
+    let buttons = e.buttons;
   if (typeof dragFunction === "function")  {
       dragFunction({canvasPos,gamePos,tilePos,buttons})
     } else {
- 
+
 
     }
     mouseTile=tilePos;
@@ -152,38 +152,38 @@ function init(){
   function canvasMouseUp(e) {
     let canvasPos =screenToCanvas([e.offsetX,e.offsetY]);
     let gamePos= canvasToGame(canvasPos);
-    let tilePos = gameToTile(gamePos);    
+    let tilePos = gameToTile(gamePos);
     if (e.button === 1) onMiddleUp({canvasPos,gamePos,tilePos})
   }
 
   function canvasMouseDown(e) {
     let canvasPos =screenToCanvas([e.offsetX,e.offsetY]);
     let gamePos= canvasToGame(canvasPos);
-    let tilePos = gameToTile(gamePos);    
+    let tilePos = gameToTile(gamePos);
 
     if (editing) {
       setTile(tilePos,4);
 
-    }  
+    }
     switch (gameMode) {
-      case mainGame: 
-        if (e.button===1 || e.button===2) onMiddleDown({canvasPos,gamePos,tilePos});      
-        if (e.button===0  ) mouseDown({canvasPos,gamePos,tilePos})  
+      case mainGame:
+        if (e.button===1 || e.button===2) onMiddleDown({canvasPos,gamePos,tilePos});
+        if (e.button===0  ) mouseDown({canvasPos,gamePos,tilePos})
       break;
     }
 }
 
   let dragStartState;
   let dragDelta = [0,0];
-  
+
   function onMiddleDown(e) {
     switch (gameMode) {
-      case mainGame: 
+      case mainGame:
         dragStartState={viewPosition,downPos:e.canvasPos};
         setViewPosition(viewPosition);
-  
+
         dragFunction = onMiddleDrag;
-  
+
       break;
       case levelSuccess:
 
@@ -193,7 +193,7 @@ function init(){
 
   function onMiddleUp(e) {
   }
-  
+
   function onMiddleDrag(e) {
     let delta = vdiff(dragStartState.downPos,e.canvasPos);
 
@@ -208,7 +208,7 @@ function init(){
       setViewPosition(vadd(viewPosition,dragDelta));
       viewPosition=desiredViewPosition;
     }
-  } 
+  }
 
   function mouseDown(e) {
     let tileHere=world.tileAt(e.tilePos);
@@ -241,8 +241,8 @@ function init(){
   function isBeside(a=[NaN,NaN],b=[NaN,NaN]) {
     if (!a || !b) return;
     let d = vdiff(a,b).map(Math.abs).map(Math.floor);
-    return  (d[0]+d[1])===1;          
-  } 
+    return  (d[0]+d[1])===1;
+  }
   window.isBeside=isBeside;
 
   function manhattenD([x1,y1],[x2,y2]) {
@@ -253,7 +253,7 @@ function init(){
 
 
   function mainUpdate() {
-    
+
     panView();
   }
 
@@ -264,7 +264,7 @@ function init(){
     let ch= canvas.height;
     ctx.translate(cw/2-vx,ch/2-vy);
     world.draw(ctx,[vx-cw/2,vy-ch/2,cw,ch]);
-    
+
     if (!dragFunction) {
       let [x,y] = tileToGame(mouseTile);
       //ctx.drawSprite(Assets.blockHover,x,y);
@@ -279,13 +279,13 @@ function init(){
       let [x,y] = tileToGame(selectedTile);
       //ctx.drawSprite(Assets.blockSelect,x,y);
     }
-    
+
     for (let ent of entities) {
       ent.draw(ctx);
     }
     ctx.setTransform(1,0,0,1,0,0);
 
-  
+
     ctx.font="20px sans-serif";
     ctx.textAlign ="left";
     ctx.fillStyle="black";
@@ -294,7 +294,7 @@ function init(){
     ctx.fillText(note,130,50);
 
 
-  
+
   }
 
   function triWave(x,p) {
@@ -302,7 +302,7 @@ function init(){
     return 1/hp * (hp - Math.abs( (x%p) -hp) );
   }
 
-  
+
   function waitForImages() {
     ctx.fillStyle="black";
     ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -322,7 +322,7 @@ function init(){
     for (let p of particles) {
       p.move();
     }
-  
+
     particles=particles.filter(a=>a.isActive());
   }
 
@@ -341,7 +341,7 @@ function init(){
   }
 
   function mainGame() {
-    mainUpdate(); 
+    mainUpdate();
     drawView();
   }
 
@@ -396,7 +396,7 @@ function makeWorld(width=512,height=width,tileSize=64) {
     function tileToGame(tilePos) {
       return tilePos.map(a=>a*tileSize+0.5);
     }
-  
+
     function drawTile(x,y) {
       let tile = tileAt([x,y]);
       let [tx,ty] = tileToGame([x,y])
@@ -406,7 +406,7 @@ function makeWorld(width=512,height=width,tileSize=64) {
     }
   }
   return {map,draw,tileAt,getSize};
-} 
+}
 
 
 
@@ -425,5 +425,4 @@ function makeCell(floorType=randFloor()) {
   let busy = false;
   let render = true;
   return {floorType,contents,busy,render};
-} 
-
+}

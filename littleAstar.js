@@ -3,7 +3,7 @@
 
 /*
 function PriorityQueue() {
-   this.base = []; 
+   this.base = [];
 }
 
 PriorityQueue.prototype.push = function (value,priority) {
@@ -20,7 +20,7 @@ PriorityQueue.prototype.isEmpty = function () {
   return this.base.length===0;
 }
 */
-function aStar(start,goal,costFunction) {  
+function aStar(start,goal,costFunction) {
   function asInt([x,y]) {
     return (y<<16)+x;
   }
@@ -41,18 +41,18 @@ function aStar(start,goal,costFunction) {
     let [x,y]=fromInt(i);
     let [a,b,c,d] = [ [x-1,y], [x+1,y], [x, y-1], [x,y+1] ];
 
-    
+
     return [ a,b,c,d ]
           //.sort( (p,q)=>manhattenD(p,goal)-manhattenD(q,goal) )
           .map(asInt);
   }
-*/  
+*/
   let startInt=asInt(start);
   let goalInt=asInt(goal);
 
   let closedSet = new Set();
 
-  
+
   let fScore = new Map();
   fScore.set(startInt,manhattenD(start,goal));
 
@@ -60,18 +60,18 @@ function aStar(start,goal,costFunction) {
   let openSet =  new PriorityQueue((a,b) => fScore.get(a) < fScore.get(b));
 
   openSet.push(startInt)
-  
+
 
   let cameFrom = new Map();
 
- /* 
+ /*
   function bestOpen() {
-    
+
     //console.log("findBest from ",Array.from(openSet).map(a=>[fromInt(a),fScore.get(a)]));
     let bestScore = Infinity;
-    let best=undefined; 
+    let best=undefined;
     for (let i of openSet) {
-    
+
       let currentScore = fScore.get(i)
       if (currentScore < bestScore)  {
         best=i;
@@ -83,7 +83,7 @@ function aStar(start,goal,costFunction) {
     return best;
   }
 */
-  
+
   let gScore = new Map();
   gScore.set(startInt,0);
   function gScoreAt(i) {
@@ -93,13 +93,13 @@ function aStar(start,goal,costFunction) {
 
   function path(from) {
     let result = [fromInt(from)];
-    let bail = 0;    
+    let bail = 0;
     while (cameFrom.has(from)) {
       if (bail++ > 1000) {console.log("bailing path()"); return}
       from=cameFrom.get(from);
       result.push(fromInt(from));
     }
-    
+
     return result;
   }
 
@@ -130,7 +130,7 @@ function aStar(start,goal,costFunction) {
   let bail = 0;
   while (! openSet.isEmpty() ) {
     if (bail++ > 1000000) {
-      console.log("bailing astar"); 
+      console.log("bailing astar");
       return
     }
     let current=openSet.pop();
@@ -140,7 +140,7 @@ function aStar(start,goal,costFunction) {
       return path(current)
     }
 
-    closedSet.add(current);    
+    closedSet.add(current);
 
     tryNeighbour(current+1,current);
     tryNeighbour(current-1,current);
@@ -149,5 +149,5 @@ function aStar(start,goal,costFunction) {
   }
 
   return path(closestSoFar);
-  
+
 }

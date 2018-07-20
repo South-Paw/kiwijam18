@@ -14,6 +14,8 @@ function makeEntity(pos) {
 }
 
 function makePlayer(pos) {
+  let WALKING_SPEED = 5;
+
   let {
     getPos,
     setPos
@@ -29,10 +31,28 @@ function makePlayer(pos) {
 
   function move() {
 		let p = getPos();
-		if (input.isKeyDown(68)) {
-			setPos(vadd([5.1, 5.2], p));	
+
+    // Move up
+		if (input.isKeyDown(87)) {
+			p = vadd([0, -WALKING_SPEED], p);
 		}
 
+    // Move down
+    if (input.isKeyDown(83)) {
+			p = vadd([0, WALKING_SPEED], p);
+		}
+
+    // Move left
+    if (input.isKeyDown(65)) {
+			p = vadd([-WALKING_SPEED, 0], p);
+		}
+
+    // Move right
+    if (input.isKeyDown(68)) {
+			p = vadd([WALKING_SPEED, 0], p);
+		}
+
+    setPos(p);
   }
 
   return {

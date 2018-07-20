@@ -14,12 +14,15 @@ function makePlayer(pos) {
 	function draw(ctx) {
 		ctx.beginPath();
 		ctx.fillStyle="white";
+		pos=getPos();
 		ctx.ellipse(pos[0],pos[1],20,20,0,0,Math.PI*2);
 		ctx.fill();
 	}
 
 	function move() {
-		
+		let p=getPos();
+		setPos(vadd([0.1,0.2],p));
+
 	}
 
 	return {getPos,setPos,move,draw};	

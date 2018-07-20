@@ -255,8 +255,17 @@ function init(){
   function mainUpdate() {
 
     panView();
+
+    for (let ent of entities) {
+      ent.move();
+    }
   }
 
+  function drawEditor() {
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.drawImage(Assets.tiles,0,0);
+
+  }
   function drawView() {
     ctx.setTransform(1,0,0,1,0,0);
     let [vx,vy] = viewPosition;
@@ -343,6 +352,7 @@ function init(){
   function mainGame() {
     mainUpdate();
     drawView();
+    if (editing) drawEditor();
   }
 
   function update() {
@@ -401,7 +411,7 @@ function makeWorld(width=512,height=width,tileSize=64) {
       let tile = tileAt([x,y]);
       let [tx,ty] = tileToGame([x,y])
       if (tile.render && tile.floorType>0) {
-        ctx.drawSprite(Assets.tiles,tx,ty,tile.floorType,4)
+        ctx.drawSprite(Assets.tiles,tx,ty,tile.floorType)
       }
     }
   }

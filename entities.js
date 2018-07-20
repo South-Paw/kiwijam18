@@ -24,21 +24,12 @@ function makePlayer(pos) {
   function draw(ctx,lctx) {
     ctx.beginPath();
     ctx.fillStyle = "white";
-    pos = getPos();
-    ctx.ellipse(pos[0], pos[1], 20, 20, 0, 0, Math.PI * 2);
+		let [x,y]=getPos();
+    ctx.ellipse(x, y, 20, 20, 0, 0, Math.PI * 2);
 		ctx.fill();
 		
-		lctx.fillStyle="grey";
-    lctx.beginPath();
-    let r=+randInt(10)+randInt(10)+randInt(10);
-    lctx.ellipse(pos[0],pos[1],100+r,100+r,0,0,Math.PI*2);
-    lctx.fill();
-  
-    r*=0.75;
-    lctx.fillStyle="white";
-    lctx.beginPath();
-    lctx.ellipse(pos[0],pos[1],75+r,75+r,0,0,Math.PI*2);
-    lctx.fill();
+		
+		lctx.drawSprite(Assets.baseLight,x,y,randInt(8));
 
   }
 

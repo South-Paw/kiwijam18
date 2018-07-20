@@ -1,5 +1,6 @@
 imageList = [
-  "tiles.png|8|15"
+  "tiles.png|8|15",
+  "baseLight.png|8"
 ].map(imageDetailsFromString);
 
 var soundList = [];

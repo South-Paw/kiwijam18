@@ -4,7 +4,7 @@ var note="";
 var tileSize = 64;
 
 var editing=true;
-
+var entities= [];
 function toggleFullScreen () {
   
   var canvas=document.querySelector("#main");
@@ -76,6 +76,9 @@ function init(){
     let worldSize = 20+30*n;
 
     world=makeWorld(worldSize);
+    entities = [];
+    entities.push(makePlayer([300,300]));
+
     setViewPosition(tileToGame([30,20]));
 
 
@@ -168,11 +171,7 @@ function init(){
         if (e.button===0  ) mouseDown({canvasPos,gamePos,tilePos})  
       break;
     }
-
-  
-
-
-  }
+}
 
   let dragStartState;
   let dragDelta = [0,0];
@@ -281,7 +280,9 @@ function init(){
       //ctx.drawSprite(Assets.blockSelect,x,y);
     }
     
-  
+    for (let ent of entities) {
+      ent.draw(ctx);
+    }
     ctx.setTransform(1,0,0,1,0,0);
 
   

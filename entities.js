@@ -28,8 +28,10 @@ function makePlayer(pos) {
   }
 
   function move() {
-    let p = getPos();
-    setPos(vadd([0.1, 0.2], p));
+		let p = getPos();
+		if (input.isKeyDown(68)) {
+			setPos(vadd([5.1, 5.2], p));	
+		}
 
   }
 

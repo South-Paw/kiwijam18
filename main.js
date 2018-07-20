@@ -4,7 +4,12 @@ var note = "";
 var tileSize = 64;
 
 var editing = true;
+var palettex = 0;
+var palettey = 1;
+
 var entities = [];
+
+var lightOverlay = document.createElement("canvas");
 
 function toggleFullScreen() {
 
@@ -34,10 +39,13 @@ function toggleFullScreen() {
 }
 
 function init() {
-  let world = makeWorld(100, 100, 32);
+  let world = makeWorld(30, 30, 64);
 
   window.world = world;
   var canvas = document.querySelector("#main");
+  lightOverlay.width=canvas.width;
+  lightOverlay.height=canvas.height;
+
   var ctx = canvas.getContext("2d");
 
   ctx.moveTo(10, 10);
@@ -74,11 +82,13 @@ function init() {
 
 
   function startLevel(n = 1) {
-    let worldSize = 20 + 30 * n;
+    let worldSize = 30;
 
     world = makeWorld(worldSize);
     entities = [];
-    entities.push(makePlayer([300, 300]));
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player=player;
 
     setViewPosition(tileToGame([30, 20]));
 
@@ -297,11 +307,15 @@ function init() {
 
 
   function mainUpdate() {
-
+    if (!editing) {
+      desiredViewPosition=world.player.getPos();
+    }
     panView();
-
     for (let ent of entities) {
       ent.move();
+    }
+    if (editing) {
+
     }
   }
 
@@ -309,6 +323,32 @@ function init() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.drawImage(Assets.tiles, 0, 0);
 
+  }
+
+  function drawLighting() {
+    var lc = lightOverlay.getContext("2d");
+    lc.setTransform(1, 0, 0, 1, 0, 0);
+    lc.fillStyle="black";
+    lc.fillRect(0,0,lightOverlay.width,lightOverlay.height);
+
+    let [vx, vy] = viewPosition;
+    let cw = canvas.width;
+    let ch = canvas.height;
+    lc.translate(cw / 2 - vx, ch / 2 - vy);
+
+    let p=world.player.getPos();
+    lc.fillStyle="grey";
+    lc.beginPath();
+    let r=+randInt(10)+randInt(10)+randInt(10);
+    lc.ellipse(p[0],p[1],100+r,100+r,0,0,Math.PI*2);
+    lc.fill();
+  
+    r*=0.75;
+    lc.fillStyle="white";
+    lc.beginPath();
+    lc.ellipse(p[0],p[1],75+r,75+r,0,0,Math.PI*2);
+    lc.fill();
+    
   }
 
   function drawView() {
@@ -319,6 +359,8 @@ function init() {
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
+
+    //draw tile under mouse
     if (!dragFunction) {
       let [x, y] = tileToGame(mouseTile);
       //ctx.drawSprite(Assets.blockHover,x,y);
@@ -338,7 +380,12 @@ function init() {
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-
+    if (!editing) {
+      drawLighting();
+      ctx.globalCompositeOperation="multiply";
+      ctx.drawImage(lightOverlay,0,0);
+      ctx.globalCompositeOperation="source-over";
+    }
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
@@ -497,10 +544,12 @@ function makeCell(floorType = randFloor()) {
   let contents = [];
   let busy = false;
   let render = true;
+  let wall =false;
   return {
     floorType,
     contents,
     busy,
-    render
+    render,
+    wall
   };
 }

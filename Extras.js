@@ -9,10 +9,10 @@ function randFloat(scale=1.0,offset=0) {
   return Math.random()*scale + offset;
 }
 function probability(amount=0.5) {
-  return Math.random() < amount; 
+  return Math.random() < amount;
 }
 
-function* intRange(start,end) {  
+function* intRange(start,end) {
   let current=start;
   while (current<end) {
     yield current++;
@@ -46,12 +46,12 @@ var translationMatrix = (x=0,y=0,z=0) => [[1,0,0,x],[0,1,0,y],[0,0,1,z],[0,0,0,1
 function rotationMatrix (...xyz) {
   let [cx,cy,cz]= xyz.map(Math.cos);
   let [sx,sy,sz]= xyz.map(Math.sin);
-  
+
   let rx= [ [1,0,0,0],    [0,cx,-sx,0],   [0,sx,cx,0],  [0,0,0,1]];
   let ry= [ [cy,0,sy,0],  [0,1,0,0],      [-sy,0,cy,0], [0,0,0,1]];
   let rz= [ [cz, -sz,0,0],[sz,cz,0,0],    [0,0,1,0],    [0,0,0,1]];
-  
-  return multiply (rx,ry,rz);  
+
+  return multiply (rx,ry,rz);
 }
 
 

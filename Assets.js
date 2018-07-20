@@ -30,9 +30,9 @@ function imageDetailsFromString(s) {
 
 function playSound(buffer,offset=0) {
 var source = audioContext.createBufferSource();
-source.buffer = buffer;                   
-source.connect(audioContext.destination);      
-source.start(0,offset);                               
+source.buffer = buffer;
+source.connect(audioContext.destination);
+source.start(0,offset);
 }
 
 function loadSound(url) {
@@ -54,9 +54,9 @@ request.send();
 }
 
 function loadAssets() {
-  
+
   for (let i of imageList) {
-      
+
       let image = loadImage(i.name);
       image.framesWide=i.framesWide;
       image.framesHigh=i.framesHigh;
@@ -76,7 +76,7 @@ function scaledImage(image, w,h=w) {
   result.height=h;
 
   let ctx=result.getContext("2d");
-  
+
   ctx.drawImage(image,0,0,image.width,image.height,0,0,w,h);
   return result;
 }
@@ -117,7 +117,7 @@ CanvasRenderingContext2D.prototype.drawSprite = function(image,x,y,frame=0,scale
 
   let [hx,hy] = image.handle || [frameWidth/2,frameHeight/2];
   this.drawImage(image,ox*frameWidth,oy*frameHeight,frameWidth,frameHeight,x-hx*scale,y-hy*scale,frameWidth*scale,frameHeight*scale);
-    
+
 
 }
 
@@ -133,7 +133,7 @@ function moveDefaultParticle() {
   this.age+=1;
 
   if (this.age > 30) {
-        
+
     if (probability(0.05) ) this.dead=true;
   }
  // console.log("particle end", this);
@@ -180,13 +180,10 @@ function particleSystem(count,state,makeParticle=makeDefaultParticle) {
       p.move();
     }
     points=points.filter(a=>a.dead==false);
-    
+
   }
   function isActive() {
     return points.length>0;
   }
   return {move,draw,isActive};
 }
-
-
-

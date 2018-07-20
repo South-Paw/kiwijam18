@@ -202,11 +202,11 @@ function init() {
   }
 
   function isKeyDown(keyCode) {
-    return keyboardState[keyCode];
+    return (keyboardState[keyCode] ? true : false);
   }
 
   function keyWentDown(keyCode) {
-    return keysDown[keyCode];
+    return (keysDown[keyCode] ? true : false);
   }
 
   function flushKeysDown() {

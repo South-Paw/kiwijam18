@@ -4,9 +4,10 @@ var note = "";
 var tileSize = 64;
 
 var editing = true;
-var palettex = 0;
-var palettey = 1;
-
+var paletteX = 0;
+var paletteY = 1;
+var paletteWidth=8;
+var paletteHeight=15;
 var entities = [];
 
 var lightOverlay = document.createElement("canvas");
@@ -183,12 +184,25 @@ function init() {
     let tilePos = gameToTile(gamePos);
 
     if (editing) {
-      setTile(tilePos, 4);
-
+      let px=Math.floor(canvasPos[0]/tileSize);
+      let py=Math.floor(canvasPos[1]/tileSize);
+      if (px<paletteWidth && py<paletteHeight) {
+        paletteX=px;
+        paletteY=py;
+        return;
+      }
+      if (e.button ===0 ) {
+        let t= paletteY*paletteWidth+paletteX;
+        setTile(tilePos, t);
+      }
+      if (e.button ===2 ) {
+        setTile(tilePos, 0);
+      }
+      
     }
     switch (gameMode) {
       case mainGame:
-        if (e.button === 1 || e.button === 2) onMiddleDown({
+        if (e.button === 1 ) onMiddleDown({
           canvasPos,
           gamePos,
           tilePos
@@ -315,6 +329,18 @@ function init() {
       ent.move();
     }
     if (editing) {
+      if (input.keyWentDown(68)) {
+        paletteX=(paletteX+1)%paletteWidth;
+      }
+      if (input.keyWentDown(65)) {
+        paletteX-=1; if (paletteX<0)paletteX+=paletteWidth;
+      }
+      if (input.keyWentDown(83)) {
+        paletteY=(paletteY+1)%paletteHeight;
+      }
+      if (input.keyWentDown(87)) {
+        paletteY-=1; if (paletteY<0)paletteY+=paletteHeight;
+      }
 
     }
   }
@@ -322,7 +348,12 @@ function init() {
   function drawEditor() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.drawImage(Assets.tiles, 0, 0);
-
+    ctx.strokeStyle="white";
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.rect(paletteX*tileSize,paletteY*tileSize,tileSize,tileSize);
+    ctx.stroke();
+    ctx.lineWidth=1;
   }
 
   function drawLighting() {

@@ -48,7 +48,7 @@ function init() {
   lightOverlay.height=canvas.height;
 
   var ctx = canvas.getContext("2d");
-
+  var lctx= lightOverlay.getContext("2d");
   ctx.moveTo(10, 10);
   ctx.lineTo(1920, 1080);
   ctx.lineTo(1920, 0);
@@ -368,28 +368,27 @@ function init() {
     lc.translate(cw / 2 - vx, ch / 2 - vy);
 
     let p=world.player.getPos();
-    lc.fillStyle="grey";
-    lc.beginPath();
-    let r=+randInt(10)+randInt(10)+randInt(10);
-    lc.ellipse(p[0],p[1],100+r,100+r,0,0,Math.PI*2);
-    lc.fill();
-  
-    r*=0.75;
-    lc.fillStyle="white";
-    lc.beginPath();
-    lc.ellipse(p[0],p[1],75+r,75+r,0,0,Math.PI*2);
-    lc.fill();
+
     
+
   }
 
   function drawView() {
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    lctx.setTransform(1, 0, 0, 1, 0, 0); 
+    lctx.fillStyle="black";
+    lctx.fillRect(0,0,lightOverlay.width,lightOverlay.height);
+
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
+    lctx.translate(cw / 2 - vx, ch / 2 - vy);
+ 
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
+    
 
     //draw tile under mouse
     if (!dragFunction) {
@@ -407,12 +406,11 @@ function init() {
     }
 
     for (let ent of entities) {
-      ent.draw(ctx);
+      ent.draw(ctx,lctx);
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     if (!editing) {
-      drawLighting();
       ctx.globalCompositeOperation="multiply";
       ctx.drawImage(lightOverlay,0,0);
       ctx.globalCompositeOperation="source-over";
@@ -475,6 +473,9 @@ function init() {
   function mainGame() {
     mainUpdate();
     drawView();
+    if (input.keyWentDown(192)) {
+      editing=!editing;
+    }
     if (editing) drawEditor();
   }
 
@@ -527,12 +528,6 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     //ctx.drawSprite(Assets.blocks,100,100,2);
     ctx.fillStyle = "white";
     let [tileLeft, tileTop, tileWidth, tileHeight] = region.map(a => Math.floor(a / tileSize + 0.5));
-    ctx.fillText(JSON.stringify({
-      tileLeft,
-      tileTop,
-      tileWidth,
-      tileHeight
-    }), 10, 100);
     for (let ty of intRange(tileTop - 1, tileTop + tileHeight + 3)) {
       for (let tx of intRange(tileLeft - 1, tileLeft + tileWidth + 3)) {
         drawTile(tx, ty);

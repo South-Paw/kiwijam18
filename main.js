@@ -50,18 +50,24 @@ function init() {
 
   ctx.stroke();
 
+  window.keyboardState = {};
+  window.keysDown = {};
 
   canvas.addEventListener("mousemove", canvasMouseMove);
   canvas.addEventListener("mousedown", canvasMouseDown);
   canvas.addEventListener("mouseup", canvasMouseUp);
-  canvas.addEventListener("contextmenu", e => (e.preventDefault()))
+  canvas.addEventListener("contextmenu", e => e.preventDefault())
+
+  document.addEventListener('keydown', keyboardHandler);
+  document.addEventListener('keyup', keyboardHandler);
+
   window.gameMode = waitForImages;
+
   requestAnimationFrame(update);
 
   function screenToCanvas([x, y]) {
     return [x / canvas.clientWidth * canvas.width, y / canvas.clientHeight * canvas.height];
   }
-
 
   let viewPosition = [3000, 3000];
   let desiredViewPosition = [960 + tileSize * 300, 540 + tileSize * 300];
@@ -183,6 +189,16 @@ function init() {
           tilePos
         })
         break;
+    }
+  }
+
+  function keyboardHandler(event) {
+    switch (event.type) {
+      case "keydown":
+        keyboardState[event.keyCode] = true;
+        keysDown[event.keyCode] = true;
+      case "keyup":
+        keyboardState[event.keyCode] = false;
     }
   }
 
@@ -373,6 +389,11 @@ function init() {
 
   function update() {
     gameMode();
+
+    console.log(keysDown);
+    console.log(keyboardState);
+
+    keysDown = {};
     requestAnimationFrame(update);
   }
 

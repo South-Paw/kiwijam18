@@ -202,6 +202,20 @@ function init() {
     }
   }
 
+  function isKeyDown(keyCode) {
+    return keyboardState[keyCode];
+  }
+
+  function keyWentDown(keyCode) {
+    return keysDown[keyCode];
+  }
+
+  function flushKeysDown() {
+    keysDown = {};
+  }
+
+  window.input = { isKeyDown, keyWentDown, flushKeysDown };
+
   let dragStartState;
   let dragDelta = [0, 0];
 
@@ -389,11 +403,7 @@ function init() {
 
   function update() {
     gameMode();
-
-    console.log(keysDown);
-    console.log(keyboardState);
-
-    keysDown = {};
+    flushKeysDown();
     requestAnimationFrame(update);
   }
 

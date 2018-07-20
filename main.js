@@ -58,8 +58,8 @@ function init() {
   canvas.addEventListener("mouseup", canvasMouseUp);
   canvas.addEventListener("contextmenu", e => e.preventDefault())
 
-  document.addEventListener('keydown', keyboardHandler);
-  document.addEventListener('keyup', keyboardHandler);
+  document.addEventListener('keydown', keyDownHandler);
+  document.addEventListener('keyup', keyUpHandler);
 
   window.gameMode = waitForImages;
 
@@ -192,14 +192,13 @@ function init() {
     }
   }
 
-  function keyboardHandler(event) {
-    switch (event.type) {
-      case "keydown":
-        keyboardState[event.keyCode] = true;
-        keysDown[event.keyCode] = true;
-      case "keyup":
-        keyboardState[event.keyCode] = false;
-    }
+  function keyDownHandler(event) {
+    keyboardState[event.keyCode] = true;
+    keysDown[event.keyCode] = true;
+  }
+
+  function keyUpHandler(event) {
+    keyboardState[event.keyCode] = false;
   }
 
   function isKeyDown(keyCode) {

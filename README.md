@@ -24,7 +24,7 @@ Various awesome people helped out during the jam to make this happen!
 
 ### Level Design
 
-* James Regan
+* James Regan ([Github](https://github.com/quakeooze))
 
 ### Concept
 

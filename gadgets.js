@@ -12,9 +12,10 @@ function makeBrazier(pos, lit = false) {
 
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-
+		frame = Math.floor(age/5)%3;
     if (lit) {
-      ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
+			
+      ctx.drawSprite(Assets.brazierBurn, x, y, frame);
 
       let flip = 1;
 
@@ -123,7 +124,7 @@ function makeKey(pos) {
 
     if (vdistance(p, world.player.getPos()) < 64) {
       playSound(Assets.KeyPickup);
-      gameState.keys += 1;
+      inventory.keys += 1;
       collected = true;
     }
   }

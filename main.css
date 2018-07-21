@@ -3,6 +3,10 @@ body {
   margin: 0px;
 }
 
+img {
+  display: none;
+}
+
 .fill {
   position: absolute;
   left: 0px;

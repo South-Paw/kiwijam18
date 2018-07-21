@@ -5,40 +5,73 @@ imageList = [
   "minotaur/minotaurWalkRight.png|6|1|[64,192]",
   "minotaur/minotaurWalkUp.png|4|1|[64,192]",
   "minotaur/minotaurWalkDown.png|4|1|[64,192]",
+  "minotaur/minotaurWalkLeftEyes.png|6|1|[64,192]",
+  "minotaur/minotaurWalkRightEyes.png|6|1|[64,192]",
+  "minotaur/minotaurWalkDownEyes.png|4|1|[64,192]",
   "character/playerWalkLeft.png|4|1|[64,192]",
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
   "character/playerWalkDown.png|4|1|[64,192]",
   "match.png|1",
   "key.png|1",
-  "particle.png|1", 
+  "particle.png|1",
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"
 ].map(imageDetailsFromString);
 
 var soundList = [
-  // "FootstepClean1.ogg",
-  // "FootstepClean2.ogg",
-  // "FootstepClean3.ogg",
-  // "FootstepClean4.ogg",
-  // "FootstepClean5.ogg",
-  // "FootstepClean6.ogg",
-  // "FootstepClean7.ogg",
-  // "FootstepClean8.ogg",
-  // "FootstepClean9.ogg",
-  // "FootstepClean10.ogg"
+  // soundtrack
+  "DungeonGameAtmosphere.mp3",
+  // player clean
+  "FootstepClean1.ogg",
+  "FootstepClean2.ogg",
+  "FootstepClean3.ogg",
+  "FootstepClean4.ogg",
+  "FootstepClean5.ogg",
+  "FootstepClean6.ogg",
+  "FootstepClean7.ogg",
+  "FootstepClean8.ogg",
+  "FootstepClean9.ogg",
+  "FootstepClean10.ogg",
+  // minotaur
+  "MinotaurFootstep1.ogg",
+  "MinotaurFootstep2.ogg",
+  "MinotaurFootstep3.ogg",
+  "MinotaurFootstep4.ogg",
+  "MinotaurFootstep5.ogg",
+  "MinotaurFootstep6.ogg",
+  "MinotaurFootstep7.ogg",
+  "MinotaurFootstep8.ogg",
+  "MinotaurFootstep9.ogg",
+  "MinotaurFootstep10.ogg",
+  // match
+  "LightingAMatch1.ogg",
+  "LightingAMatch2.ogg",
+  // key
+  "KeyPickup.ogg",
+  // door
+  "KeyUnlockDoor.ogg", // unused
+  // trapdoor
+  "TrapDoorClose.ogg", // unused
+  "TrapDoorOpen1.ogg", // unused
+  "TrapDoorOpen2.ogg", // unused
+  // death sounds
+  "MonsterKillYou1.ogg", // unused
+  "MonsterKillYou2.ogg", // unused
+  "MonsterKillYou3.ogg", // unused
 ];
 
-var imagesPending = [];
+var assetsPending = [];
+
 var Assets = {};
 
 var audioContext = new AudioContext();
 
 function loadImage(url) {
-  imagesPending.push(url);
+  assetsPending.push(url);
 
   var result = new Image();
-  result.onload = e => imagesPending.splice(imagesPending.indexOf(url), 1);
+  result.onload = e => assetsPending.splice(assetsPending.indexOf(url), 1);
   result.src = url;
 
   let name = url.slice(url.lastIndexOf("/") + 1);
@@ -65,9 +98,28 @@ function playSound(buffer, offset = 0) {
   source.start(0, offset);
 }
 
+var audioLoops = [];
+
+function loopSound(buffer, offset =0) {
+  var source = audioContext.createBufferSource();
+  source.buffer = buffer;
+  source.loop=true;
+  source.connect(audioContext.destination);
+  source.start(0, offset);
+  audioLoops.push(source);
+  return source;
+}
+
+function stopAudioLoops() {
+  for (let s of audioLoops) {
+    s.stop();
+  }
+  audioLoops=[];
+}
+
 function loadSound(url) {
   var onError = a => (console.log(a));
-  console.log(url);
+  assetsPending.push(url);
   var request = new XMLHttpRequest();
   request.open('GET', url, true);
   request.responseType = 'arraybuffer';
@@ -77,11 +129,13 @@ function loadSound(url) {
   request.onload = function() {
     console.log(name + " loaded");
     audioContext.decodeAudioData(request.response, function(buffer) {
+      assetsPending.splice(assetsPending.indexOf(url), 1);
       Assets[name] = buffer;
     }, onError);
   }
   request.send();
 }
+
 
 function loadAssets() {
 
@@ -135,6 +189,7 @@ function blankCanvas(w, h = w) {
 
 
 CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0, scale = 1) {
+  if (image===null) return;
   let frameWidth = image.width;
   let frameHeight = image.height;
   let oy = 0;

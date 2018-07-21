@@ -95,7 +95,7 @@ window.onload = init;
 var note = "";
 var tileSize = 64;
 
-var editing = true;
+var editing = false;
 var paletteTileSize = tileSize / 2;
 var paletteX = 0;
 var paletteY = 1;
@@ -222,9 +222,11 @@ function init() {
 
     let player = makePlayer([394, 430]);
     entities.push(player);
-    world.player = player;
 
-    entities.push(makeBrazier([640, 420], true));
+    entities.push(makeBrazier([640, 420]));
+    let key = makeKey([1024, 330]);
+    entities.push(key);
+    world.player = player;
   }
 
   function initLevel1() {
@@ -317,12 +319,16 @@ function init() {
   ];
 
   function startLevel(n = 0) {
+    stopAudioLoops();
     n %= allLevels.length;
 
     let worldSize = 30;
     entities = [];
 
     allLevels[n]();
+
+    loopSound(Assets.DungeonGameAtmosphere); // randInt(Math.floor(Assets.DungeonGameAtmosphere.length / 25))
+
     gameMode = mainGame;
   }
 
@@ -556,7 +562,7 @@ function init() {
     for (let ent of entities) {
       ent.move();
     }
-    entities.sort((a,b)=>(a.getPos()[1]-b.getPos()[1]));
+    entities.sort((a, b) => (a.getPos()[1] - b.getPos()[1]));
 
     if (editing) {
       if (input.keyWentDown(68)) {
@@ -620,21 +626,32 @@ function init() {
     }
   }
 
-  function drawView() {
+  function applyGameSpace(context) {
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
 
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.translate(cw / 2 - vx, ch / 2 - vy);
+  }
+
+  function drawView() {
+
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    //clear lightmap
     lctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.globalCompositeOperation = "source-over";
-
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
-    ctx.translate(cw / 2 - vx, ch / 2 - vy);
-    lctx.translate(cw / 2 - vx, ch / 2 - vy);
+    applyGameSpace(ctx);
+    applyGameSpace(lctx);
     lctx.globalCompositeOperation = "lighter";
+
+    let [vx, vy] = viewPosition;
+    let cw = canvas.width;
+    let ch = canvas.height;
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
     //draw tile under mouse
@@ -655,7 +672,6 @@ function init() {
     for (let ent of entities) {
       ent.draw(ctx, lctx);
     }
-    drawParticles();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     if (!editing) {
@@ -663,6 +679,15 @@ function init() {
       ctx.drawImage(lightOverlay, 0, 0);
       ctx.globalCompositeOperation = "source-over";
     }
+
+    applyGameSpace(ctx);
+    if (world.minotaur) {
+      world.minotaur.drawEyes(ctx);
+    }
+
+    drawParticles();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     drawOverlay();
   }
@@ -673,7 +698,7 @@ function init() {
   }
 
   function waitForImages() {
-    if (imagesPending.length === 0) {
+    if (assetsPending.length === 0) {
       gameMode = initializeGame;
     }
   }
@@ -683,7 +708,7 @@ function init() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     let y = 50;
-    for (let f of imagesPending) {
+    for (let f of assetsPending) {
       ctx.fillText(f, 10, y);
       y += 15;
     }
@@ -775,15 +800,16 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
 
   function isSpace(gamePos) {
     let tilePos = gameToTile(gamePos);
-    let tile=tileAt(tilePos);
+    let tile = tileAt(tilePos);
     let floor = tile.floorType < 24;
     if (floor) {
       for (let e of tile.contents) {
-        if  (e.blocking(gamePos)) return false;
+        if (e.blocking(gamePos)) return false;
       }
     }
     return floor;
   }
+
   function getSize() {
     return [width, height]
   }

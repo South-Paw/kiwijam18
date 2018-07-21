@@ -222,13 +222,10 @@ function init() {
 
     let player = makePlayer([394, 430]);
     entities.push(player);
-<<<<<<< HEAD
 
     entities.push(makeBrazier([640, 420]));
     let key = makeKey([1024,330]);
     entities.push(key);
-=======
->>>>>>> 15ec8d19f32acb0fdf988e6f3b497f4567439b3b
     world.player = player;
 
     entities.push(makeBrazier([640, 420], true));

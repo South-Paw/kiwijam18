@@ -97,7 +97,7 @@ function playSound(buffer, offset = 0) {
 
 var audioLoops = [];
 
-function loopSound(buffer) {
+function loopSound(buffer, offset =0) {
   var source = audioContext.createBufferSource();
   source.buffer = buffer;
   source.loop=true;

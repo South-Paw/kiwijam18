@@ -210,6 +210,9 @@ function init() {
     loadLevel(levels.tutorial);
     let player = makePlayer([394, 430]);
     entities.push(player);
+
+    entities.push(makeBrazier([640,420]));
+
     world.player = player;
 
   }
@@ -554,12 +557,14 @@ function init() {
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.setTransform(1, 0, 0, 1, 0, 0);
+    lctx.globalCompositeOperation="source-over";
+   
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
     lctx.translate(cw / 2 - vx, ch / 2 - vy);
-
+    lctx.globalCompositeOperation="lighter";
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
     //draw tile under mouse
@@ -582,13 +587,14 @@ function init() {
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-    drawOverlay();
-
     if (!editing) {
       ctx.globalCompositeOperation = "multiply";
       ctx.drawImage(lightOverlay, 0, 0);
       ctx.globalCompositeOperation = "source-over";
     }
+
+    drawOverlay();
+
 
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";

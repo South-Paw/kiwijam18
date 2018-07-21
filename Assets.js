@@ -8,7 +8,10 @@ imageList = [
   "character/playerWalkLeft.png|4|1|[64,192]",
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
-  "character/playerWalkDown.png|4|1|[64,192]"
+  "character/playerWalkDown.png|4|1|[64,192]",
+  "brazier/brazierBurn.png|3|1|[64,128]",
+  "brazier/brazierEmber.png|3|2|[64,128]"
+
 ].map(imageDetailsFromString);
 
 var soundList = [

@@ -100,10 +100,10 @@ function playSound(buffer, offset = 0) {
 
 var audioLoops = [];
 
-function loopSound(buffer, offset =0) {
+function loopSound(buffer, offset = 0) {
   var source = audioContext.createBufferSource();
   source.buffer = buffer;
-  source.loop=true;
+  source.loop = true;
   source.connect(audioContext.destination);
   source.start(0, offset);
   audioLoops.push(source);
@@ -114,7 +114,7 @@ function stopAudioLoops() {
   for (let s of audioLoops) {
     s.stop();
   }
-  audioLoops=[];
+  audioLoops = [];
 }
 
 function loadSound(url) {
@@ -189,7 +189,7 @@ function blankCanvas(w, h = w) {
 
 
 CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0, scale = 1) {
-  if (image===null) return;
+  if (image === null) return;
   let frameWidth = image.width;
   let frameHeight = image.height;
   let oy = 0;

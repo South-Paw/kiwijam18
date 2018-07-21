@@ -153,7 +153,9 @@ CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0,
 }
 
 
-
+CanvasRenderingContext2D.prototype.circle = function (x,y,radius) {
+  this.ellipse(x,y,radius,radius,0,0,Math.PI*2);
+}
 
 
 function moveDefaultParticle() {

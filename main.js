@@ -575,7 +575,7 @@ function init() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.globalCompositeOperation="source-over";
-   
+
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 

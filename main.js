@@ -292,6 +292,7 @@ function init() {
   ];
 
   function startLevel(n = 0) {
+    stopAudioLoops();
     n %= allLevels.length;
 
     let worldSize = 30;

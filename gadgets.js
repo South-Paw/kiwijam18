@@ -12,9 +12,10 @@ function makeBrazier(pos, lit = false) {
 
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-
+		frame = Math.floor(age/5)%3;
     if (lit) {
-      ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
+			
+      ctx.drawSprite(Assets.brazierBurn, x, y, frame);
 
       let flip = 1;
 

@@ -20,6 +20,8 @@ imageList = [
 ].map(imageDetailsFromString);
 
 var soundList = [
+  // soundtrack
+  "DungeonGameAtmosphere.mp3",
   // player clean
   "FootstepClean1.ogg",
   "FootstepClean2.ogg",
@@ -48,15 +50,15 @@ var soundList = [
   // key
   "KeyPickup.ogg",
   // door
-  "KeyUnlockDoor.ogg",
+  "KeyUnlockDoor.ogg", // unused
   // trapdoor
-  "TrapDoorClose.ogg",
-  "TrapDoorOpen1.ogg",
-  "TrapDoorOpen2.ogg",
+  "TrapDoorClose.ogg", // unused
+  "TrapDoorOpen1.ogg", // unused
+  "TrapDoorOpen2.ogg", // unused
   // death sounds
-  "MonsterKillYou1.ogg",
-  "MonsterKillYou2.ogg",
-  "MonsterKillYou3.ogg",
+  "MonsterKillYou1.ogg", // unused
+  "MonsterKillYou2.ogg", // unused
+  "MonsterKillYou3.ogg", // unused
 ];
 
 var imagesPending = [];

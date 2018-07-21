@@ -15,7 +15,9 @@ function makeBrazier(pos, lit = false) {
 
 		if (lit) {
 			ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
-    	lctx.drawSprite(Assets.baseLight, x, y, randInt(8),7+flicker(age));
+			let flip=1;
+			if (probability(0.5)) flip=-flip; 
+    	lctx.drawSprite(Assets.baseLight, x, y, randInt(8),(7+flicker(age))*flip);
 		} else {
 			ctx.drawSprite(Assets.brazierEmber, x, y, randInt(6));
 		}

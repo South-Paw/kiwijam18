@@ -327,9 +327,8 @@ function init() {
   let mouseTile = [-1, -1];
   let selectedTile = undefined;
   let swapList = [];
-  let particles = [];
 
-  window.particles = particles;
+  window.particles = [];
 
   function canvasToGame(canvasPos) {
     let canvasTopLeft = vdiff([canvas.width / 2, canvas.height / 2], viewPosition);
@@ -621,7 +620,7 @@ function init() {
       ctx.stroke();
     }
 
-    if (selectedTile) {
+    if (editing && selectedTile) {
       let [x, y] = tileToGame(selectedTile);
       //ctx.drawSprite(Assets.blockSelect,x,y);
     }
@@ -629,6 +628,7 @@ function init() {
     for (let ent of entities) {
       ent.draw(ctx, lctx);
     }
+    drawParticles();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     if (!editing) {
@@ -662,11 +662,16 @@ function init() {
     }
   }
 
+  function drawParticles() {
+    for (let p of particles) {
+      p.draw(ctx);
+    }
+  }
+
   function moveParticles() {
     for (let p of particles) {
       p.move();
     }
-
     particles = particles.filter(a => a.isActive());
   }
 
@@ -695,6 +700,7 @@ function init() {
 
   mainGame.draw = function() {
     drawView();
+
     if (editing) drawEditor();
   }
 
@@ -709,6 +715,7 @@ function init() {
 
     for (let i = 0; i < ticks; i++) {
       gameMode();
+      moveParticles();
       flushKeysDown();
     }
 

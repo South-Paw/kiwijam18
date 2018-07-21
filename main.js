@@ -227,8 +227,6 @@ function init() {
     let key = makeKey([1024,330]);
     entities.push(key);
     world.player = player;
-
-    entities.push(makeBrazier([640, 420], true));
   }
 
   function initLevel1() {

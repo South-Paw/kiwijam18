@@ -99,9 +99,9 @@ function init() {
 
   }
 
-  function getLevel() {
-    let [width, height] = world.getSize();
-    let tiles = world.map.map(a => a.floorType);
+  function getLevel(aWorld= world) {
+    let [width, height] = aWorld.getSize();
+    let tiles = aWorld.map.map(a => a.floorType);
     return {
       width,
       height,

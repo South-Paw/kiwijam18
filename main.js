@@ -1,16 +1,20 @@
 "use strict"
-var dummyLevel = {"width":30,"height":30,"tiles":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,0,0,0,0,0,0,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,40,0,40,40,0,40,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,0,40,40,40,40,0,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,0,40,40,0,0,0,0,40,40,0,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,0,40,40,40,40,40,40,0,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,0,0,0,0,0,0,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]};
+var dummyLevel = {
+  "width": 30,
+  "height": 30,
+  "tiles": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 0, 40, 40, 0, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 0, 40, 40, 40, 40, 0, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 0, 0, 0, 0, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+};
 
 window.onload = init;
 var note = "";
 var tileSize = 64;
 
 var editing = true;
-var paletteTileSize = tileSize/2;
+var paletteTileSize = tileSize / 2;
 var paletteX = 0;
 var paletteY = 1;
-var paletteWidth=12;
-var paletteHeight=32;
+var paletteWidth = 12;
+var paletteHeight = 32;
 var entities = [];
 
 var lightOverlay = document.createElement("canvas");
@@ -46,11 +50,11 @@ function init() {
   window.world = makeWorld(30, 30, 64);
 
   var canvas = document.querySelector("#main");
-  lightOverlay.width=canvas.width;
-  lightOverlay.height=canvas.height;
+  lightOverlay.width = canvas.width;
+  lightOverlay.height = canvas.height;
 
   var ctx = canvas.getContext("2d");
-  var lctx= lightOverlay.getContext("2d");
+  var lctx = lightOverlay.getContext("2d");
   ctx.moveTo(10, 10);
   ctx.lineTo(1920, 1080);
   ctx.lineTo(1920, 0);
@@ -83,34 +87,38 @@ function init() {
   let viewPosition = [3000, 3000];
   let desiredViewPosition = [960 + tileSize * 300, 540 + tileSize * 300];
 
-  function loadLevel(data){
-    world = makeWorld(data.width,data.height);
-    if (world.map.length !== data.tiles.length ) {
+  function loadLevel(data) {
+    world = makeWorld(data.width, data.height);
+    if (world.map.length !== data.tiles.length) {
       console.error("Map was Wrong size!");
       return;
     }
-    for (let i=0; i<world.map.length;i++) {
-      world.map[i].floorType=data.tiles[i];
+    for (let i = 0; i < world.map.length; i++) {
+      world.map[i].floorType = data.tiles[i];
     }
   }
 
   function getLevel() {
-    let [width,height]=world.getSize();
-    let tiles=world.map.map(a=>a.floorType);
-    return {width,height,tiles};
+    let [width, height] = world.getSize();
+    let tiles = world.map.map(a => a.floorType);
+    return {
+      width,
+      height,
+      tiles
+    };
   }
-  window.loadLevel=loadLevel;
-  
-  window.getLevel=getLevel;
+  window.loadLevel = loadLevel;
+
+  window.getLevel = getLevel;
 
   function startLevel(n = 1) {
     let worldSize = 30;
     world = makeWorld(worldSize);
-    world.tileAt([-1,-1]).floorType=77;
+    world.tileAt([-1, -1]).floorType = 77;
     entities = [];
     let player = makePlayer([300, 300]);
     entities.push(player);
-    world.player=player;
+    world.player = player;
     setViewPosition(tileToGame([30, 20]));
     for (let tx of intRange(1, worldSize - 1)) {
       for (let ty of intRange(1, worldSize - 1)) {
@@ -203,25 +211,25 @@ function init() {
     let tilePos = gameToTile(gamePos);
 
     if (editing) {
-      let px=Math.floor(canvasPos[0]/paletteTileSize);
-      let py=Math.floor(canvasPos[1]/paletteTileSize);
-      if (px<paletteWidth && py<paletteHeight) {
-        paletteX=px;
-        paletteY=py;
+      let px = Math.floor(canvasPos[0] / paletteTileSize);
+      let py = Math.floor(canvasPos[1] / paletteTileSize);
+      if (px < paletteWidth && py < paletteHeight) {
+        paletteX = px;
+        paletteY = py;
         return;
       }
-      if (e.button ===0 ) {
-        let t= paletteY*paletteWidth+paletteX;
+      if (e.button === 0) {
+        let t = paletteY * paletteWidth + paletteX;
         setTile(tilePos, t);
       }
-      if (e.button ===2 ) {
+      if (e.button === 2) {
         setTile(tilePos, 0);
       }
-      
+
     }
     switch (gameMode) {
       case mainGame:
-        if (e.button === 1 ) onMiddleDown({
+        if (e.button === 1) onMiddleDown({
           canvasPos,
           gamePos,
           tilePos
@@ -256,7 +264,11 @@ function init() {
     keysDown = {};
   }
 
-  window.input = { isKeyDown, keyWentDown, flushKeysDown };
+  window.input = {
+    isKeyDown,
+    keyWentDown,
+    flushKeysDown
+  };
 
   let dragStartState;
   let dragDelta = [0, 0];
@@ -341,7 +353,7 @@ function init() {
 
   function mainUpdate() {
     if (!editing) {
-      desiredViewPosition=world.player.getPos();
+      desiredViewPosition = world.player.getPos();
     }
     panView();
     for (let ent of entities) {
@@ -349,69 +361,71 @@ function init() {
     }
     if (editing) {
       if (input.keyWentDown(68)) {
-        paletteX=(paletteX+1)%paletteWidth;
+        paletteX = (paletteX + 1) % paletteWidth;
       }
       if (input.keyWentDown(65)) {
-        paletteX-=1; if (paletteX<0)paletteX+=paletteWidth;
+        paletteX -= 1;
+        if (paletteX < 0) paletteX += paletteWidth;
       }
       if (input.keyWentDown(83)) {
-        paletteY=(paletteY+1)%paletteHeight;
+        paletteY = (paletteY + 1) % paletteHeight;
       }
       if (input.keyWentDown(87)) {
-        paletteY-=1; if (paletteY<0)paletteY+=paletteHeight;
+        paletteY -= 1;
+        if (paletteY < 0) paletteY += paletteHeight;
       }
 
     }
   }
 
   function drawEditor() {
-    let s=paletteTileSize;
+    let s = paletteTileSize;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle="rgba(0,0,0,0.7)";
-    ctx.fillRect(0,0,paletteWidth*s,paletteHeight*s);
-    ctx.drawImage(Assets.walls, 0, 0,paletteWidth*s,paletteHeight*s);
-    ctx.strokeStyle="white";
-    ctx.lineWidth=3;
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.fillRect(0, 0, paletteWidth * s, paletteHeight * s);
+    ctx.drawImage(Assets.walls, 0, 0, paletteWidth * s, paletteHeight * s);
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 3;
     ctx.beginPath();
-    
-    ctx.rect(paletteX*s,paletteY*s,s,s);
+
+    ctx.rect(paletteX * s, paletteY * s, s, s);
     ctx.stroke();
-    ctx.lineWidth=1;
+    ctx.lineWidth = 1;
   }
 
   function drawLighting() {
     var lc = lightOverlay.getContext("2d");
     lc.setTransform(1, 0, 0, 1, 0, 0);
-    lc.fillStyle="black";
-    lc.fillRect(0,0,lightOverlay.width,lightOverlay.height);
+    lc.fillStyle = "black";
+    lc.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
     lc.translate(cw / 2 - vx, ch / 2 - vy);
 
-    let p=world.player.getPos();
+    let p = world.player.getPos();
 
-    
+
 
   }
 
   function drawView() {
-  
+
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    lctx.setTransform(1, 0, 0, 1, 0, 0); 
-    lctx.fillStyle="black";
-    lctx.fillRect(0,0,lightOverlay.width,lightOverlay.height);
+    lctx.setTransform(1, 0, 0, 1, 0, 0);
+    lctx.fillStyle = "black";
+    lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
     lctx.translate(cw / 2 - vx, ch / 2 - vy);
- 
+
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
-    
+
 
     //draw tile under mouse
     if (!dragFunction) {
@@ -429,14 +443,14 @@ function init() {
     }
 
     for (let ent of entities) {
-      ent.draw(ctx,lctx);
+      ent.draw(ctx, lctx);
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     if (!editing) {
-      ctx.globalCompositeOperation="multiply";
-      ctx.drawImage(lightOverlay,0,0);
-      ctx.globalCompositeOperation="source-over";
+      ctx.globalCompositeOperation = "multiply";
+      ctx.drawImage(lightOverlay, 0, 0);
+      ctx.globalCompositeOperation = "source-over";
     }
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
@@ -497,7 +511,7 @@ function init() {
     mainUpdate();
     drawView();
     if (input.keyWentDown(192)) {
-      editing=!editing;
+      editing = !editing;
     }
     if (editing) drawEditor();
   }
@@ -593,7 +607,7 @@ function makeCell(floorType = randFloor()) {
   let contents = [];
   let busy = false;
   let render = true;
-  let wall =false;
+  let wall = false;
   return {
     floorType,
     contents,

@@ -6,11 +6,10 @@ imageList = [
   "minotaur/minotaurWalkRight.png|6",
   "minotaur/minotaurWalkUp.png|6",
   "minotaur/minotaurWalkDown.png|6",
-  "character/playerWalkLeft.png|4|1|[64,160]",
-  "character/playerWalkRight.png|4|1|[64,160]",
-  "character/playerWalkUp.png|4|1|[64,160]",
-  "character/playerWalkDown.png|4|1|[64,160]"
-
+  "character/playerWalkLeft.png|4|1|[64,192]",
+  "character/playerWalkRight.png|4|1|[64,192]",
+  "character/playerWalkUp.png|4|1|[64,192]",
+  "character/playerWalkDown.png|4|1|[64,192]"
 ].map(imageDetailsFromString);
 
 var soundList = [
@@ -46,7 +45,7 @@ function loadImage(url) {
 }
 
 function imageDetailsFromString(s) {
-  let [name, framesWide = 1, framesHigh = 1, handle="null"] = s.split("|");
+  let [name, framesWide = 1, framesHigh = 1, handle = "null"] = s.split("|");
   name = "images/" + name;
   return {
     name,
@@ -88,14 +87,14 @@ function loadAssets() {
     let image = loadImage(i.name);
     image.framesWide = i.framesWide;
     image.framesHigh = i.framesHigh;
-    if (i.handle) image.handle=i.handle;
+    if (i.handle) image.handle = i.handle;
   }
 
   for (let s of soundList) {
     loadSound("sounds/" + s);
   }
 
-  
+
 }
 
 loadAssets();
@@ -152,9 +151,13 @@ CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0,
 }
 
 
+<<<<<<< HEAD
 CanvasRenderingContext2D.prototype.circle = function (x,y,radius) {
-  this.beginPath();
-  this.ellipse(x,y,radius,radius,0,0,Math.PI*2);
+  this.ellipse(x, y, radius, radius, 0, 0, Math.PI * 2);
+=======
+CanvasRenderingContext2D.prototype.circle = function(x, y, radius) {
+  this.ellipse(x, y, radius, radius, 0, 0, Math.PI * 2);
+>>>>>>> 439bf1d64267d10c2597d130c0ed2d1d574a5a16
 }
 
 

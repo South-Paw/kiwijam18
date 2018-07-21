@@ -144,7 +144,7 @@ function init() {
   window.world = makeWorld(30, 30, 64);
 
   window.gameState = {
-    matches: 3,
+    matches: 0,
     keys: 0,
     // gems: 0,
   };
@@ -215,7 +215,11 @@ function init() {
 
   function initTutorial() {
     loadLevel(levels.tutorial);
+
+    gameState.matches = 3;
+
     let player = makePlayer([394, 430]);
+
     entities.push(player);
 
     entities.push(makeBrazier([640, 420]));
@@ -227,24 +231,27 @@ function init() {
   function initLevel1() {
     loadLevel(levels.level1);
 
+    gameState.matches += 3;
+
     let player = makePlayer([300, 300]);
+
     entities.push(player);
     world.player = player;
 
-    entities.push(makeBrazier([990,5418]));
-    entities.push(makeBrazier([5182,660]));
+    entities.push(makeBrazier([990, 5418]));
+    entities.push(makeBrazier([5182, 660]));
 
-    entities.push(makeBrazier([2084,1828]));
-    entities.push(makeBrazier([3110,1056]));
-    entities.push(makeBrazier([1060,1576]));
-    entities.push(makeBrazier([1332,2816]));
-    entities.push(makeBrazier([2500,3619]));
-    entities.push(makeBrazier([3515,3327]));
-    entities.push(makeBrazier([5700,4126]));
-    entities.push(makeBrazier([3424,2336]));
-    entities.push(makeBrazier([4400,4400]));
+    entities.push(makeBrazier([2084, 1828]));
+    entities.push(makeBrazier([3110, 1056]));
+    entities.push(makeBrazier([1060, 1576]));
+    entities.push(makeBrazier([1332, 2816]));
+    entities.push(makeBrazier([2500, 3619]));
+    entities.push(makeBrazier([3515, 3327]));
+    entities.push(makeBrazier([5700, 4126]));
+    entities.push(makeBrazier([3424, 2336]));
+    entities.push(makeBrazier([4400, 4400]));
 
-    entities.push(makeBrazier([5540,5540]));
+    entities.push(makeBrazier([5540, 5540]));
 
     entities.push(makeMinotaur([400, 300]));
     setViewPosition(tileToGame([30, 20]));
@@ -252,6 +259,8 @@ function init() {
 
   function initLevel2() {
     loadLevel(levels.level2);
+
+    gameState.matches += 3;
 
     let player = makePlayer([300, 300]);
     entities.push(player);
@@ -263,6 +272,8 @@ function init() {
 
   function initLevel3() {
     loadLevel(levels.level3);
+
+    gameState.matches += 5;
 
     let player = makePlayer([300, 300]);
     entities.push(player);

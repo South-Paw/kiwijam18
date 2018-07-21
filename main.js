@@ -278,6 +278,7 @@ function init() {
       if (px < paletteWidth && py < paletteHeight) {
         paletteX = px;
         paletteY = py;
+        console.log("tile "+ (paletteY * paletteWidth + paletteX)); 
         return;
       }
       if (e.button === 0) {
@@ -287,7 +288,6 @@ function init() {
       if (e.button === 2) {
         setTile(tilePos, 0);
       }
-
     }
     switch (gameMode) {
       case mainGame:

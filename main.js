@@ -612,7 +612,6 @@ function init() {
 
     drawOverlay();
 
-
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";

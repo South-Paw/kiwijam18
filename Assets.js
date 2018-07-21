@@ -59,16 +59,17 @@ var soundList = [
   "MonsterKillYou3.ogg",
 ];
 
-var imagesPending = [];
+var assetsPending = [];
+
 var Assets = {};
 
 var audioContext = new AudioContext();
 
 function loadImage(url) {
-  imagesPending.push(url);
+  assetsPending.push(url);
 
   var result = new Image();
-  result.onload = e => imagesPending.splice(imagesPending.indexOf(url), 1);
+  result.onload = e => assetsPending.splice(assetsPending.indexOf(url), 1);
   result.src = url;
 
   let name = url.slice(url.lastIndexOf("/") + 1);
@@ -116,7 +117,7 @@ function stopAudioLoops() {
 
 function loadSound(url) {
   var onError = a => (console.log(a));
-  console.log(url);
+  assetsPending.push(url);
   var request = new XMLHttpRequest();
   request.open('GET', url, true);
   request.responseType = 'arraybuffer';
@@ -124,6 +125,7 @@ function loadSound(url) {
   Assets[name] = audioContext.createBuffer(1, 1, 44100); //temporary null buffer until loaded
   // Decode asynchronously
   request.onload = function() {
+    assetsPending.splice(assetsPending.indexOf(url), 1);
     console.log(name + " loaded");
     audioContext.decodeAudioData(request.response, function(buffer) {
       Assets[name] = buffer;

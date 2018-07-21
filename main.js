@@ -95,7 +95,7 @@ window.onload = init;
 var note = "";
 var tileSize = 64;
 
-var editing = true;
+var editing = false;
 var paletteTileSize = tileSize / 2;
 var paletteX = 0;
 var paletteY = 1;
@@ -667,7 +667,7 @@ function init() {
   }
 
   function waitForImages() {
-    if (imagesPending.length === 0) {
+    if (assetsPending.length === 0) {
       gameMode = initializeGame;
     }
   }
@@ -677,7 +677,7 @@ function init() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
     let y = 50;
-    for (let f of imagesPending) {
+    for (let f of assetsPending) {
       ctx.fillText(f, 10, y);
       y += 15;
     }

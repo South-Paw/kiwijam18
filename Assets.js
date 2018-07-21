@@ -11,8 +11,8 @@ imageList = [
   "character/playerWalkDown.png|4|1|[64,192]",
   "match.png|1",
   "key.png|1",
-  "brazier/brazierBurn.png|3|1|[64,128]",
-  "brazier/brazierEmber.png|3|2|[64,128]"
+  "brazier/brazierBurn.png|3|1|[64,138]",
+  "brazier/brazierEmber.png|3|2|[64,138]"
 ].map(imageDetailsFromString);
 
 var soundList = [

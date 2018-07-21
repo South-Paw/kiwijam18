@@ -3,9 +3,7 @@ function makeEntity(pos) {
   let setPos = newpos => pos = newpos;
   let move = _ => {};
   let draw = _ => {};
-  let blocking = (x, y) => {
-    false
-  };
+  let blocking = gamePos => false;
 
   return {
     getPos,
@@ -20,8 +18,11 @@ function makeMinotaur(pos) {
   let WALKING_SPEED = 5;
   let age = 0;
   let frame = 0;
-  let anim = Assets.minotaurWalkLeft;
+	let anim = Assets.minotaurWalkLeft;
+	let history =[];
+
   let {
+		blocking,
     getPos,
     setPos
   } = makeEntity(pos)
@@ -34,11 +35,13 @@ function makeMinotaur(pos) {
   function move() {
     age += 1;
     frame = Math.floor((age / 10) % 6);
+		let currentTile=gameToTile(getPos());
 
   }
   return {
     getPos,
-    setPos,
+		setPos,
+		blocking,
     move,
     draw
   };
@@ -54,7 +57,8 @@ function makePlayer(pos) {
 
 
   let {
-    getPos,
+		getPos,
+		blocking,
     setPos
   } = makeEntity(pos);
 
@@ -113,9 +117,8 @@ function makePlayer(pos) {
       walking = true;
     }
 
-    let boundingPosUD = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
-
-    if (!boundingPosUD.some(a => world.tileAt(a).floorType > 24)) {
+		let boundingPosUD = characterBounding.map(v => vadd(p, v));
+    if (!boundingPosUD.some(a => !world.isSpace(a))) {
       setPos(p);
     }
 
@@ -139,9 +142,8 @@ function makePlayer(pos) {
       frame = Math.floor((age / 10) % 4);
     }
 
-    let boundingPosLR = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
-
-    if (!boundingPosLR.some(a => world.tileAt(a).floorType > 24)) {
+		let boundingPosLR = characterBounding.map(v => vadd(p, v));
+    if (!boundingPosLR.some(a => !world.isSpace(a))) {
       setPos(p);
     }
 
@@ -156,7 +158,8 @@ function makePlayer(pos) {
 
   return {
     getPos,
-    setPos,
+		setPos,
+		blocking,
     move,
     draw
   };

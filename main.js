@@ -520,6 +520,8 @@ function init() {
     for (let ent of entities) {
       ent.move();
     }
+    entities.sort((a,b)=>(a.getPos()[1]-b.getPos()[1]));
+
     if (editing) {
       if (input.keyWentDown(68)) {
         paletteX = (paletteX + 1) % paletteWidth;
@@ -727,6 +729,17 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     return result;
   }
   
+  function isSpace(gamePos) {
+    let tilePos = gameToTile(gamePos);
+    let tile=tileAt(tilePos);
+    let floor = tile.floorType < 24;
+    if (floor) {
+      for (let e of tile.contents) {
+        if  (e.blocking(gamePos)) return false;
+      }
+    }
+    return floor;
+  }
   function getSize() {
     return [width, height]
   }
@@ -773,6 +786,7 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     map,
     draw,
     tileAt,
+    isSpace,
     getSize
   };
 }

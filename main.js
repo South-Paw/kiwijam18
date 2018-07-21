@@ -283,7 +283,10 @@ function init() {
     let canvasPos = screenToCanvas([e.offsetX, e.offsetY]);
     let gamePos = canvasToGame(canvasPos);
     let tilePos = gameToTile(gamePos);
-    note = JSON.stringify({gamePos,tilePos});
+    note = JSON.stringify({
+      gamePos,
+      tilePos
+    });
     let buttons = e.buttons;
     if (typeof dragFunction === "function") {
       dragFunction({

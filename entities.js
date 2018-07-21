@@ -45,13 +45,13 @@ function makeMinotaur(pos) {
 }
 
 function makePlayer(pos) {
-	let WALKING_SPEED = 5;
-	let INITIAL_MATCH_LIFE = 1000;
+  let WALKING_SPEED = 5;
+  let INITIAL_MATCH_LIFE = 1000;
   let walkAnim = Assets.playerWalkLeft;
   let age = 0;
   let frame = 0;
-	let matchLife = 0;
-	
+  let matchLife = 0;
+
 
   let {
     getPos,
@@ -63,16 +63,16 @@ function makePlayer(pos) {
     [0, 0],
   ];
 
-	let burnFunction=a=>Math.sin(a*a*3)+(Math.sin(a*80)+Math.sin(a*100) )*(a*0.1);
+  let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);
 
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 
     ctx.drawSprite(walkAnim, x, y, frame);
 
-		let matchLevel = matchLife/INITIAL_MATCH_LIFE;
+    let matchLevel = matchLife / INITIAL_MATCH_LIFE;
 
-    lctx.drawSprite(Assets.baseLight, x, y - 64, randInt(8),5*burnFunction(matchLevel)+1);
+    lctx.drawSprite(Assets.baseLight, x, y - 64, randInt(8), 5 * burnFunction(matchLevel) + 1);
 
     // debug player bounding using circles
 
@@ -86,14 +86,15 @@ function makePlayer(pos) {
     // }
   }
 
-	function lightMatch() {
-		matchLife=INITIAL_MATCH_LIFE;
+  function lightMatch() {
+    matchLife = INITIAL_MATCH_LIFE;
 
-	}
+  }
+
   function move() {
     let p = getPos();
-		age += 1;
-		
+    age += 1;
+
     let walking = false;
 
     // Move up
@@ -140,15 +141,15 @@ function makePlayer(pos) {
 
     if (!boundingPosLR.some(a => world.tileAt(a).floorType > 24)) {
       setPos(p);
-		}
-		
-		if (input.keyWentDown(69)) {
-			lightMatch();
-		}
-		if (matchLife > 0) {
-			matchLife-=1;
-		}
-	}
+    }
+
+    if (input.keyWentDown(69)) {
+      lightMatch();
+    }
+    if (matchLife > 0) {
+      matchLife -= 1;
+    }
+  }
 
   return {
     getPos,

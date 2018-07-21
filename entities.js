@@ -67,7 +67,7 @@ function makePlayer(pos) {
 
     ctx.drawSprite(walkAnim, x, y, frame);
 
-    lctx.drawSprite(Assets.baseLight, x, y - 32, randInt(8));
+    lctx.drawSprite(Assets.baseLight, x, y - 64, randInt(8));
 
     // debug player bounding using circles
 

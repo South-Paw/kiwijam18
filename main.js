@@ -238,20 +238,20 @@ function init() {
     entities.push(player);
     world.player = player;
 
-    entities.push(makeBrazier([990,5418]));
-    entities.push(makeBrazier([5182,660]));
+    entities.push(makeBrazier([990, 5418]));
+    entities.push(makeBrazier([5182, 660]));
 
-    entities.push(makeBrazier([2084,1828]));
-    entities.push(makeBrazier([3110,1056]));
-    entities.push(makeBrazier([1060,1576]));
-    entities.push(makeBrazier([1332,2816]));
-    entities.push(makeBrazier([2500,3619]));
-    entities.push(makeBrazier([3515,3327]));
-    entities.push(makeBrazier([5700,4126]));
-    entities.push(makeBrazier([3424,2336]));
-    entities.push(makeBrazier([4400,4400]));
+    entities.push(makeBrazier([2084, 1828]));
+    entities.push(makeBrazier([3110, 1056]));
+    entities.push(makeBrazier([1060, 1576]));
+    entities.push(makeBrazier([1332, 2816]));
+    entities.push(makeBrazier([2500, 3619]));
+    entities.push(makeBrazier([3515, 3327]));
+    entities.push(makeBrazier([5700, 4126]));
+    entities.push(makeBrazier([3424, 2336]));
+    entities.push(makeBrazier([4400, 4400]));
 
-    entities.push(makeBrazier([5540,5540]));
+    entities.push(makeBrazier([5540, 5540]));
 
     entities.push(makeMinotaur([400, 300]));
     setViewPosition(tileToGame([30, 20]));

@@ -3,10 +3,12 @@ function makeEntity(pos) {
   let setPos = newpos => pos = newpos;
   let move = _ => {};
   let draw = _ => {};
-
+	let blocking = (x,y)=>{false};
+	
   return {
     getPos,
-    setPos,
+		setPos,
+		blocking,
     move,
     draw
   };
@@ -56,7 +58,7 @@ function makePlayer(pos) {
 		
 		ctx.drawSprite(walkAnim,x,y,frame);
 	
-		lctx.drawSprite(Assets.baseLight, x, y, randInt(8));
+		lctx.drawSprite(Assets.baseLight, x, y-32, randInt(8));
 
   }
 

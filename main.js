@@ -1,4 +1,5 @@
 "use strict"
+var levelNumber=0;
 
 var dummyLevel = {
   "width": 30,
@@ -158,27 +159,34 @@ function init() {
 
   window.getLevel = getLevel;
 
-  function startLevel(n = 1) {
-    let worldSize = 30;
-    world = makeWorld(worldSize);
-    world.tileAt([-1, -1]).floorType = 77;
-    entities = [];
-    setViewPosition(tileToGame([30, 20]));
-    for (let tx of intRange(1, worldSize - 1)) {
-      for (let ty of intRange(1, worldSize - 1)) {
-        setTile([tx, ty], 40);
-      }
-    }
-
-    loadLevel(dummyLevel);
-
-    //add entities
+  function initLevel1() {
+    loadLevel(levels.level1);
+     //add entities
+     let player = makePlayer([300, 300]);
+     entities.push(player);
+     world.player = player;
+  
+     entities.push(makeMinotaur([400,300]));
+     setViewPosition(tileToGame([30, 20]));
+    
+  }
+  function initTutorial() {
+    loadLevel(levels.tutorial);
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
+   
+  }
+  let allLevels = [initTutorial,initLevel1,initLevel1,initLevel1,initLevel1];
 
-    entities.push(makeMinotaur([400,300]));
+  function startLevel(n = 0) {
+    
+    n%=allLevels.length;
 
+    let worldSize = 30;
+    entities = [];
+  
+    allLevels[n]();
     gameMode = mainGame;
   }
 
@@ -404,6 +412,11 @@ function init() {
 
 
   function mainUpdate() {
+    if (input.keyWentDown(48)) {
+      levelNumber++;
+      startLevel(levelNumber);
+      console.log("level num ",levelNumber);
+    }
     if (!editing) {
       desiredViewPosition = world.player.getPos();
     }
@@ -558,7 +571,7 @@ function init() {
   }
 
   function initializeGame() {
-    startLevel(1);
+    startLevel(0);
   }
 
   function mainGame(ticks) {

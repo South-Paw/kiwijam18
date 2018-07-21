@@ -6,10 +6,10 @@ imageList = [
   "minotaur/minotaurWalkRight.png|6",
   "minotaur/minotaurWalkUp.png|6",
   "minotaur/minotaurWalkDown.png|6",
-  "character/playerWalkLeft.png|4",
-  "character/playerWalkRight.png|4",
-  "character/playerWalkUp.png|4",
-  "character/playerWalkDown.png|4"
+  "character/playerWalkLeft.png|4|1|[64,160]",
+  "character/playerWalkRight.png|4|1|[64,160]",
+  "character/playerWalkUp.png|4|1|[64,160]",
+  "character/playerWalkDown.png|4|1|[64,160]"
 
 ].map(imageDetailsFromString);
 
@@ -28,18 +28,19 @@ function loadImage(url) {
   result.src = url;
 
   let name = url.slice(url.lastIndexOf("/") + 1);
-  console.log(url, " as ", name);
+
   Assets[name.replace(/\.[^/.]+$/, "")] = result;
   return result;
 }
 
 function imageDetailsFromString(s) {
-  let [name, framesWide = 1, framesHigh = 1] = s.split("|");
+  let [name, framesWide = 1, framesHigh = 1, handle="null"] = s.split("|");
   name = "images/" + name;
   return {
     name,
-    framesWide,
-    framesHigh
+    framesWide: parseInt(framesWide),
+    framesHigh: parseInt(framesHigh),
+    handle: JSON.parse(handle)
   }
 }
 
@@ -71,10 +72,11 @@ function loadSound(url) {
 function loadAssets() {
 
   for (let i of imageList) {
-
+    console.log(i);
     let image = loadImage(i.name);
     image.framesWide = i.framesWide;
     image.framesHigh = i.framesHigh;
+    if (i.handle) image.handle=i.handle;
   }
 
   for (let s of soundList) {

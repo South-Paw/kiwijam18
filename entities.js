@@ -15,11 +15,22 @@ function makeEntity(pos) {
 }
 
 function makeMinotaur(pos) {
-  let WALKING_SPEED = 5;
+	let WALKING_SPEED = 5;
+	let UP=0;
+	let DOWN=1;
+	let LEFT=2;
+	let RIGHT=3;
+
+	let directions = [ [0,-1], [0,1], [-1,0], [1,0]]
+	let anims=[Assets.minotaurWalkUp,Assets.minotaurWalkDown,Assets.minotaurWalkLeft,Assets.minotaurWalkRight];
+	let direction = RIGHT;
   let age = 0;
   let frame = 0;
-	let anim = Assets.minotaurWalkLeft;
-	let history =[];
+
+	let characterBounding = [
+    [0, -40],
+    [0, -6],
+  ];
 
   let {
 		blocking,
@@ -27,15 +38,29 @@ function makeMinotaur(pos) {
     setPos
   } = makeEntity(pos)
 
+	function look(way) {
+		let here=getPos();
+		let candidate=vadd(here,vscale(directions[way],60));
+		return world.isSpace(candidate);
+	}
+
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-    ctx.drawSprite(anim, x, y, frame);
+    ctx.drawSprite(anims[direction], x, y, frame);
   }
 
   function move() {
     age += 1;
-    frame = Math.floor((age / 10) % 6);
-		let currentTile=gameToTile(getPos());
+ 		let currentTile=gameToTile(getPos());
+		let step=vscale(directions[direction],WALKING_SPEED);
+		let p=vadd(getPos(),step);
+		let boundingPos = characterBounding.map(v => vadd(p, v));
+    if (!boundingPos.some(a => !world.isSpace(a))) {
+      setPos(p);
+    } else {
+			direction=randInt(4);
+		}
+		frame = Math.floor((age / 10) % anims[direction].framesWide);
 
   }
   return {

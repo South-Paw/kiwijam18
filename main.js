@@ -728,7 +728,7 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     })
     return result;
   }
-
+  
   function getSize() {
     return [width, height]
   }

@@ -63,8 +63,8 @@ function makePlayer(pos) {
   } = makeEntity(pos);
 
   let characterBounding = [
-    [0, -64],
-    [0, 0],
+    [0, -40],
+    [0, -6],
   ];
 
   let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);

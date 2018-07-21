@@ -56,10 +56,8 @@ function makePlayer(pos) {
   } = makeEntity(pos);
 
   let characterBounding = [
-    [-32, -64],
-    [32, -64],
-    [-32, 0],
-    [32, 0],
+    [0, -64],
+    [0, 0],
   ];
 
   function draw(ctx, lctx) {
@@ -71,16 +69,14 @@ function makePlayer(pos) {
 
     // debug player bounding using circles
 
-    let bounding = characterBounding.map(v => vadd(getPos(), v));
-
-    for ([x, y] of bounding) {
-      ctx.beginPath();
-      ctx.circle(x, y, 5);
-      ctx.fillStyle = 'red';
-      ctx.fill();
-    }
-
-    let boundingPos = bounding.map(p => gameToTile(p));
+    // let bounding = characterBounding.map(v => vadd(getPos(), v));
+    //
+    // for ([x, y] of bounding) {
+    //   ctx.beginPath();
+    //   ctx.circle(x, y, 5);
+    //   ctx.fillStyle = 'red';
+    //   ctx.fill();
+    // }
   }
 
   function move() {
@@ -102,6 +98,14 @@ function makePlayer(pos) {
       walking = true;
     }
 
+    let boundingPosUD = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
+
+    if (!boundingPosUD.some(a => world.tileAt(a).floorType > 24)) {
+      setPos(p);
+    }
+
+    p = getPos();
+
     // Move left
     if (input.isKeyDown(65)) {
       p = vadd([-WALKING_SPEED, 0], p);
@@ -120,14 +124,9 @@ function makePlayer(pos) {
       frame = Math.floor((age / 10) % 4);
     }
 
-    let boundingPos = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
+    let boundingPosLR = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
 
-    // debug bounding pos using note
-
-    // note = JSON.stringify(boundingPos);
-    // note = boundingPos.some(a => world.tileAt(a).floorType !== 0);
-
-    if (!boundingPos.some(a => world.tileAt(a).floorType > 24)) {
+    if (!boundingPosLR.some(a => world.tileAt(a).floorType > 24)) {
       setPos(p);
     }
   }

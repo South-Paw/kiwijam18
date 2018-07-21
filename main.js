@@ -143,7 +143,7 @@ function toggleFullScreen() {
 function init() {
   window.world = makeWorld(30, 30, 64);
 
-  window.gameState = {
+  window.inventory = {
     matches: 0,
     keys: 0,
     // gems: 0,
@@ -218,7 +218,8 @@ function init() {
   function initTutorial() {
     loadLevel(levels.tutorial);
 
-    gameState.matches = 3;
+    inventory.matches = 3;
+    inventory.keys = 0;
 
     let player = makePlayer([394, 430]);
     entities.push(player);
@@ -232,7 +233,8 @@ function init() {
   function initLevel1() {
     loadLevel(levels.level1);
 
-    gameState.matches += 3;
+    inventory.matches += 3;
+    inventory.keys = 0;
 
     let player = makePlayer([300, 300]);
     entities.push(player);
@@ -259,7 +261,8 @@ function init() {
   function initLevel2() {
     loadLevel(levels.level2);
 
-    gameState.matches += 3;
+    inventory.matches += 3;
+    inventory.keys = 0;
 
     let player = makePlayer([300, 300]);
     entities.push(player);
@@ -273,7 +276,8 @@ function init() {
   function initLevel3() {
     loadLevel(levels.level3);
 
-    gameState.matches += 5;
+    inventory.matches += 5;
+    inventory.keys = 0;
 
     let player = makePlayer([300, 300]);
     entities.push(player);
@@ -300,7 +304,7 @@ function init() {
 
     allLevels[n]();
 
-    loopSound(Assets.DungeonGameAtmosphere); // randInt(Math.floor(Assets.DungeonGameAtmosphere.length / 25))
+    loopSound(Assets.DungeonGameAtmosphere);
 
     gameMode = mainGame;
   }
@@ -589,12 +593,12 @@ function init() {
     let offset = 60;
 
     // draw matches
-    for (let i = 1; i < gameState.matches + 1; i++) {
+    for (let i = 1; i < inventory.matches + 1; i++) {
       ctx.drawSprite(Assets.match, 1920 - (offset * i), 1080 - offset, 0, 0.6);
     }
 
     // draw keys
-    for (let i = 1; i < gameState.keys + 1; i++) {
+    for (let i = 1; i < inventory.keys + 1; i++) {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
   }

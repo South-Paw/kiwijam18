@@ -127,9 +127,9 @@ function loadSound(url) {
   Assets[name] = audioContext.createBuffer(1, 1, 44100); //temporary null buffer until loaded
   // Decode asynchronously
   request.onload = function() {
-    assetsPending.splice(assetsPending.indexOf(url), 1);
     console.log(name + " loaded");
     audioContext.decodeAudioData(request.response, function(buffer) {
+      assetsPending.splice(assetsPending.indexOf(url), 1);
       Assets[name] = buffer;
     }, onError);
   }

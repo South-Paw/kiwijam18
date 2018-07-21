@@ -124,7 +124,7 @@ function makeKey(pos) {
 
     if (vdistance(p, world.player.getPos()) < 64) {
       playSound(Assets.KeyPickup);
-      gameState.keys += 1;
+      inventory.keys += 1;
       collected = true;
     }
   }

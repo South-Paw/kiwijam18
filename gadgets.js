@@ -122,6 +122,7 @@ function makeKey(pos) {
     age += 1;
 
     if (vdistance(p, world.player.getPos()) < 64) {
+      playSound(Assets.KeyPickup);
       collected = true;
     }
   }

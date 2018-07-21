@@ -1,5 +1,6 @@
 function makeBrazier(pos) {
-  let age = 0;
+	let age = 0;
+	let lit=false;
   let frame = 0;
   let {
     getPos,
@@ -12,15 +13,22 @@ function makeBrazier(pos) {
 	}
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-
-		ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
-    lctx.drawSprite(Assets.baseLight, x, y, randInt(8),7+flicker(age));
-
+		if (lit) {
+			ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
+    	lctx.drawSprite(Assets.baseLight, x, y, randInt(8),7+flicker(age));
+		} else {
+			ctx.drawSprite(Assets.brazierEmber, x, y, randInt(6));
+		}
   }
 
   function move() {
     let p = getPos();
-    age += 1;
+		age += 1;
+		if (world.player.hasFire()) {
+			if (vdistance(p,world.player.getPos()) < 100) {
+				lit=true;
+			}
+		}
   }
 	function blocking(atPos) {
 		let d = vdistance(atPos,getPos());

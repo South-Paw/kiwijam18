@@ -21,7 +21,7 @@ function makeMinotaur(pos) {
 	let LEFT=2;
 	let RIGHT=3;
 
-	let directions = [ [0,-1], [0,1], [-1,0], [1,0]]
+	let directions = [ [0,-1], [0,1], [-1,0], [1,0]];
 	let anims=[Assets.minotaurWalkUp,Assets.minotaurWalkDown,Assets.minotaurWalkLeft,Assets.minotaurWalkRight];
 	let direction = RIGHT;
   let age = 0;
@@ -44,6 +44,14 @@ function makeMinotaur(pos) {
 		return world.isSpace(candidate);
 	}
 
+	function consider(way) {
+		if (look(way)) {
+			if (probability(0.002)) {
+				direction=way;
+			}
+		}
+ 	}
+
   function draw(ctx, lctx) {
     let [x, y] = getPos();
     ctx.drawSprite(anims[direction], x, y, frame);
@@ -56,9 +64,22 @@ function makeMinotaur(pos) {
 		let p=vadd(getPos(),step);
 		let boundingPos = characterBounding.map(v => vadd(p, v));
     if (!boundingPos.some(a => !world.isSpace(a))) {
-      setPos(p);
+			setPos(p);
     } else {
 			direction=randInt(4);
+		}
+		switch(direction) {
+			case DOWN:
+			case UP: 
+				consider(LEFT);
+				consider(RIGHT);
+				break;
+
+			case LEFT:
+			case RIGHT:
+				consider(UP);
+				consider(DOWN);
+				break;
 		}
 		frame = Math.floor((age / 10) % anims[direction].framesWide);
 
@@ -180,11 +201,15 @@ function makePlayer(pos) {
       matchLife -= 1;
     }
   }
+	function hasFire() {
+		return matchLife>0;
+	}
 
   return {
     getPos,
 		setPos,
 		blocking,
+		hasFire,
     move,
     draw
   };

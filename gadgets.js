@@ -6,11 +6,14 @@ function makeBrazier(pos) {
     setPos
   } = makeEntity(pos);
 
+	function flicker(a) {
+		return (Math.sin(age/100)+Math.sin(age/180))/3;
+	}
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 
     ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
-    lctx.drawSprite(Assets.baseLight, x, y, randInt(8), 5);
+    lctx.drawSprite(Assets.baseLight, x, y, randInt(8),7+flicker(age));
 
   }
 

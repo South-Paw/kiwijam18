@@ -15,7 +15,7 @@ function makeEntity(pos) {
 }
 
 function makeMinotaur(pos) {
-	let WALKING_SPEED = 5;
+	let WALKING_SPEED = 2.5;
 	let UP=0;
 	let DOWN=1;
 	let LEFT=2;
@@ -30,6 +30,19 @@ function makeMinotaur(pos) {
 	let characterBounding = [
     [0, -40],
     [0, -6],
+  ];
+
+  let footstepSounds = [
+    Assets.MinotaurFootstep1,
+    Assets.MinotaurFootstep2,
+    Assets.MinotaurFootstep3,
+    Assets.MinotaurFootstep4,
+    Assets.MinotaurFootstep5,
+    Assets.MinotaurFootstep6,
+    Assets.MinotaurFootstep7,
+    Assets.MinotaurFootstep8,
+    Assets.MinotaurFootstep9,
+    Assets.MinotaurFootstep10,
   ];
 
   let {
@@ -70,7 +83,7 @@ function makeMinotaur(pos) {
 		}
 		switch(direction) {
 			case DOWN:
-			case UP: 
+			case UP:
 				consider(LEFT);
 				consider(RIGHT);
 				break;
@@ -83,6 +96,10 @@ function makeMinotaur(pos) {
 		}
 		frame = Math.floor((age / 10) % anims[direction].framesWide);
 
+    // very loud and they always play...
+    // if ((age % 60) === 0) {
+    //   playSound(footstepSounds[randInt(footstepSounds.length)]);
+    // }
   }
   return {
     getPos,
@@ -113,12 +130,29 @@ function makePlayer(pos) {
     [0, -6],
   ];
 
+  let footstepSounds = [
+    Assets.FootstepClean1,
+    Assets.FootstepClean2,
+    Assets.FootstepClean3,
+    Assets.FootstepClean4,
+    Assets.FootstepClean5,
+    Assets.FootstepClean6,
+    Assets.FootstepClean7,
+    Assets.FootstepClean8,
+    Assets.FootstepClean9,
+    Assets.FootstepClean10,
+  ];
+
+  let matchSounds = [
+    Assets.LightingAMatch1,
+    Assets.LightingAMatch2,
+  ];
+
   let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);
 
 	function matchBrightness() {
 		let matchLevel = matchLife / INITIAL_MATCH_LIFE;
     return burnFunction(matchLevel);
-		
 	}
 
   function draw(ctx, lctx) {
@@ -138,7 +172,7 @@ function makePlayer(pos) {
     //   ctx.fillStyle = 'red';
     //   ctx.fill();
 		// }
-/*		
+/*
 		{
 			let [cx,cy]=vadd(matchPos,getPos());
 			ctx.fillStyle="red";
@@ -152,6 +186,7 @@ function makePlayer(pos) {
   function lightMatch() {
     if (gameState.matches > 0 && !editing) {
       matchLife = INITIAL_MATCH_LIFE;
+      playSound(matchSounds[randInt(matchSounds.length)]);
       gameState.matches -= 1;
     }
   }
@@ -167,7 +202,7 @@ function makePlayer(pos) {
       p = vadd([0, -WALKING_SPEED], p);
       walkAnim = Assets.playerWalkUp;
 			matchPos=[-24,-86];
-  
+
 			walking = true;
     }
 
@@ -206,6 +241,10 @@ function makePlayer(pos) {
 
     if (walking) {
       frame = Math.floor((age / 10) % 4);
+
+      if ((age % 30) === 0) {
+        playSound(footstepSounds[randInt(footstepSounds.length)]);
+      }
     }
 
 		let boundingPosLR = characterBounding.map(v => vadd(p, v));
@@ -222,19 +261,19 @@ function makePlayer(pos) {
 			{
 				pos=vadd(matchPos,getPos());
 				particles.push(particleSystem(Math.floor(0.8+10*matchBrightness()),{pos},makeMatchParticle));
-			}	
+			}
 		}
 	}
-	
+
 	function makeMatchParticle(state) {
 		let lastPosition = state.pos;
 		let position = vadd(lastPosition, [(Math.random() - 0.5) * 0.15, (Math.random() - 0.9) * 1.5]);
-	
+
 		let {
 			image = Assets.particle, age = 0
 		} = state;
 		let dead = false;
-	
+
 		return {
 			position,
 			lastPosition,
@@ -245,7 +284,7 @@ function makePlayer(pos) {
 			draw: drawDefaultParticle,
 		}
 	}
-	
+
 	function hasFire() {
 		return matchLife>0;
 	}

@@ -11,22 +11,49 @@ imageList = [
   "character/playerWalkDown.png|4|1|[64,192]",
   "match.png|1",
   "key.png|1",
-  "particle.png|1", 
+  "particle.png|1",
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"
 ].map(imageDetailsFromString);
 
 var soundList = [
-  // "FootstepClean1.ogg",
-  // "FootstepClean2.ogg",
-  // "FootstepClean3.ogg",
-  // "FootstepClean4.ogg",
-  // "FootstepClean5.ogg",
-  // "FootstepClean6.ogg",
-  // "FootstepClean7.ogg",
-  // "FootstepClean8.ogg",
-  // "FootstepClean9.ogg",
-  // "FootstepClean10.ogg"
+  // player clean
+  "FootstepClean1.ogg",
+  "FootstepClean2.ogg",
+  "FootstepClean3.ogg",
+  "FootstepClean4.ogg",
+  "FootstepClean5.ogg",
+  "FootstepClean6.ogg",
+  "FootstepClean7.ogg",
+  "FootstepClean8.ogg",
+  "FootstepClean9.ogg",
+  "FootstepClean10.ogg",
+  // minotaur
+  "MinotaurFootstep1.ogg",
+  "MinotaurFootstep2.ogg",
+  "MinotaurFootstep3.ogg",
+  "MinotaurFootstep4.ogg",
+  "MinotaurFootstep5.ogg",
+  "MinotaurFootstep6.ogg",
+  "MinotaurFootstep7.ogg",
+  "MinotaurFootstep8.ogg",
+  "MinotaurFootstep9.ogg",
+  "MinotaurFootstep10.ogg",
+  // match
+  "LightingAMatch1.ogg",
+  "LightingAMatch2.ogg",
+  // key
+  "KeyPickup.ogg",
+  // door
+  "KeyUnlockDoor.ogg",
+  // trapdoor
+  "TrapDoorClose.ogg",
+  "TrapDoorOpen1.ogg",
+  "TrapDoorOpen2.ogg",
+  // death sounds
+  "MonsterKillYou1.ogg",
+  "MonsterKillYou2.ogg",
+  "MonsterKillYou3.ogg",
 ];
 
 var imagesPending = [];

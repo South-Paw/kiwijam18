@@ -144,7 +144,7 @@ function init() {
   window.world = makeWorld(30, 30, 64);
 
   window.gameState = {
-    matches: 3,
+    matches: 0,
     keys: 0,
     // gems: 0,
   };
@@ -215,7 +215,11 @@ function init() {
 
   function initTutorial() {
     loadLevel(levels.tutorial);
+
+    gameState.matches = 3;
+
     let player = makePlayer([394, 430]);
+
     entities.push(player);
 
     entities.push(makeBrazier([640, 420]));
@@ -227,7 +231,10 @@ function init() {
   function initLevel1() {
     loadLevel(levels.level1);
 
+    gameState.matches += 3;
+
     let player = makePlayer([300, 300]);
+
     entities.push(player);
     world.player = player;
 
@@ -253,6 +260,8 @@ function init() {
   function initLevel2() {
     loadLevel(levels.level2);
 
+    gameState.matches += 3;
+
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
@@ -263,6 +272,8 @@ function init() {
 
   function initLevel3() {
     loadLevel(levels.level3);
+
+    gameState.matches += 5;
 
     let player = makePlayer([300, 300]);
     entities.push(player);

@@ -151,13 +151,9 @@ CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0,
 }
 
 
-<<<<<<< HEAD
-CanvasRenderingContext2D.prototype.circle = function (x,y,radius) {
-  this.ellipse(x, y, radius, radius, 0, 0, Math.PI * 2);
-=======
 CanvasRenderingContext2D.prototype.circle = function(x, y, radius) {
+  this.beginPath();
   this.ellipse(x, y, radius, radius, 0, 0, Math.PI * 2);
->>>>>>> 439bf1d64267d10c2597d130c0ed2d1d574a5a16
 }
 
 

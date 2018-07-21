@@ -96,6 +96,7 @@ function init() {
     for (let i = 0; i < world.map.length; i++) {
       world.map[i].floorType = data.tiles[i];
     }
+
   }
 
   function getLevel() {
@@ -116,9 +117,6 @@ function init() {
     world = makeWorld(worldSize);
     world.tileAt([-1, -1]).floorType = 77;
     entities = [];
-    let player = makePlayer([300, 300]);
-    entities.push(player);
-    world.player = player;
     setViewPosition(tileToGame([30, 20]));
     for (let tx of intRange(1, worldSize - 1)) {
       for (let ty of intRange(1, worldSize - 1)) {
@@ -127,6 +125,12 @@ function init() {
     }
 
     loadLevel(dummyLevel);
+
+    //add entities
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player = player;
+ 
     gameMode = mainGame;
   }
 

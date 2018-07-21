@@ -143,12 +143,19 @@ function toggleFullScreen() {
 function init() {
   window.world = makeWorld(30, 30, 64);
 
+  window.gameState = {
+    matches: 3,
+    keys: 0,
+    // gems: 0,
+  }
+
   var canvas = document.querySelector("#main");
   lightOverlay.width = canvas.width;
   lightOverlay.height = canvas.height;
 
   var ctx = canvas.getContext("2d");
   var lctx = lightOverlay.getContext("2d");
+
   ctx.moveTo(10, 10);
   ctx.lineTo(1920, 1080);
   ctx.lineTo(1920, 0);
@@ -544,7 +551,17 @@ function init() {
   }
 
   function drawOverlay() {
-    // TODO
+    let offset = 60;
+
+    // draw matches
+    for (let i = 1; i < gameState.matches + 1; i++) {
+      ctx.drawSprite(Assets.match, 1920 - (offset * i), 1080 - offset, 0, 0.6);
+    }
+
+    // draw keys
+    for (let i = 1; i < gameState.keys + 1; i++) {
+      ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100 ), 0, 0.8);
+    }
   }
 
   function drawView() {

@@ -8,7 +8,9 @@ imageList = [
   "character/playerWalkLeft.png|4|1|[64,192]",
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
-  "character/playerWalkDown.png|4|1|[64,192]"
+  "character/playerWalkDown.png|4|1|[64,192]",
+  "match.png|1",
+  "key.png|1"
 ].map(imageDetailsFromString);
 
 var soundList = [
@@ -194,9 +196,7 @@ function makeDefaultParticle(state) {
     move: moveDefaultParticle,
     draw: drawDefaultParticle,
   }
-
 }
-
 
 function particleSystem(count, state, makeParticle = makeDefaultParticle) {
   var points = [];

@@ -218,7 +218,7 @@ function init() {
     let player = makePlayer([394, 430]);
     entities.push(player);
 
-    entities.push(makeBrazier([640,420]));
+    entities.push(makeBrazier([640, 420]));
 
     world.player = player;
 
@@ -563,7 +563,7 @@ function init() {
 
     // draw keys
     for (let i = 1; i < gameState.keys + 1; i++) {
-      ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100 ), 0, 0.8);
+      ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
   }
 
@@ -574,14 +574,14 @@ function init() {
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.setTransform(1, 0, 0, 1, 0, 0);
-    lctx.globalCompositeOperation="source-over";
+    lctx.globalCompositeOperation = "source-over";
 
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
     lctx.translate(cw / 2 - vx, ch / 2 - vy);
-    lctx.globalCompositeOperation="lighter";
+    lctx.globalCompositeOperation = "lighter";
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
     //draw tile under mouse

@@ -36,9 +36,6 @@ function getImageData() {
 
   let pixels = new Uint32Array(imageData.data.buffer);
 
-  // see pixel colors
-  // console.log(pixels);
-
   readImage(image, pixels);
 }
 
@@ -209,18 +206,6 @@ function init() {
 
   window.getLevel = getLevel;
 
-  function initLevel1() {
-    loadLevel(levels.level1);
-    //add entities
-    let player = makePlayer([300, 300]);
-    entities.push(player);
-    world.player = player;
-
-    entities.push(makeMinotaur([400, 300]));
-    setViewPosition(tileToGame([30, 20]));
-
-  }
-
   function initTutorial() {
     loadLevel(levels.tutorial);
     let player = makePlayer([394, 430]);
@@ -228,10 +213,48 @@ function init() {
     world.player = player;
 
   }
-  let allLevels = [initTutorial, initLevel1, initLevel1, initLevel1, initLevel1];
+
+  function initLevel1() {
+    loadLevel(levels.level1);
+
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player = player;
+
+    entities.push(makeMinotaur([400, 300]));
+    setViewPosition(tileToGame([30, 20]));
+  }
+
+  function initLevel2() {
+    loadLevel(levels.level2);
+
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player = player;
+
+    entities.push(makeMinotaur([400, 300]));
+    setViewPosition(tileToGame([30, 20]));
+  }
+
+  function initLevel3() {
+    loadLevel(levels.level3);
+
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player = player;
+
+    entities.push(makeMinotaur([400, 300]));
+    setViewPosition(tileToGame([30, 20]));
+  }
+
+  let allLevels = [
+    initTutorial,
+    initLevel1,
+    initLevel2,
+    initLevel3
+  ];
 
   function startLevel(n = 0) {
-
     n %= allLevels.length;
 
     let worldSize = 30;
@@ -261,6 +284,7 @@ function init() {
     y = median(y, hh, maxY - hh);
     desiredViewPosition = [x, y];
   }
+
   window.setViewPosition = setViewPosition;
 
   let dragFunction = null;
@@ -422,7 +446,6 @@ function init() {
     console.log(e.tilePos)
   }
 
-
   var viewHistory = [0, 0];
 
   function panView() {
@@ -450,6 +473,7 @@ function init() {
     let d = vdiff(a, b).map(Math.abs).map(Math.floor);
     return (d[0] + d[1]) === 1;
   }
+
   window.isBeside = isBeside;
 
   function manhattenD([x1, y1], [x2, y2]) {
@@ -457,7 +481,6 @@ function init() {
   }
 
   let path = [];
-
 
   function mainUpdate() {
     if (input.keyWentDown(48)) {
@@ -518,20 +541,17 @@ function init() {
     lc.translate(cw / 2 - vx, ch / 2 - vy);
 
     let p = world.player.getPos();
-
-
-
   }
 
   function drawOverlay() {
-
+    // TODO
   }
 
   function drawView() {
-
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
+
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.fillStyle = "black";
@@ -541,8 +561,6 @@ function init() {
     lctx.translate(cw / 2 - vx, ch / 2 - vy);
 
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
-
-
 
     //draw tile under mouse
     if (!dragFunction) {
@@ -571,15 +589,13 @@ function init() {
       ctx.drawImage(lightOverlay, 0, 0);
       ctx.globalCompositeOperation = "source-over";
     }
+
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
     ctx.fillText(note, 131, 51);
     ctx.fillStyle = "white";
     ctx.fillText(note, 130, 50);
-
-
-
   }
 
   function triWave(x, p) {
@@ -587,10 +603,8 @@ function init() {
     return 1 / hp * (hp - Math.abs((x % p) - hp));
   }
 
-
   function waitForImages() {
     if (imagesPending.length === 0) {
-
       gameMode = initializeGame;
     }
   }
@@ -650,11 +664,14 @@ function init() {
     let ticks = Math.round(diff / 16);
     lastTime = thisTime;
     if (ticks > 10) ticks = 10;
+
     for (let i = 0; i < ticks; i++) {
       gameMode();
       flushKeysDown();
     }
+
     if (gameMode.draw) gameMode.draw();
+
     requestAnimationFrame(update);
   }
 
@@ -682,9 +699,9 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     tileAt([tx, 0]).floorType = 1;
     tileAt([tx, height - 1]).floorType = 1;
   }
+
   for (let ty of intRange(0, width)) {
     tileAt([0, ty]).floorType = 1;
-
     tileAt([width - 1, ty]).floorType = 1;
   }
 

@@ -8,7 +8,7 @@ var dummyLevel = {
 };
 
 window.lookupTable = [
-  [383, 383, 383, 383],
+  [34, 35, 46, 47],
   [56, 57, 68, 69],
   [76, 77, 88, 89],
   [104, 105, 116, 117],
@@ -324,7 +324,7 @@ function init() {
       if (px < paletteWidth && py < paletteHeight) {
         paletteX = px;
         paletteY = py;
-        console.log("tile "+ (paletteY * paletteWidth + paletteX));
+        console.log("tile " + (paletteY * paletteWidth + paletteX));
         return;
       }
       if (e.button === 0) {

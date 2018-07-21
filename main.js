@@ -21,22 +21,30 @@ function getImageData() {
 
   let pixels = new Uint32Array(imageData.data.buffer);
 
+  // console.log(pixels);
+
   function pixsampler(x, y) {
-    return 77;
+    if (pixels[y * image.width + x] === 4291124039) return 77;
+    return 0;
   }
 
   readImage(image, pixsampler);
 }
 
 function readImage(image, sampler)  {
-  const h = image.width * 4;
-  const w = image.height * 4;
+  const w = image.width * 2;
+  const h = image.height * 2;
 
-  for (let x = 0; x < h; x++) {
-    for (let y = 0; y < w; y++) {
-      world.tileAt([x, y]).floorType = sampler(Math.floor(x / 4), Math.floor(y / 4));
+  let newWorld = makeWorld(w, h);
+
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      newWorld.tileAt([x, y]).floorType = sampler(Math.floor(x / 2), Math.floor(y / 2));
     }
   }
+
+  loadLevel(getLevel(newWorld));
+
 
   // console.log(JSON.stringify(dummyLevel));
 }

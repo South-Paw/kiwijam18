@@ -227,7 +227,7 @@ function init() {
 
   function initTutorial() {
     loadLevel(levels.tutorial);
-    let player = makePlayer([300, 300]);
+    let player = makePlayer([394, 430]);
     entities.push(player);
     world.player = player;
 
@@ -287,6 +287,7 @@ function init() {
     let canvasPos = screenToCanvas([e.offsetX, e.offsetY]);
     let gamePos = canvasToGame(canvasPos);
     let tilePos = gameToTile(gamePos);
+    note = JSON.stringify({gamePos,tilePos});
     let buttons = e.buttons;
     if (typeof dragFunction === "function") {
       dragFunction({
@@ -523,6 +524,10 @@ function init() {
 
   }
 
+  function drawOverlay() {
+
+  }
+
   function drawView() {
 
     let [vx, vy] = viewPosition;
@@ -559,6 +564,8 @@ function init() {
       ent.draw(ctx, lctx);
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    drawOverlay();
 
     if (!editing) {
       ctx.globalCompositeOperation = "multiply";
@@ -644,7 +651,6 @@ function init() {
     let ticks = Math.round(diff / 16);
     lastTime = thisTime;
     if (ticks > 10) ticks = 10;
-    note = ticks;
     for (let i = 0; i < ticks; i++) {
       gameMode();
       flushKeysDown();

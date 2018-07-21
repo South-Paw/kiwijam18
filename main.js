@@ -4,10 +4,11 @@ var note = "";
 var tileSize = 64;
 
 var editing = true;
+var paletteTileSize = tileSize/2;
 var paletteX = 0;
 var paletteY = 1;
-var paletteWidth=8;
-var paletteHeight=15;
+var paletteWidth=12;
+var paletteHeight=32;
 var entities = [];
 
 var lightOverlay = document.createElement("canvas");
@@ -40,9 +41,8 @@ function toggleFullScreen() {
 }
 
 function init() {
-  let world = makeWorld(30, 30, 64);
+  window.world = makeWorld(30, 30, 64);
 
-  window.world = world;
   var canvas = document.querySelector("#main");
   lightOverlay.width=canvas.width;
   lightOverlay.height=canvas.height;
@@ -81,11 +81,23 @@ function init() {
   let viewPosition = [3000, 3000];
   let desiredViewPosition = [960 + tileSize * 300, 540 + tileSize * 300];
 
+  function loadLevel(data){
+    world = makeWorld(data.width,data.height);
+    if (world.map.length !== data.tiles.length ) {
+      console.error("Map was Wrong size!");
+      return;
+    }
+    for (let i=0; i<world.map.length;i++) {
+      world.map[i].floorType=data.tiles[i];
+    }
+  }
 
   function startLevel(n = 1) {
     let worldSize = 30;
 
+
     world = makeWorld(worldSize);
+    world.tileAt([-1,-1]).floorType=77;
     entities = [];
     let player = makePlayer([300, 300]);
     entities.push(player);
@@ -96,7 +108,7 @@ function init() {
 
     for (let tx of intRange(1, worldSize - 1)) {
       for (let ty of intRange(1, worldSize - 1)) {
-        setTile([tx, ty], randInt(4));
+        setTile([tx, ty], 40);
       }
     }
 
@@ -184,8 +196,8 @@ function init() {
     let tilePos = gameToTile(gamePos);
 
     if (editing) {
-      let px=Math.floor(canvasPos[0]/tileSize);
-      let py=Math.floor(canvasPos[1]/tileSize);
+      let px=Math.floor(canvasPos[0]/paletteTileSize);
+      let py=Math.floor(canvasPos[1]/paletteTileSize);
       if (px<paletteWidth && py<paletteHeight) {
         paletteX=px;
         paletteY=py;
@@ -346,12 +358,16 @@ function init() {
   }
 
   function drawEditor() {
+    let s=paletteTileSize;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.drawImage(Assets.tiles, 0, 0);
+    ctx.fillStyle="rgba(0,0,0,0.7)";
+    ctx.fillRect(0,0,paletteWidth*s,paletteHeight*s);
+    ctx.drawImage(Assets.walls, 0, 0,paletteWidth*s,paletteHeight*s);
     ctx.strokeStyle="white";
     ctx.lineWidth=3;
     ctx.beginPath();
-    ctx.rect(paletteX*tileSize,paletteY*tileSize,tileSize,tileSize);
+    
+    ctx.rect(paletteX*s,paletteY*s,s,s);
     ctx.stroke();
     ctx.lineWidth=1;
   }
@@ -542,7 +558,7 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
       let tile = tileAt([x, y]);
       let [tx, ty] = tileToGame([x, y])
       if (tile.render && tile.floorType > 0) {
-        ctx.drawSprite(Assets.tiles, tx, ty, tile.floorType)
+        ctx.drawSprite(Assets.walls, tx, ty, tile.floorType)
       }
     }
   }

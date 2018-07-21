@@ -127,7 +127,7 @@ function makePlayer(pos) {
     // note = JSON.stringify(boundingPos);
     // note = boundingPos.some(a => world.tileAt(a).floorType !== 0);
 
-    if (!boundingPos.some(a => world.tileAt(a).floorType !== 0)) {
+    if (!boundingPos.some(a => world.tileAt(a).floorType > 24)) {
       setPos(p);
     }
   }

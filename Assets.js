@@ -5,6 +5,9 @@ imageList = [
   "minotaur/minotaurWalkRight.png|6|1|[64,192]",
   "minotaur/minotaurWalkUp.png|4|1|[64,192]",
   "minotaur/minotaurWalkDown.png|4|1|[64,192]",
+  "minotaur/minotaurWalkLeftEyes.png|6|1|[64,192]",
+  "minotaur/minotaurWalkRightEyes.png|6|1|[64,192]",
+  "minotaur/minotaurWalkDownEyes.png|4|1|[64,192]",
   "character/playerWalkLeft.png|4|1|[64,192]",
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
@@ -135,6 +138,7 @@ function blankCanvas(w, h = w) {
 
 
 CanvasRenderingContext2D.prototype.drawSprite = function(image, x, y, frame = 0, scale = 1) {
+  if (image===null) return;
   let frameWidth = image.width;
   let frameHeight = image.height;
   let oy = 0;

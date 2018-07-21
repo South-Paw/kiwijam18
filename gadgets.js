@@ -88,3 +88,42 @@ function makeRat(pos) {
     draw
   };
 }
+
+
+function makeKey(pos) {
+  let age = 0;
+	let frame = 0;
+	let collected = false;
+  let {
+    getPos,
+		setPos,
+		blocking
+  } = makeEntity(pos)
+
+  function draw(ctx, lctx) {
+		if (collected) return
+    let [x, y] = getPos();
+
+    ctx.drawSprite(Assets.key, x, y);
+
+  }
+
+  function move() {
+		if (collected) return;
+		let p = getPos();
+		
+    age += 1;
+
+		if (vdistance(p,world.player.getPos()) < 64) {
+			collected = true;
+			
+		}		
+  }
+  return {
+    getPos,
+    setPos,
+		move,
+		blocking,
+    draw
+  };
+}

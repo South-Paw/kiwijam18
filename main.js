@@ -222,9 +222,11 @@ function init() {
 
     let player = makePlayer([394, 430]);
     entities.push(player);
-    world.player = player;
 
-    entities.push(makeBrazier([640, 420], true));
+    entities.push(makeBrazier([640, 420]));
+    let key = makeKey([1024,330]);
+    entities.push(key);
+    world.player = player;
   }
 
   function initLevel1() {
@@ -592,22 +594,32 @@ function init() {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
   }
-
-  function drawView() {
+  function applyGameSpace(context) {
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
 
+    context.setTransform(1, 0, 0, 1, 0, 0); 
+    context.translate(cw / 2 - vx, ch / 2 - vy);
+  }
+
+  function drawView() {
+
     ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    //clear lightmap
     lctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.globalCompositeOperation = "source-over";
-
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
-    ctx.translate(cw / 2 - vx, ch / 2 - vy);
-    lctx.translate(cw / 2 - vx, ch / 2 - vy);
+    applyGameSpace(ctx);
+    applyGameSpace(lctx);
     lctx.globalCompositeOperation = "lighter";
+  
+    let [vx, vy] = viewPosition;
+    let cw = canvas.width;
+    let ch = canvas.height;
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
     //draw tile under mouse
@@ -628,7 +640,6 @@ function init() {
     for (let ent of entities) {
       ent.draw(ctx, lctx);
     }
-    drawParticles();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     if (!editing) {
@@ -636,6 +647,15 @@ function init() {
       ctx.drawImage(lightOverlay, 0, 0);
       ctx.globalCompositeOperation = "source-over";
     }
+
+    applyGameSpace(ctx);
+    if (world.minotaur) {
+      world.minotaur.drawEyes(ctx);
+    }
+
+    drawParticles();
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
 
     drawOverlay();
   }

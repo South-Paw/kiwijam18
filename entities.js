@@ -23,6 +23,8 @@ function makeMinotaur(pos) {
 
 	let directions = [ [0,-1], [0,1], [-1,0], [1,0]];
 	let anims=[Assets.minotaurWalkUp,Assets.minotaurWalkDown,Assets.minotaurWalkLeft,Assets.minotaurWalkRight];
+	let eyes=[null,Assets.minotaurWalkDownEyes,Assets.minotaurWalkLeftEyes,Assets.minotaurWalkRightEyes];
+
 	let direction = RIGHT;
   let age = 0;
   let frame = 0;
@@ -64,7 +66,10 @@ function makeMinotaur(pos) {
 			}
 		}
  	}
-
+	function drawEyes(ctx) {
+		let [x, y] = getPos();
+    ctx.drawSprite(eyes[direction], x, y, frame);
+	}
   function draw(ctx, lctx) {
     let [x, y] = getPos();
     ctx.drawSprite(anims[direction], x, y, frame);
@@ -100,14 +105,18 @@ function makeMinotaur(pos) {
     // if ((age % 60) === 0) {
     //   playSound(footstepSounds[randInt(footstepSounds.length)]);
     // }
-  }
-  return {
+	}
+
+	let result =  {
     getPos,
 		setPos,
 		blocking,
+		drawEyes,
     move,
     draw
-  };
+	};
+	world.minotaur=result;
+	return result;
 }
 
 function makePlayer(pos) {

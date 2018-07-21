@@ -13,29 +13,57 @@ function makeEntity(pos) {
 
 }
 
+function makeMinotaur(pos) {
+  let WALKING_SPEED = 5;
+	let age=0;
+	let frame=0;
+	let anim=Assets.minotaurWalkLeft;
+  let {
+    getPos,
+    setPos
+	} = makeEntity(pos)
+
+	function draw(ctx,lctx) {
+		let [x, y] = getPos();
+		ctx.drawSprite(anim,x,y,frame);
+	}
+
+	function move() {
+		age+=1;
+		frame=Math.floor((age/10) % 6);
+
+	}
+  return {
+    getPos,
+    setPos,
+    move,
+    draw
+  };
+}
+
 function makePlayer(pos) {
   let WALKING_SPEED = 5;
-
+	let walkAnim=Assets.playerWalkLeft;
+	let age=0;
+	let frame=0;
   let {
     getPos,
     setPos
   } = makeEntity(pos)
 
   function draw(ctx, lctx) {
-    ctx.beginPath();
-    ctx.fillStyle = "white";
-    let [x, y] = getPos();
-    ctx.ellipse(x, y, 20, 20, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-
-    lctx.drawSprite(Assets.baseLight, x, y, randInt(8));
+  	let [x, y] = getPos();
+		
+		ctx.drawSprite(walkAnim,x,y,frame);
+	
+		lctx.drawSprite(Assets.baseLight, x, y, randInt(8));
 
   }
 
   function move() {
     let p = getPos();
-
+		age+=1;
+		frame = Math.floor((age/10) % 4);
     // Move up
     if (input.isKeyDown(87)) {
       p = vadd([0, -WALKING_SPEED], p);

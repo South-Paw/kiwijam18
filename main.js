@@ -131,6 +131,8 @@ function init() {
     entities.push(player);
     world.player = player;
  
+    entities.push(makeMinotaur([400,300]));
+
     gameMode = mainGame;
   }
 
@@ -474,6 +476,13 @@ function init() {
 
 
   function waitForImages() {
+    if (imagesPending.length === 0) {
+
+      gameMode = initializeGame;
+    }
+  }
+
+  waitForImages.draw=function() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
@@ -482,12 +491,7 @@ function init() {
       ctx.fillText(f, 10, y);
       y += 15;
     }
-    if (imagesPending.length === 0) {
-
-      gameMode = initializeGame;
-    }
   }
-
   function moveParticles() {
     for (let p of particles) {
       p.move();
@@ -511,18 +515,33 @@ function init() {
     startLevel(1);
   }
 
-  function mainGame() {
+  function mainGame(ticks) {
     mainUpdate();
-    drawView();
+
     if (input.keyWentDown(192)) {
       editing = !editing;
     }
+  }
+
+  mainGame.draw = function() {
+    drawView();
     if (editing) drawEditor();
   }
 
+  let lastTime = performance.now();
+
   function update() {
-    gameMode();
-    flushKeysDown();
+    let thisTime=performance.now();
+    let diff=thisTime-lastTime;
+    let ticks = Math.round(diff/16);
+    lastTime=thisTime;
+    if (ticks>10) ticks=10;
+    note=ticks;
+    for (let i=0;i<ticks;i++) {
+      gameMode();      
+      flushKeysDown();
+    }
+    if (gameMode.draw) gameMode.draw();
     requestAnimationFrame(update);
   }
 

@@ -1,7 +1,16 @@
 imageList = [
   "tiles.png|8|15",
   "baseLight.png|8",
-  "walls.png|12|32"
+  "walls.png|12|32",
+  "minotaur/minotaurWalkLeft.png|6",
+  "minotaur/minotaurWalkRight.png|6",
+  "minotaur/minotaurWalkUp.png|6",
+  "minotaur/minotaurWalkDown.png|6",
+  "character/playerWalkLeft.png|4",
+  "character/playerWalkRight.png|4",
+  "character/playerWalkUp.png|4",
+  "character/playerWalkDown.png|4"
+
 ].map(imageDetailsFromString);
 
 var soundList = [];
@@ -19,6 +28,7 @@ function loadImage(url) {
   result.src = url;
 
   let name = url.slice(url.lastIndexOf("/") + 1);
+  console.log(url, " as ", name);
   Assets[name.replace(/\.[^/.]+$/, "")] = result;
   return result;
 }
@@ -70,8 +80,8 @@ function loadAssets() {
   for (let s of soundList) {
     loadSound("sounds/" + s);
   }
-
 }
+
 loadAssets();
 
 function scaledImage(image, w, h = w) {

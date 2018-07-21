@@ -147,7 +147,7 @@ function init() {
     matches: 3,
     keys: 0,
     // gems: 0,
-  }
+  };
 
   var canvas = document.querySelector("#main");
   lightOverlay.width = canvas.width;
@@ -697,7 +697,6 @@ function init() {
 
     requestAnimationFrame(update);
   }
-
 }
 
 function makeWorld(width = 512, height = width, tileSize = 64) {
@@ -732,13 +731,10 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
 
   function draw(ctx, region) {
     let [left, top, width, height] = region;
-    //   if (!pattern) pattern =ctx.createPattern(Assets.Dirt,"repeat");
 
-    // ctx.fillStyle=pattern
     ctx.fillStyle = "green";
     ctx.fillRect(left, top, width, height);
 
-    //ctx.drawSprite(Assets.blocks,100,100,2);
     ctx.fillStyle = "white";
     let [tileLeft, tileTop, tileWidth, tileHeight] = region.map(a => Math.floor(a / tileSize + 0.5));
     for (let ty of intRange(tileTop - 1, tileTop + tileHeight + 3)) {
@@ -767,17 +763,11 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
   };
 }
 
-
-
-
-
-
 function randFloor() {
   let r = randInt(5) + 1;
   if (r == 1) r = 6;
   return r;
 }
-
 
 function makeCell(floorType = randFloor()) {
   let contents = [];

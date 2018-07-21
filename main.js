@@ -300,6 +300,8 @@ function init() {
 
     allLevels[n]();
 
+    loopSound(Assets.DungeonGameAtmosphere); // randInt(Math.floor(Assets.DungeonGameAtmosphere.length / 25))
+
     gameMode = mainGame;
   }
 

@@ -53,7 +53,14 @@ function makePlayer(pos) {
   let {
     getPos,
     setPos
-  } = makeEntity(pos)
+  } = makeEntity(pos);
+
+  let characterBounding = [
+    [-32, -64],
+    [32, -64],
+    [-32, 0],
+    [32, 0],
+  ];
 
   function draw(ctx, lctx) {
     let [x, y] = getPos();
@@ -62,6 +69,18 @@ function makePlayer(pos) {
 
     lctx.drawSprite(Assets.baseLight, x, y - 32, randInt(8));
 
+    // debug player bounding using circles
+
+    let bounding = characterBounding.map(v => vadd(getPos(), v));
+
+    for ([x, y] of bounding) {
+      ctx.beginPath();
+      ctx.circle(x, y, 5);
+      ctx.fillStyle = 'red';
+      ctx.fill();
+    }
+
+    let boundingPos = bounding.map(p => gameToTile(p));
   }
 
   function move() {
@@ -101,7 +120,16 @@ function makePlayer(pos) {
       frame = Math.floor((age / 10) % 4);
     }
 
-    setPos(p);
+    let boundingPos = characterBounding.map(v => vadd(p, v)).map(p => gameToTile(p));
+
+    // debug bounding pos using note
+
+    // note = JSON.stringify(boundingPos);
+    // note = boundingPos.some(a => world.tileAt(a).floorType !== 0);
+
+    if (!boundingPos.some(a => world.tileAt(a).floorType !== 0)) {
+      setPos(p);
+    }
   }
 
   return {

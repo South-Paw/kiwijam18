@@ -100,7 +100,7 @@ function makePlayer(pos) {
   let age = 0;
   let frame = 0;
   let matchLife = 0;
-
+	let matchPos = [-32,-86];
 
   let {
 		getPos,
@@ -115,14 +115,18 @@ function makePlayer(pos) {
 
   let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);
 
+	function matchBrightness() {
+		let matchLevel = matchLife / INITIAL_MATCH_LIFE;
+    return burnFunction(matchLevel);
+		
+	}
+
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 
     ctx.drawSprite(walkAnim, x, y, frame);
 
-    let matchLevel = matchLife / INITIAL_MATCH_LIFE;
-
-    lctx.drawSprite(Assets.baseLight, x, y - 64, randInt(8), 5 * burnFunction(matchLevel) + 1);
+    lctx.drawSprite(Assets.baseLight, x, y - 64, randInt(8), 5 *matchBrightness() + 1);
 
     // debug player bounding using circles
 
@@ -133,7 +137,16 @@ function makePlayer(pos) {
     //   ctx.circle(x, y, 5);
     //   ctx.fillStyle = 'red';
     //   ctx.fill();
-    // }
+		// }
+/*		
+		{
+			let [cx,cy]=vadd(matchPos,getPos());
+			ctx.fillStyle="red";
+			ctx.circle(cx,cy,3);
+			ctx.fill();
+
+		}
+		*/
   }
 
   function lightMatch() {
@@ -153,14 +166,18 @@ function makePlayer(pos) {
     if (input.isKeyDown(87)) {
       p = vadd([0, -WALKING_SPEED], p);
       walkAnim = Assets.playerWalkUp;
-      walking = true;
+			matchPos=[-24,-86];
+  
+			walking = true;
     }
 
     // Move down
     if (input.isKeyDown(83)) {
       p = vadd([0, WALKING_SPEED], p);
       walkAnim = Assets.playerWalkDown;
-      walking = true;
+			matchPos=[32,-86];
+
+			walking = true;
     }
 
 		let boundingPosUD = characterBounding.map(v => vadd(p, v));
@@ -173,7 +190,8 @@ function makePlayer(pos) {
     // Move left
     if (input.isKeyDown(65)) {
       p = vadd([-WALKING_SPEED, 0], p);
-      walkAnim = Assets.playerWalkLeft;
+			walkAnim = Assets.playerWalkLeft;
+			matchPos=[-32,-86];
       walking = true;
     }
 
@@ -181,7 +199,9 @@ function makePlayer(pos) {
     if (input.isKeyDown(68)) {
       p = vadd([WALKING_SPEED, 0], p);
       walkAnim = Assets.playerWalkRight;
-      walking = true;
+			matchPos=[32,-86];
+
+			walking = true;
     }
 
     if (walking) {
@@ -199,8 +219,33 @@ function makePlayer(pos) {
 
     if (matchLife > 0) {
       matchLife -= 1;
-    }
-  }
+			{
+				pos=vadd(matchPos,getPos());
+				particles.push(particleSystem(Math.floor(0.8+10*matchBrightness()),{pos},makeMatchParticle));
+			}	
+		}
+	}
+	
+	function makeMatchParticle(state) {
+		let lastPosition = state.pos;
+		let position = vadd(lastPosition, [(Math.random() - 0.5) * 0.15, (Math.random() - 0.9) * 1.5]);
+	
+		let {
+			image = Assets.particle, age = 0
+		} = state;
+		let dead = false;
+	
+		return {
+			position,
+			lastPosition,
+			image,
+			dead,
+			age,
+			move: moveDefaultParticle,
+			draw: drawDefaultParticle,
+		}
+	}
+	
 	function hasFire() {
 		return matchLife>0;
 	}

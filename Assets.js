@@ -11,6 +11,7 @@ imageList = [
   "character/playerWalkDown.png|4|1|[64,192]",
   "match.png|1",
   "key.png|1",
+  "particle.png|1", 
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"
 ].map(imageDetailsFromString);
@@ -176,7 +177,7 @@ function moveDefaultParticle() {
 
 function drawDefaultParticle(ctx) {
   let [x, y] = this.position;
-  ctx.drawSprite(this.image, x, y, this.colour)
+  ctx.drawSprite(this.image, x, y)
 }
 
 function makeDefaultParticle(state) {
@@ -184,7 +185,7 @@ function makeDefaultParticle(state) {
   let position = vadd(lastPosition, [(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 1.5]);
 
   let {
-    image = Assets.smallPoints, colour = 2, age = 0
+    image = Assets.particle, age = 0
   } = state;
   let dead = false;
 
@@ -192,7 +193,6 @@ function makeDefaultParticle(state) {
     position,
     lastPosition,
     image,
-    colour,
     dead,
     age,
     move: moveDefaultParticle,

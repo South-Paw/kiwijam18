@@ -143,12 +143,19 @@ function toggleFullScreen() {
 function init() {
   window.world = makeWorld(30, 30, 64);
 
+  window.gameState = {
+    matches: 3,
+    keys: 0,
+    // gems: 0,
+  };
+
   var canvas = document.querySelector("#main");
   lightOverlay.width = canvas.width;
   lightOverlay.height = canvas.height;
 
   var ctx = canvas.getContext("2d");
   var lctx = lightOverlay.getContext("2d");
+
   ctx.moveTo(10, 10);
   ctx.lineTo(1920, 1080);
   ctx.lineTo(1920, 0);
@@ -211,7 +218,7 @@ function init() {
     let player = makePlayer([394, 430]);
     entities.push(player);
 
-    entities.push(makeBrazier([640,420]));
+    entities.push(makeBrazier([640, 420]));
 
     world.player = player;
 
@@ -562,7 +569,17 @@ function init() {
   }
 
   function drawOverlay() {
-    // TODO
+    let offset = 60;
+
+    // draw matches
+    for (let i = 1; i < gameState.matches + 1; i++) {
+      ctx.drawSprite(Assets.match, 1920 - (offset * i), 1080 - offset, 0, 0.6);
+    }
+
+    // draw keys
+    for (let i = 1; i < gameState.keys + 1; i++) {
+      ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
+    }
   }
 
   function drawView() {
@@ -572,14 +589,14 @@ function init() {
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     lctx.setTransform(1, 0, 0, 1, 0, 0);
-    lctx.globalCompositeOperation="source-over";
-   
+    lctx.globalCompositeOperation = "source-over";
+
     lctx.fillStyle = "black";
     lctx.fillRect(0, 0, lightOverlay.width, lightOverlay.height);
 
     ctx.translate(cw / 2 - vx, ch / 2 - vy);
     lctx.translate(cw / 2 - vx, ch / 2 - vy);
-    lctx.globalCompositeOperation="lighter";
+    lctx.globalCompositeOperation = "lighter";
     world.draw(ctx, [vx - cw / 2, vy - ch / 2, cw, ch]);
 
     //draw tile under mouse
@@ -696,7 +713,6 @@ function init() {
 
     requestAnimationFrame(update);
   }
-
 }
 
 function makeWorld(width = 512, height = width, tileSize = 64) {
@@ -731,13 +747,10 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
 
   function draw(ctx, region) {
     let [left, top, width, height] = region;
-    //   if (!pattern) pattern =ctx.createPattern(Assets.Dirt,"repeat");
 
-    // ctx.fillStyle=pattern
     ctx.fillStyle = "green";
     ctx.fillRect(left, top, width, height);
 
-    //ctx.drawSprite(Assets.blocks,100,100,2);
     ctx.fillStyle = "white";
     let [tileLeft, tileTop, tileWidth, tileHeight] = region.map(a => Math.floor(a / tileSize + 0.5));
     for (let ty of intRange(tileTop - 1, tileTop + tileHeight + 3)) {
@@ -766,17 +779,11 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
   };
 }
 
-
-
-
-
-
 function randFloor() {
   let r = randInt(5) + 1;
   if (r == 1) r = 6;
   return r;
 }
-
 
 function makeCell(floorType = randFloor()) {
   let contents = [];

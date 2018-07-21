@@ -87,8 +87,10 @@ function makePlayer(pos) {
   }
 
   function lightMatch() {
-    matchLife = INITIAL_MATCH_LIFE;
-
+    if (gameState.matches > 0) {
+      matchLife = INITIAL_MATCH_LIFE;
+      gameState.matches -= 1;
+    }
   }
 
   function move() {
@@ -146,6 +148,7 @@ function makePlayer(pos) {
     if (input.keyWentDown(69)) {
       lightMatch();
     }
+
     if (matchLife > 0) {
       matchLife -= 1;
     }

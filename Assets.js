@@ -13,7 +13,19 @@ imageList = [
 
 ].map(imageDetailsFromString);
 
-var soundList = [];
+var soundList = [
+  "FootstepClean1.ogg",
+  "FootstepClean2.ogg",
+  "FootstepClean3.ogg",
+  "FootstepClean4.ogg",
+  "FootstepClean5.ogg",
+  "FootstepClean6.ogg",
+  "FootstepClean7.ogg",
+  "FootstepClean8.ogg",
+  "FootstepClean9.ogg",
+  "FootstepClean10.ogg"
+
+];
 
 var imagesPending = [];
 var Assets = {};
@@ -82,6 +94,8 @@ function loadAssets() {
   for (let s of soundList) {
     loadSound("sounds/" + s);
   }
+
+  
 }
 
 loadAssets();

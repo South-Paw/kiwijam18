@@ -66,6 +66,15 @@ var entities = [];
 
 var lightOverlay = document.createElement("canvas");
 
+function gameToTile(gamePos) {
+  return gamePos.map(a => Math.round(a / tileSize));
+}
+
+function tileToGame(tilePos) {
+  return tilePos.map(a => a * tileSize + 0.5);
+}
+
+
 function toggleFullScreen() {
 
   var canvas = document.querySelector("#main");
@@ -227,13 +236,6 @@ function init() {
     return gamePos;
   }
 
-  function gameToTile(gamePos) {
-    return gamePos.map(a => Math.round(a / tileSize));
-  }
-
-  function tileToGame(tilePos) {
-    return tilePos.map(a => a * tileSize + 0.5);
-  }
 
   function canvasMouseMove(e) {
     let canvasPos = screenToCanvas([e.offsetX, e.offsetY]);

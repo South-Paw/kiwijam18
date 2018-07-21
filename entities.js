@@ -87,7 +87,7 @@ function makePlayer(pos) {
   }
 
   function lightMatch() {
-    if (gameState.matches > 0) {
+    if (gameState.matches > 0 && !editing) {
       matchLife = INITIAL_MATCH_LIFE;
       gameState.matches -= 1;
     }

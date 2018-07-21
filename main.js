@@ -233,7 +233,7 @@ function init() {
 
     entities.push(makeBrazier([990,5418]));
     entities.push(makeBrazier([5182,660]));
-    
+
     entities.push(makeBrazier([2084,1828]));
     entities.push(makeBrazier([3110,1056]));
     entities.push(makeBrazier([1060,1576]));
@@ -626,8 +626,6 @@ function init() {
     }
 
     drawOverlay();
-
-
   }
 
   function triWave(x, p) {
@@ -703,13 +701,13 @@ function init() {
     }
 
     if (gameMode.draw) gameMode.draw();
+
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
     ctx.fillText(note, 131, 51);
     ctx.fillStyle = "white";
     ctx.fillText(note, 130, 50);
-
 
     requestAnimationFrame(update);
   }

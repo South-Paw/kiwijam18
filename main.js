@@ -190,19 +190,21 @@ function init() {
 
   function loadLevel(data) {
     world = makeWorld(data.width, data.height);
+
     if (world.map.length !== data.tiles.length) {
       console.error("Map was Wrong size!");
       return;
     }
+
     for (let i = 0; i < world.map.length; i++) {
       world.map[i].floorType = data.tiles[i];
     }
-
   }
 
   function getLevel(aWorld = world) {
     let [width, height] = aWorld.getSize();
     let tiles = aWorld.map.map(a => a.floorType);
+
     return {
       width,
       height,
@@ -219,14 +221,17 @@ function init() {
     gameState.matches = 3;
 
     let player = makePlayer([394, 430]);
-
     entities.push(player);
+<<<<<<< HEAD
 
     entities.push(makeBrazier([640, 420]));
     let key = makeKey([1024,330]);
     entities.push(key);
+=======
+>>>>>>> 15ec8d19f32acb0fdf988e6f3b497f4567439b3b
     world.player = player;
 
+    entities.push(makeBrazier([640, 420], true));
   }
 
   function initLevel1() {
@@ -235,26 +240,24 @@ function init() {
     gameState.matches += 3;
 
     let player = makePlayer([300, 300]);
-
     entities.push(player);
     world.player = player;
 
-    entities.push(makeBrazier([990, 5418]));
+    entities.push(makeBrazier([990, 5418], true));
     entities.push(makeBrazier([5182, 660]));
-
     entities.push(makeBrazier([2084, 1828]));
-    entities.push(makeBrazier([3110, 1056]));
-    entities.push(makeBrazier([1060, 1576]));
+    entities.push(makeBrazier([3110, 1056], true));
+    entities.push(makeBrazier([1060, 1576], true));
     entities.push(makeBrazier([1332, 2816]));
     entities.push(makeBrazier([2500, 3619]));
-    entities.push(makeBrazier([3515, 3327]));
+    entities.push(makeBrazier([3515, 3327], true));
     entities.push(makeBrazier([5700, 4126]));
     entities.push(makeBrazier([3424, 2336]));
-    entities.push(makeBrazier([4400, 4400]));
-
+    entities.push(makeBrazier([4400, 4400], true));
     entities.push(makeBrazier([5540, 5540]));
 
     entities.push(makeMinotaur([400, 300]));
+
     setViewPosition(tileToGame([30, 20]));
   }
 
@@ -268,6 +271,7 @@ function init() {
     world.player = player;
 
     entities.push(makeMinotaur([400, 300]));
+
     setViewPosition(tileToGame([30, 20]));
   }
 
@@ -281,6 +285,7 @@ function init() {
     world.player = player;
 
     entities.push(makeMinotaur([400, 300]));
+
     setViewPosition(tileToGame([30, 20]));
   }
 
@@ -329,7 +334,7 @@ function init() {
   let mouseTile = [-1, -1];
   let selectedTile = undefined;
   let swapList = [];
-  
+
   window.particles = [];
 
   function canvasToGame(canvasPos) {
@@ -338,18 +343,18 @@ function init() {
     return gamePos;
   }
 
-
   function canvasMouseMove(e) {
     let canvasPos = screenToCanvas([e.offsetX, e.offsetY]);
     let gamePos = canvasToGame(canvasPos);
     let tilePos = gameToTile(gamePos);
-   
+
     note = JSON.stringify({
       gamePos,
       tilePos
     });
-  
+
     let buttons = e.buttons;
+
     if (typeof dragFunction === "function") {
       dragFunction({
         canvasPos,
@@ -357,10 +362,8 @@ function init() {
         tilePos,
         buttons
       })
-    } else {
-
-
     }
+
     mouseTile = tilePos;
   }
 
@@ -767,7 +770,7 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
     })
     return result;
   }
-  
+
   function isSpace(gamePos) {
     let tilePos = gameToTile(gamePos);
     let tile=tileAt(tilePos);

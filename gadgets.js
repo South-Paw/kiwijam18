@@ -1,18 +1,18 @@
-function makeBrazier(pos) {
+function makeBrazier(pos, lit = false) {
 	let age = 0;
-	let lit=false;
   let frame = 0;
   let {
     getPos,
 		setPos,
-		
   } = makeEntity(pos);
 
 	function flicker(a) {
 		return (Math.sin(age/100)+Math.sin(age/180))/3;
 	}
+
   function draw(ctx, lctx) {
     let [x, y] = getPos();
+
 		if (lit) {
 			ctx.drawSprite(Assets.brazierBurn, x, y, randInt(3));
 			let flip=1;
@@ -37,7 +37,7 @@ function makeBrazier(pos) {
 
 		return d<40;
 	}
-	
+
 	let result= {
     getPos,
     setPos,
@@ -45,17 +45,17 @@ function makeBrazier(pos) {
 		blocking,
     draw
 	};
-	
+
 	let [tx,ty]=gameToTile(pos);
-	
+
 	//this is bad don't blindly put in 9 tiles,  fix when not tired
 	for (let x=-1; x<2;x++) {
 		for (let y=-1; y<2;y++) {
 			world.tileAt([tx+x,ty+y]).contents.push(result);
 		}
 	}
-	
-  return result; 
+
+  return result;
 }
 
 

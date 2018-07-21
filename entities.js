@@ -14,7 +14,6 @@ function makeEntity(pos) {
     move,
     draw
   };
-
 }
 
 function makeMinotaur(pos) {
@@ -50,6 +49,7 @@ function makePlayer(pos) {
   let walkAnim = Assets.playerWalkLeft;
   let age = 0;
   let frame = 0;
+
   let {
     getPos,
     setPos
@@ -68,7 +68,6 @@ function makePlayer(pos) {
     let p = getPos();
     age += 1;
     let walking = false;
-
 
     // Move up
     if (input.isKeyDown(87)) {

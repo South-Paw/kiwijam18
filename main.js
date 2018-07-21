@@ -1,5 +1,5 @@
 "use strict"
-var levelNumber=0;
+var levelNumber = 0;
 
 var dummyLevel = {
   "width": 30,
@@ -32,7 +32,7 @@ function getImageData() {
   readImage(image, pixsampler);
 }
 
-function readImage(image, sampler)  {
+function readImage(image, sampler) {
   const w = image.width * 2;
   const h = image.height * 2;
 
@@ -74,11 +74,10 @@ function tileToGame(tilePos) {
   return tilePos.map(a => a * tileSize + 0.5);
 }
 
-
 function toggleFullScreen() {
-
   var canvas = document.querySelector("#main");
   var reqFullScreen = canvas.requestFullscreen || canvas.mozRequestFullScreen || canvas.webkitRequestFullScreen;
+
   if (document.fullScreenElement || document.webkitFullScreenElement || document.mozFullScreenElement || document.msFullScreenElement) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -155,7 +154,7 @@ function init() {
 
   }
 
-  function getLevel(aWorld= world) {
+  function getLevel(aWorld = world) {
     let [width, height] = aWorld.getSize();
     let tiles = aWorld.map.map(a => a.floorType);
     return {
@@ -170,31 +169,32 @@ function init() {
 
   function initLevel1() {
     loadLevel(levels.level1);
-     //add entities
-     let player = makePlayer([300, 300]);
-     entities.push(player);
-     world.player = player;
-  
-     entities.push(makeMinotaur([400,300]));
-     setViewPosition(tileToGame([30, 20]));
-    
+    //add entities
+    let player = makePlayer([300, 300]);
+    entities.push(player);
+    world.player = player;
+
+    entities.push(makeMinotaur([400, 300]));
+    setViewPosition(tileToGame([30, 20]));
+
   }
+
   function initTutorial() {
     loadLevel(levels.tutorial);
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
-   
+
   }
-  let allLevels = [initTutorial,initLevel1,initLevel1,initLevel1,initLevel1];
+  let allLevels = [initTutorial, initLevel1, initLevel1, initLevel1, initLevel1];
 
   function startLevel(n = 0) {
-    
-    n%=allLevels.length;
+
+    n %= allLevels.length;
 
     let worldSize = 30;
     entities = [];
-  
+
     allLevels[n]();
     gameMode = mainGame;
   }
@@ -417,7 +417,7 @@ function init() {
     if (input.keyWentDown(48)) {
       levelNumber++;
       startLevel(levelNumber);
-      console.log("level num ",levelNumber);
+      console.log("level num ", levelNumber);
     }
     if (!editing) {
       desiredViewPosition = world.player.getPos();
@@ -543,7 +543,7 @@ function init() {
     }
   }
 
-  waitForImages.draw=function() {
+  waitForImages.draw = function() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "white";
@@ -553,6 +553,7 @@ function init() {
       y += 15;
     }
   }
+
   function moveParticles() {
     for (let p of particles) {
       p.move();
@@ -592,13 +593,13 @@ function init() {
   let lastTime = performance.now();
 
   function update() {
-    let thisTime=performance.now();
-    let diff=thisTime-lastTime;
-    let ticks = Math.round(diff/16);
-    lastTime=thisTime;
-    if (ticks>10) ticks=10;
-    note=ticks;
-    for (let i=0;i<ticks;i++) {
+    let thisTime = performance.now();
+    let diff = thisTime - lastTime;
+    let ticks = Math.round(diff / 16);
+    lastTime = thisTime;
+    if (ticks > 10) ticks = 10;
+    note = ticks;
+    for (let i = 0; i < ticks; i++) {
       gameMode();
       flushKeysDown();
     }

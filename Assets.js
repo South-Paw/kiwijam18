@@ -97,6 +97,25 @@ function playSound(buffer, offset = 0) {
   source.start(0, offset);
 }
 
+var audioLoops = [];
+
+function loopSound(buffer, offset =0) {
+  var source = audioContext.createBufferSource();
+  source.buffer = buffer;
+  source.loop=true;
+  source.connect(audioContext.destination);
+  source.start(0, offset);
+  audioLoops.push(source);
+  return source;
+}
+
+function stopAudioLoops() {
+  for (let s of audioLoops) {
+    s.stop();
+  }
+  audioLoops=[];
+}
+
 function loadSound(url) {
   var onError = a => (console.log(a));
   console.log(url);
@@ -114,6 +133,7 @@ function loadSound(url) {
   }
   request.send();
 }
+
 
 function loadAssets() {
 

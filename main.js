@@ -41,19 +41,21 @@ function getImageData() {
 
   let pixels = new Uint32Array(imageData.data.buffer);
 
-  // console.log(pixels);
+  console.log(pixels);
 
   readImage(image, pixels);
 }
 
 function readImage(image, pixels) {
+  const solidColor = 4286578688;
+
   function pixsampler(x, y) {
-    if (pixels[y * image.width + x] === 4291124039) return 77;
+    if (pixels[y * image.width + x] === solidColor) return 77;
     return randInt(17) + 1;
   }
 
   function isWall([x, y]) {
-    return (pixels[y * image.width + x] === 4291124039);
+    return (pixels[y * image.width + x] === solidColor);
   }
 
   function getCode([x, y]) {
@@ -74,7 +76,6 @@ function readImage(image, pixels) {
 
   for (let x = 0; x < w; x++) {
     for (let y = 0; y < h; y++) {
-      // newWorld.tileAt([x, y]).floorType = sampler(Math.floor(x / 2), Math.floor(y / 2));
       let tileposition = [Math.floor(x / 2), Math.floor(y / 2)];
 
       let index = ((y & 1) << 1) + (x & 1);
@@ -85,15 +86,14 @@ function readImage(image, pixels) {
       } else {
         newWorld.tileAt([x, y]).floorType = randInt(17) + 1;
       }
-
-
     }
   }
 
-  loadLevel(getLevel(newWorld));
+  let level = getLevel(newWorld);
 
+  console.log(JSON.stringify(level));
 
-  // console.log(JSON.stringify(dummyLevel));
+  loadLevel(level);
 }
 
 window.getImageData = getImageData;
@@ -324,7 +324,7 @@ function init() {
       if (px < paletteWidth && py < paletteHeight) {
         paletteX = px;
         paletteY = py;
-        console.log("tile "+ (paletteY * paletteWidth + paletteX)); 
+        console.log("tile "+ (paletteY * paletteWidth + paletteX));
         return;
       }
       if (e.button === 0) {

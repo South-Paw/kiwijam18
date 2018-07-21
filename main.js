@@ -224,7 +224,7 @@ function init() {
     entities.push(player);
 
     entities.push(makeBrazier([640, 420]));
-    let key = makeKey([1024,330]);
+    let key = makeKey([1024, 330]);
     entities.push(key);
     world.player = player;
   }
@@ -299,6 +299,7 @@ function init() {
     entities = [];
 
     allLevels[n]();
+
     gameMode = mainGame;
   }
 
@@ -532,7 +533,7 @@ function init() {
     for (let ent of entities) {
       ent.move();
     }
-    entities.sort((a,b)=>(a.getPos()[1]-b.getPos()[1]));
+    entities.sort((a, b) => (a.getPos()[1] - b.getPos()[1]));
 
     if (editing) {
       if (input.keyWentDown(68)) {
@@ -595,12 +596,13 @@ function init() {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
   }
+
   function applyGameSpace(context) {
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
 
-    context.setTransform(1, 0, 0, 1, 0, 0); 
+    context.setTransform(1, 0, 0, 1, 0, 0);
     context.translate(cw / 2 - vx, ch / 2 - vy);
   }
 
@@ -617,7 +619,7 @@ function init() {
     applyGameSpace(ctx);
     applyGameSpace(lctx);
     lctx.globalCompositeOperation = "lighter";
-  
+
     let [vx, vy] = viewPosition;
     let cw = canvas.width;
     let ch = canvas.height;
@@ -769,15 +771,16 @@ function makeWorld(width = 512, height = width, tileSize = 64) {
 
   function isSpace(gamePos) {
     let tilePos = gameToTile(gamePos);
-    let tile=tileAt(tilePos);
+    let tile = tileAt(tilePos);
     let floor = tile.floorType < 24;
     if (floor) {
       for (let e of tile.contents) {
-        if  (e.blocking(gamePos)) return false;
+        if (e.blocking(gamePos)) return false;
       }
     }
     return floor;
   }
+
   function getSize() {
     return [width, height]
   }

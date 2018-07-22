@@ -316,6 +316,18 @@ function init() {
     entities.push(makeMatch([4510, 4638]));
     entities.push(makeMatch([6300, 672]));
 
+    entities.push(makeKey([510, 1590]));
+    entities.push(makeKey([224, 4235]));
+    entities.push(makeKey([1400, 5150]));
+    entities.push(makeKey([2200, 3360]));
+    entities.push(makeKey([3230, 1880]));
+    entities.push(makeKey([4000, 580]));
+    entities.push(makeKey([4900, 290]));
+    entities.push(makeKey([5150, 1700]));
+    entities.push(makeKey([4830, 3770]));
+    entities.push(makeKey([3740, 6170]));
+    entities.push(makeKey([3490, 6050]));
+    entities.push(makeKey([2330, 6560]));
 
     entities.push(makeMinotaur([2710, 5730]));
     entities.push(makeMinotaur([4000, 2210]));
@@ -349,6 +361,21 @@ function init() {
     entities.push(makeMatch([2340, 928]));
     entities.push(makeMatch([2976, 6428]));
     entities.push(makeMatch([5020, 798]));
+
+    entities.push(makeKey([2330, 1570]));
+    entities.push(makeKey([3100, 1190]));
+    entities.push(makeKey([800, 6180]));
+    entities.push(makeKey([2080, 5560]));
+    entities.push(makeKey([2590, 4380]));
+    entities.push(makeKey([4510, 6300]));
+    entities.push(makeKey([5530, 5530]));
+    entities.push(makeKey([6560, 5790]));
+    entities.push(makeKey([5920, 3490]));
+    entities.push(makeKey([4900, 3740]));
+    entities.push(makeKey([3680, 3230]));
+    entities.push(makeKey([4760, 2340]));
+    entities.push(makeKey([6300, 2460]));
+    entities.push(makeKey([2080, 6560]));
 
 
     entities.push(makeMinotaur([930, 4130]));

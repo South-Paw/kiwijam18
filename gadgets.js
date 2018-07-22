@@ -268,7 +268,7 @@ function makeGate(tilePos,horizontal=true) {
 	let dimensions= horizontal?[4,2]:[2,4];
 
 
-  function draw(ctx, lctx) { 
+  function draw(ctx, lctx) {
 	/*
 		{
 			let [x, y] = vadd(getPos(),[-tileSize/2,-tileSize/2]);
@@ -278,15 +278,14 @@ function makeGate(tilePos,horizontal=true) {
 		*/
 		if (horizontal) {
 			let [x, y] = vadd(getPos(),[tileSize/2,tileSize/2]);
-			ctx.drawSprite(Assets.gateFrameLeft,x,y);
-			ctx.drawSprite(Assets.gateFrameRight,x+128,y);
+			//ctx.drawSprite(Assets.gateFrameLeft,x,y);
+			//ctx.drawSprite(Assets.gateFrameRight,x+128,y);
 			ctx.drawSprite(Assets.gateHorizontal,x+64,y,frame);
 		} else {
 			let [x, y] = vadd(getPos(),[tileSize/2,tileSize/2]);
-			ctx.drawSprite(Assets.gateFrameTop,x,y);
-			ctx.drawSprite(Assets.gateFrameBottom,x,y+128);
+			//ctx.drawSprite(Assets.gateFrameTop,x,y);
+			//ctx.drawSprite(Assets.gateFrameBottom,x,y+128);
 			ctx.drawSprite(Assets.gateVertical,x,y+64,frame);
-
 		}
     //ctx.drawSprite(Assets.match, x, y);
   }
@@ -299,7 +298,7 @@ function makeGate(tilePos,horizontal=true) {
 	}
 
   function move() {
-    
+
     let p = getPos();
 		let topLeft = vadd(getPos(),[-tileSize,-tileSize]);
 		let size = [tileSize*(dimensions[0]+1),tileSize*(dimensions[1]+1)];

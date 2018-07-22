@@ -245,7 +245,7 @@ function init() {
 
     inventory.matches += 3;
     inventory.keys = 0;
-    
+
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
@@ -705,6 +705,8 @@ function init() {
 
     if (input.keyWentDown(32)) {
       if (world.player.isDead()) {
+        inventory = { matches: 0, keys: 0 };
+
         startLevel(levelNumber);
       } else {
         world.player.die();
@@ -846,7 +848,7 @@ function init() {
     for (let m of minotaurs) {
       m.drawEyes(ctx);
     }
-   
+
     drawParticles();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);

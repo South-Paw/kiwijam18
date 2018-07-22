@@ -215,7 +215,7 @@ function makeMatch(pos) {
     if (collected) return
     let [x, y] = getPos();
 
-    ctx.drawSprite(Assets.match, x, y, 0, 0.6);
+    ctx.drawSprite(Assets.match, x, y, 0, 0.35);
   }
 
   function move() {

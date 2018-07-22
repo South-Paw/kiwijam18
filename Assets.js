@@ -23,6 +23,7 @@ imageList = [
   "trapdoor/doorHatch.png|4|1|[64,128]",
   "match.png|1",
   "key.png|1",
+  "controls.png|1",
   "gate/gateFrameTop.png",
   "gate/gateFrameBottom.png",
   "gate/gateFrameLeft.png",

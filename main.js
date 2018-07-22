@@ -94,7 +94,7 @@ window.getImageData = getImageData;
 window.onload = init;
 var note = "";
 var tileSize = 64;
-
+var ticker = 0;
 var editing = false;
 var paletteTileSize = tileSize / 2;
 var paletteX = 0;
@@ -787,6 +787,9 @@ function init() {
     for (let i = 1; i < inventory.keys + 1; i++) {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
+
+    let s = 1+ Math.sin(ticker/100)*0.1;
+    ctx.drawSprite(Assets.controls,100,1000,0,s);
   }
 
   function applyGameSpace(context) {
@@ -943,7 +946,7 @@ function init() {
     let ticks = Math.round(diff / 16);
     lastTime = thisTime;
     if (ticks > 10) ticks = 10;
-
+    ticker+=ticks;
     for (let i = 0; i < ticks; i++) {
       gameMode();
       moveParticles();

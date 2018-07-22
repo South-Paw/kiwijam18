@@ -213,7 +213,7 @@ function makeTrapdoor(pos) {
     blocking
   } = makeEntity(pos)
 
-  function draw(ctx, lctx) {    
+  function draw(ctx, lctx) {
     let [x, y] = getPos();
 
     ctx.drawSprite(Assets.trapdoor, x, y);
@@ -244,7 +244,7 @@ function makeTrapdoor(pos) {
     blocking,
     draw
 	};
-	
+
   let [tx, ty] = gameToTile(pos);
 
   //this is bad don't blindly put in 9 tiles,  fix when not tired
@@ -255,7 +255,7 @@ function makeTrapdoor(pos) {
   }
 
 
-  return result; 
+  return result;
 }
 
 function makeGate(pos) {

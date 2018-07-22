@@ -649,31 +649,41 @@ function init() {
       levelNumber++;
       startLevel(levelNumber);
     }
+
+    if (input.keyWentDown(32)) {
+      world.player.die();
+    }
+
     if (!editing) {
       desiredViewPosition = world.player.getPos();
     }
+
     panView();
+
     for (let ent of entities) {
       ent.move();
     }
+
     entities.sort((a, b) => (a.getPos()[1] - b.getPos()[1]));
 
     if (editing) {
       if (input.keyWentDown(68)) {
         paletteX = (paletteX + 1) % paletteWidth;
       }
+
       if (input.keyWentDown(65)) {
         paletteX -= 1;
         if (paletteX < 0) paletteX += paletteWidth;
       }
+
       if (input.keyWentDown(83)) {
         paletteY = (paletteY + 1) % paletteHeight;
       }
+
       if (input.keyWentDown(87)) {
         paletteY -= 1;
         if (paletteY < 0) paletteY += paletteHeight;
       }
-
     }
   }
 
@@ -775,6 +785,7 @@ function init() {
     }
 
     applyGameSpace(ctx);
+
     if (world.minotaur) {
       world.minotaur.drawEyes(ctx);
     }

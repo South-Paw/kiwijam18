@@ -224,24 +224,16 @@ function init() {
     let player = makePlayer([394, 430]);
     entities.push(player);
 
-<<<<<<< HEAD
-    entities.push(makeBrazier([924, 420]));
-
-    //entities.push(makeGate([1310, 670])); //hori
-
-    entities.push(makeMatch([600, 420]));
-=======
     entities.push(makeBrazier([640, 420]));
     entities.push(makeRat([400, 520]));
-    
+
     entities.push(makeMatch([1024, 530]));
 
     entities.push(makeTrapdoor([418,928]));
 
-    let key = makeKey([1024, 330]);
->>>>>>> dcc499b8ae86d7945a11ee0d3e06594ce3b5e406
+    //let key = makeKey([1024, 330]);
 
-    entities.push(makeRat([400, 520]));
+    //entities.push(makeRat([400, 520]));
 
     let key = makeKey([1024, 330]);
     entities.push(key);

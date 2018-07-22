@@ -190,7 +190,7 @@ function init() {
 
   function loadLevel(data) {
     world = makeWorld(data.width, data.height);
-
+ 
     if (world.map.length !== data.tiles.length) {
       console.error("Map was Wrong size!");
       return;
@@ -226,7 +226,7 @@ function init() {
 
     entities.push(makeBrazier([640, 420]));
     entities.push(makeRat([400, 520]));
-    
+
     entities.push(makeMatch([1024, 530]));
 
     entities.push(makeTrapdoor([418,928]));
@@ -350,6 +350,7 @@ function init() {
     addRats();
     loopSound(Assets.DungeonGameAtmosphere);
 
+    world.success=false;
     gameMode = mainGame;
   }
 
@@ -571,10 +572,9 @@ function init() {
   let path = [];
 
   function mainUpdate() {
-    if (input.keyWentDown(48)) {
+    if (input.keyWentDown(48) ) {
       levelNumber++;
       startLevel(levelNumber);
-      console.log("level num ", levelNumber);
     }
     if (!editing) {
       desiredViewPosition = world.player.getPos();
@@ -758,6 +758,7 @@ function init() {
     successAge = 0;
     gameMode = levelSuccess;
   }
+  window.completeLevel=completeLevel;
 
   function initializeGame() {
     startLevel(0);
@@ -772,6 +773,20 @@ function init() {
   }
 
   mainGame.draw = function() {
+    drawView();
+
+    if (editing) drawEditor();
+  }
+
+  function levelSuccess(ticks) {
+    successAge+=1;
+    if (successAge > 100) {
+      levelNumber++;
+      startLevel(levelNumber);
+    }
+  }
+
+  levelSuccess.draw = function() {
     drawView();
 
     if (editing) drawEditor();

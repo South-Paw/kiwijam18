@@ -232,8 +232,10 @@ function init() {
     entities.push(makeTrapdoor([418,928]));
 
     let key = makeKey([1024, 330]);
-
     entities.push(key);
+
+
+    entities.push(makeGate([18,12],false))
     world.player = player;
   }
 

@@ -21,6 +21,13 @@ imageList = [
   "trapdoor/doorHatch.png|4|1|[64,128]",
   "match.png|1",
   "key.png|1",
+  "gate/gateFrameTop.png",
+  "gate/gateFrameBottom.png",
+  "gate/gateFrameLeft.png",
+  "gate/gateFrameRight.png",
+  "gate/gateHorizontal.png|6",
+  "gate/gateVertical.png|6",
+ 
   "particle.png|1",
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"

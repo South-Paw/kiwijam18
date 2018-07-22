@@ -258,39 +258,82 @@ function makeTrapdoor(pos) {
   return result; 
 }
 
-function makeGate(pos) {
-  let collected = false;
+function makeGate(tilePos,horizontal=true) {
+	let frame=0;
+  let opened = false;
   let {
     getPos,
-    setPos,
-    blocking
-  } = makeEntity(pos);
+    setPos
+  } = makeEntity(tileToGame(tilePos));
+	let dimensions= horizontal?[4,2]:[2,4];
 
-  function draw(ctx, lctx) {
-    if (collected) return
-    let [x, y] = getPos();
 
-    ctx.drawSprite(Assets.match, x, y);
+  function draw(ctx, lctx) { 
+	/*
+		{
+			let [x, y] = vadd(getPos(),[-tileSize/2,-tileSize/2]);
+			ctx.fillStyle="cyan";
+			ctx.fillRect(x,y,tileSize*dimensions[0],tileSize*dimensions[1]);
+		}
+		*/
+		if (horizontal) {
+			let [x, y] = vadd(getPos(),[tileSize/2,tileSize/2]);
+			ctx.drawSprite(Assets.gateFrameLeft,x,y);
+			ctx.drawSprite(Assets.gateFrameRight,x+128,y);
+			ctx.drawSprite(Assets.gateHorizontal,x+64,y,frame);
+		} else {
+			let [x, y] = vadd(getPos(),[tileSize/2,tileSize/2]);
+			ctx.drawSprite(Assets.gateFrameTop,x,y);
+			ctx.drawSprite(Assets.gateFrameBottom,x,y+128);
+			ctx.drawSprite(Assets.gateVertical,x,y+64,frame);
+
+		}
+    //ctx.drawSprite(Assets.match, x, y);
   }
+
+	function within(p,topLeft,size)
+	{
+		let [x,y] = vdiff(p,topLeft);
+		let [w,h] = size;
+		return ( (x > 0) && (y>0) && (x<w) && (y<h) )
+	}
 
   function move() {
-    if (collected) return;
-
+    
     let p = getPos();
+		let topLeft = vadd(getPos(),[-tileSize,-tileSize]);
+		let size = [tileSize*(dimensions[0]+1),tileSize*(dimensions[1]+1)];
 
-    if (vdistance(p, world.player.getPos()) < 64) {
-      playSound(Assets.KeyPickup);
-      inventory.matches += 1;
-      collected = true;
+		note="ddd";
+		if (within(world.player.getPos(),topLeft,size)) {
+			if (inventory.keys >0) {
+				opened=true;
+				inventory.keys-=1;
+				frame=6;
+			}
     }
-  }
-  return {
+	}
+	function blocking(atPos) {
+		return !opened;
+	}
+	let result = {
     getPos,
     setPos,
     move,
     blocking,
     draw
   };
+
+	 {
+		let [w,h] = dimensions;
+		let [tx,ty] = tilePos;
+		for (let x = 0; x < w; x++) {
+			for (let y = 0; y < h; y++) {
+				world.tileAt([tx + x, ty + y]).contents.push(result);
+			}
+  	}
+	}
+  return result;
 }
 
 

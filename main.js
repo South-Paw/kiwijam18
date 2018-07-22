@@ -224,14 +224,14 @@ function init() {
     let player = makePlayer([394, 430]);
     entities.push(player);
 
-    entities.push(makeBrazier([640, 420]));
+    entities.push(makeBrazier([990, 420]));
     entities.push(makeRat([400, 520]));
 
-    entities.push(makeMatch([1024, 530]));
+    entities.push(makeMatch([610, 420]));
 
     entities.push(makeTrapdoor([418,928]));
 
-    let key = makeKey([1024, 330]);
+    let key = makeKey([1310, 610]);
     entities.push(key);
     world.player = player;
   }
@@ -303,6 +303,8 @@ function init() {
     entities.push(makeMinotaur([4100, 1450]));
     entities.push(makeMinotaur([1700, 4250]));
 
+    entities.push(makeTrapdoor([6688, 5856]));
+
     setViewPosition(tileToGame([30, 20]));
   }
 
@@ -330,6 +332,19 @@ function init() {
 
     //entities.push(makeGate([544, 1950])); //hori
     //entities.push(makeGate([670, 4130])); //hori
+    //entities.push(makeGate([1250, 5534])); //vert
+    //entities.push(makeGate([1694, 3230])); //hori
+    //entities.push(makeGate([3872, 3614])); //hori
+    //entities.push(makeGate([4130, 1440])); //vert
+    //entities.push(makeGate([4382, 2208])); //hori
+    //entities.push(makeGate([4320, 6176])); //vert
+    //entities.push(makeGate([4640, 5920])); //vert
+    //entities.push(makeGate([5024, 2464])); //vert
+    //entities.push(makeGate([5920, 206])); //hori
+    //entities.push(makeGate([5856, 6178])); //vert
+    //entities.push(makeGate([5856, 6432])); //vert
+    //entities.push(makeGate([6176, 5920])); //hori
+    //entities.push(makeGate([6558, 1440])); //hori
 
     entities.push(makeMatch([544, 6428]));
     entities.push(makeMatch([2720, 1568]));

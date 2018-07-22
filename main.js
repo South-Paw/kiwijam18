@@ -229,7 +229,7 @@ function init() {
 
     entities.push(makeMatch([610, 420]));
 
-    entities.push(makeTrapdoor([418,928]));
+    entities.push(makeTrapdoor([250,928]));
 
     let key = makeKey([1310, 610]);
     entities.push(key);

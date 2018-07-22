@@ -227,6 +227,7 @@ function init() {
     entities.push(makeBrazier([640, 420]));
     entities.push(makeRat([400, 520]));
 
+    entities.push(makeTrapdoor([418,928]));
     let key = makeKey([1024, 330]);
     entities.push(key);
     world.player = player;

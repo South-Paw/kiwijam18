@@ -17,7 +17,8 @@ imageList = [
   "rat/ratWalkLeft.png|2|1|[32,56]",
   "rat/ratWalkRight.png|2|1|[32,56]",
   "rat/ratIdle.png|2|1|[32,56]",
-
+  "trapdoor/trapdoor.png",
+  "trapdoor/doorHatch.png|4|1|[64,128]",
   "match.png|1",
   "key.png|1",
   "particle.png|1",
@@ -100,10 +101,14 @@ function imageDetailsFromString(s) {
 }
 
 function playSound(buffer, offset = 0) {
+  if (Array.isArray(buffer)) {
+    return playSound(buffer[randInt(buffer.length)],offset);  
+  }
   var source = audioContext.createBufferSource();
   source.buffer = buffer;
   source.connect(audioContext.destination);
   source.start(0, offset);
+  return source;
 }
 
 var audioLoops = [];

@@ -13,8 +13,8 @@ function makeBrazier(pos, lit = false) {
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 		frame = Math.floor(age/5)%3;
+
     if (lit) {
-			
       ctx.drawSprite(Assets.brazierBurn, x, y, frame);
 
       let flip = 1;
@@ -32,8 +32,11 @@ function makeBrazier(pos, lit = false) {
   function move() {
     let p = getPos();
     age += 1;
-    if (world.player.hasFire()) {
+    if (world.player.hasFire() && !lit) {
       if (vdistance(p, world.player.getPos()) < 100) {
+        playSound(Assets.FireTorchLit);
+        playSound(Assets.FireTorchLit, 2500);
+
         lit = true;
       }
     }
@@ -70,15 +73,15 @@ function makeRat(pos) {
 	let WALKING_SPEED = 5;
   let age = 0;
 	let frame = 0;
-	
+
 	let UP = 0;
   let DOWN = 1;
   let LEFT = 2;
-	let RIGHT = 3;	
+	let RIGHT = 3;
 	let IDLE =4;
 
 	let anims = [Assets.ratWalkUp, Assets.ratWalkDown, Assets.ratWalkLeft, Assets.ratWalkRight,Assets.ratIdle];
- 
+
   let directions = [
     [0, -1],
     [0, 1],
@@ -117,9 +120,8 @@ function makeRat(pos) {
 
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-		
-    ctx.drawSprite(anims[direction], x, y, frame);
 
+    ctx.drawSprite(anims[direction], x, y, frame);
   }
 
   function move() {

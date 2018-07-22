@@ -289,7 +289,7 @@ function init() {
     entities.push(makeMatch([2080, 674]));
     entities.push(makeMatch([544, 674]));
 
-    entities.push(makeKey([280, 600])); //CHANGe
+    entities.push(makeKey([280, 1050]));
     entities.push(makeKey([224, 5664]));
     entities.push(makeKey([1180, 4257]));
     entities.push(makeKey([2690, 2600]));

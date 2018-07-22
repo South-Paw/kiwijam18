@@ -396,18 +396,18 @@ function init() {
     entities.push(makeBrazier([5410, 2976]));
     entities.push(makeBrazier([6300, 6300]));
 
-    entities.push(makeGate([5, 48], false)); //hori
-    entities.push(makeGate([30, 11], true)); //vert
-    entities.push(makeGate([29, 94], true)); //vert
-    entities.push(makeGate([31, 94], false)); //hori
-    entities.push(makeGate([40, 57], true)); //vert
-    entities.push(makeGate([59, 99], true)); //vert
-    entities.push(makeGate([81, 52], false)); //hori
-    entities.push(makeGate([90, 49], true)); //vert
-    entities.push(makeGate([94, 45], true)); //vert
-    entities.push(makeGate([97, 88], false)); //hori
-    entities.push(makeGate([97, 90], false)); //hori
-    entities.push(makeGate([97, 92], false)); //hori
+    entities.push(makeGate([5, 48], true)); //hori
+    entities.push(makeGate([30, 11], false)); //vert
+    entities.push(makeGate([29, 94], false)); //vert
+    entities.push(makeGate([31, 94], true)); //hori
+    entities.push(makeGate([40, 57], false)); //vert
+    entities.push(makeGate([59, 99], false)); //vert
+    entities.push(makeGate([81, 52], true)); //hori
+    entities.push(makeGate([90, 49], false)); //vert
+    entities.push(makeGate([94, 45], false)); //vert
+    entities.push(makeGate([97, 88], true)); //hori
+    entities.push(makeGate([97, 90], true)); //hori
+    entities.push(makeGate([97, 92], true)); //hori
 
     entities.push(makeMatch([926, 4384]));
     entities.push(makeMatch([2340, 928]));

@@ -309,7 +309,7 @@ function makeGate(tilePos,horizontal=true) {
 		}
     let p = getPos();
 		let topLeft = vadd(getPos(),[-tileSize,-tileSize]);
-		let size = [tileSize*(dimensions[0]+1),tileSize*(dimensions[1]+1)];
+		let size = [tileSize*(dimensions[0]+1),tileSize*(dimensions[1]+1)+32];
 
 
 		if (within(world.player.getPos(),topLeft,size)) {

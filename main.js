@@ -703,7 +703,11 @@ function init() {
     }
 
     if (input.keyWentDown(32)) {
-      world.player.die();
+      if (world.player.isDead()) {
+        startLevel(levelNumber);
+      } else {
+        world.player.die();
+      }
     }
 
     if (!editing) {

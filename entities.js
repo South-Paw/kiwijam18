@@ -132,7 +132,8 @@ function makeMinotaur(pos) {
 function makePlayer(pos) {
   let WALKING_SPEED = 5;
   let INITIAL_MATCH_LIFE = 1000;
-  let walkAnim = Assets.playerWalkLeft;
+	let walkAnim = Assets.playerWalkLeft;
+	let timeOfDeath =0;
   let age = 0;
   let frame = 0;
   let matchLife = 0;
@@ -177,9 +178,13 @@ function makePlayer(pos) {
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 
-    ctx.drawSprite(walkAnim, x, y, frame);
-
-    lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8), 4 * matchBrightness() + 1);
+    if (timeOfDeath >0) {
+			ctx.drawSprite(Assets.death, x, y, frame);
+			lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8),  1);
+		} else {
+			ctx.drawSprite(walkAnim, x, y, frame);
+			lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8), 4 * matchBrightness() + 1);
+		}
 
     // debug player bounding using circles
 
@@ -214,6 +219,9 @@ function makePlayer(pos) {
     let p = getPos();
     age += 1;
 
+		if (timeOfDeath > 0) {
+			return;
+		}
     let walking = false;
 
     // Move up
@@ -310,6 +318,8 @@ function makePlayer(pos) {
   }
 
   function die() {
+		timeOfDeath=age;
+
     console.log('player ded');
   }
 

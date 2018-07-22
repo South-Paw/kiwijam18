@@ -152,7 +152,7 @@ function makeRat(pos) {
 					direction=randInt(5);
 				}
     }
-
+		if (direction == IDLE) frame=1;
   }
 
   return {

@@ -124,8 +124,8 @@ function makeMinotaur(pos) {
     draw
   };
 
-  world.minotaur = result;
-
+	minotaurs.push(result);
+  
   return result;
 }
 

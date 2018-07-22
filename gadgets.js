@@ -259,6 +259,7 @@ function makeTrapdoor(pos) {
 }
 
 function makeGate(tilePos,horizontal=true) {
+	let age=0;
 	let frame=0;
   let opened = false;
   let {
@@ -298,17 +299,24 @@ function makeGate(tilePos,horizontal=true) {
 	}
 
   function move() {
+		age+=1;
 
+		if (opened) {
+			if ( (age %10) ==0) {
+				frame=min(frame+1,6);
+			}
+			return;
+		}
     let p = getPos();
 		let topLeft = vadd(getPos(),[-tileSize,-tileSize]);
 		let size = [tileSize*(dimensions[0]+1),tileSize*(dimensions[1]+1)];
 
-		note="ddd";
+
 		if (within(world.player.getPos(),topLeft,size)) {
 			if (inventory.keys >0) {
 				opened=true;
 				inventory.keys-=1;
-				frame=6;
+
 			}
     }
 	}

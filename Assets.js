@@ -13,6 +13,7 @@ imageList = [
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
   "character/playerWalkDown.png|4|1|[64,192]",
+  "character/death.png|5|2|[64,192]",
   "rat/ratWalkDown.png|2|1|[32,56]",
   "rat/ratWalkUp.png|2|1|[32,56]",
   "rat/ratWalkLeft.png|2|1|[32,56]",
@@ -28,7 +29,7 @@ imageList = [
   "gate/gateFrameRight.png",
   "gate/gateHorizontal.png|6",
   "gate/gateVertical.png|6",
- 
+  
   "particle.png|1",
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"

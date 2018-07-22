@@ -245,7 +245,7 @@ function init() {
 
     inventory.matches += 3;
     inventory.keys = 0;
-    
+
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
@@ -270,10 +270,10 @@ function init() {
     entities.push(makeGate([29, 54], true)); //hori
     entities.push(makeGate([32, 64], false)); //vert
     entities.push(makeGate([41, 82], true)); //hori
-    entities.push(makeGate([46, 33], false)); //ver
+    entities.push(makeGate([46, 32], false)); //ver
     entities.push(makeGate([49, 42], true)); //vert
     entities.push(makeGate([66, 75], false)); //vert
-    entities.push(makeGate([70, 21], false)); //vert
+    entities.push(makeGate([70, 20], false)); //vert
     entities.push(makeGate([73, 32], true)); //hori
     entities.push(makeGate([80, 85], false)); //vert
     entities.push(makeGate([81, 80], true)); //hori
@@ -335,14 +335,14 @@ function init() {
 
     entities.push(makeGate([7, 30], true)); //hori
     entities.push(makeGate([9, 64], true)); //hori
-    entities.push(makeGate([18, 85], false)); //vert
+    entities.push(makeGate([18, 84], false)); //vert
     entities.push(makeGate([25, 50], true)); //hori
     entities.push(makeGate([59, 56], true)); //hori
     entities.push(makeGate([64, 20], false)); //vert
     entities.push(makeGate([67, 34], true)); //hori
     entities.push(makeGate([68, 94], false)); //vert
     entities.push(makeGate([72, 91], false)); //vert
-    entities.push(makeGate([78, 37], false)); //vert
+    entities.push(makeGate([78, 36], false)); //vert
     entities.push(makeGate([91, 34], true)); //hori
     entities.push(makeGate([92, 94], false)); //vert
     entities.push(makeGate([92, 98], false)); //vert
@@ -398,14 +398,14 @@ function init() {
     entities.push(makeBrazier([6300, 6300]));
 
     entities.push(makeGate([5, 48], true)); //hori
-    entities.push(makeGate([30, 11], false)); //vert
+    entities.push(makeGate([30, 10], false)); //vert
     entities.push(makeGate([29, 94], false)); //vert
     entities.push(makeGate([31, 94], true)); //hori
     entities.push(makeGate([40, 57], false)); //vert
-    entities.push(makeGate([59, 99], false)); //vert
+    entities.push(makeGate([52, 98], false)); //vert
     entities.push(makeGate([81, 52], true)); //hori
-    entities.push(makeGate([90, 49], false)); //vert
-    entities.push(makeGate([94, 45], false)); //vert
+    entities.push(makeGate([90, 48], false)); //vert
+    entities.push(makeGate([94, 44], false)); //vert
     entities.push(makeGate([97, 88], true)); //hori
     entities.push(makeGate([97, 90], true)); //hori
     entities.push(makeGate([97, 92], true)); //hori
@@ -841,7 +841,7 @@ function init() {
     for (let m of minotaurs) {
       m.drawEyes(ctx);
     }
-   
+
     drawParticles();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);

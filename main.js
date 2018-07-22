@@ -367,6 +367,8 @@ function init() {
     entities.push(makeMinotaur([2710, 5730]));
     entities.push(makeMinotaur([4000, 2210]));
 
+    entities.push(makeTrapdoor([6558, 6688]));
+
     setViewPosition(tileToGame([30, 20]));
   }
 
@@ -392,6 +394,19 @@ function init() {
     entities.push(makeBrazier([5410, 2976]));
     entities.push(makeBrazier([6300, 6300]));
 
+    //entities.push(makeGate([418, 3168])); //hori
+    //entities.push(makeGate([1950, 800])); //vert
+    //entities.push(makeGate([1950, 6176])); //vert
+    //entities.push(makeGate([2080, 6048])); //hori
+    //entities.push(makeGate([2590, 3744])); //vert
+    //entities.push(makeGate([3360, 6432])); //vert
+    //entities.push(makeGate([5278, 3360])); //hori
+    //entities.push(makeGate([5792, 3232])); //vert
+    //entities.push(makeGate([6048, 2976])); //vert
+    //entities.push(makeGate([6304, 5662])); //hori
+    //entities.push(makeGate([6304, 5792])); //hori
+    //entities.push(makeGate([6304, 5920])); //hori
+
     entities.push(makeMatch([926, 4384]));
     entities.push(makeMatch([2340, 928]));
     entities.push(makeMatch([2976, 6428]));
@@ -416,6 +431,8 @@ function init() {
     entities.push(makeMinotaur([930, 4130]));
     entities.push(makeMinotaur([3870, 1830]));
     entities.push(makeMinotaur([4260, 4900]));
+
+    entities.push(makeTrapdoor([6304, 6688]));
 
     setViewPosition(tileToGame([30, 20]));
   }

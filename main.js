@@ -704,6 +704,8 @@ function init() {
 
     if (input.keyWentDown(32)) {
       if (world.player.isDead()) {
+        inventory = { matches: 0, keys: 0 };
+
         startLevel(levelNumber);
       } else {
         world.player.die();

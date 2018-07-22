@@ -316,6 +316,7 @@ function makeGate(tilePos,horizontal=true) {
 			if (inventory.keys >0) {
 				opened=true;
 				inventory.keys-=1;
+        playSound(Assets.KeyUnlockDoor);
 
 			}
     }

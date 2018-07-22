@@ -236,7 +236,7 @@ function init() {
     entities.push(key);
 
 
-    entities.push(makeGate([18,12],false))
+    entities.push(makeGate([18,12],false)) //false = is not horizontal
     world.player = player;
   }
 
@@ -266,22 +266,21 @@ function init() {
     entities.push(makeBrazier([5540, 2080]));
     entities.push(makeBrazier([5664, 4126]));
 
-    //entities.push(makeGate([674, 3348])); //vert
-    //entities.push(makeGate([1950, 3486])); //hori
-    //entities.push(makeGate([2110, 4254])); //vert
-    //entities.push(makeGate([2590, 4060])); //hori
-    //entities.push(makeGate([2980, 2206])); //vert
-    //entities.push(makeGate([3230, 2720])); //vert
-    //entities.push(makeGate([4255, 4890])); //vert
-    //entities.push(makeGate([4770, 2082])); //hori
-    //entities.push(makeGate([5150, 5538])); //vert
-    //entities.push(makeGate([5280, 5150])); //hori
-    //entities.push(makeGate([5920, 5408])); //vert
-    //entities.push(makeGate([6046, 5534])); //hori
-    //entities.push(makeGate([6050, 5278])); //hori
-    //entities.push(makeGate([6175, 2850])); //hori
-
-
+    entities.push(makeGate([10, 50], false)); //vert
+    entities.push(makeGate([29, 54], true)); //hori
+    entities.push(makeGate([32, 64], false)); //vert
+    entities.push(makeGate([41, 82], true)); //hori
+    entities.push(makeGate([46, 32], false)); //ver
+    entities.push(makeGate([49, 42], true)); //vert
+    entities.push(makeGate([66, 75], false)); //vert
+    entities.push(makeGate([70, 20], false)); //vert
+    entities.push(makeGate([73, 32], true)); //hori
+    entities.push(makeGate([80, 85], false)); //vert
+    entities.push(makeGate([81, 80], true)); //hori
+    entities.push(makeGate([92, 83], false)); //vert
+    entities.push(makeGate([93, 81], true)); //hori
+    entities.push(makeGate([93, 87], true)); //hori
+    entities.push(makeGate([95, 44], true)); //hori
 
     entities.push(makeMatch([1050, 1690]));
     entities.push(makeMatch([990, 5536]));
@@ -334,21 +333,21 @@ function init() {
     entities.push(makeBrazier([6300, 544]));
     entities.push(makeBrazier([6300, 6300]));
 
-    //entities.push(makeGate([544, 1950])); //hori
-    //entities.push(makeGate([670, 4130])); //hori
-    //entities.push(makeGate([1250, 5534])); //vert
-    //entities.push(makeGate([1694, 3230])); //hori
-    //entities.push(makeGate([3872, 3614])); //hori
-    //entities.push(makeGate([4130, 1440])); //vert
-    //entities.push(makeGate([4382, 2208])); //hori
-    //entities.push(makeGate([4320, 6176])); //vert
-    //entities.push(makeGate([4640, 5920])); //vert
-    //entities.push(makeGate([5024, 2464])); //vert
-    //entities.push(makeGate([5920, 206])); //hori
-    //entities.push(makeGate([5856, 6178])); //vert
-    //entities.push(makeGate([5856, 6432])); //vert
-    //entities.push(makeGate([6176, 5920])); //hori
-    //entities.push(makeGate([6558, 1440])); //hori
+    entities.push(makeGate([7, 30], true)); //hori
+    entities.push(makeGate([9, 64], true)); //hori
+    entities.push(makeGate([18, 84], false)); //vert
+    entities.push(makeGate([25, 50], true)); //hori
+    entities.push(makeGate([59, 56], true)); //hori
+    entities.push(makeGate([64, 20], false)); //vert
+    entities.push(makeGate([67, 34], true)); //hori
+    entities.push(makeGate([68, 94], false)); //vert
+    entities.push(makeGate([72, 91], false)); //vert
+    entities.push(makeGate([78, 36], false)); //vert
+    entities.push(makeGate([91, 34], true)); //hori
+    entities.push(makeGate([92, 94], false)); //vert
+    entities.push(makeGate([92, 98], false)); //vert
+    entities.push(makeGate([95, 92], true)); //hori
+    entities.push(makeGate([101, 92], true)); //hori
 
     entities.push(makeMatch([544, 6428]));
     entities.push(makeMatch([2720, 1568]));
@@ -398,18 +397,18 @@ function init() {
     entities.push(makeBrazier([5410, 2976]));
     entities.push(makeBrazier([6300, 6300]));
 
-    //entities.push(makeGate([418, 3168])); //hori
-    //entities.push(makeGate([1950, 800])); //vert
-    //entities.push(makeGate([1950, 6176])); //vert
-    //entities.push(makeGate([2080, 6048])); //hori
-    //entities.push(makeGate([2590, 3744])); //vert
-    //entities.push(makeGate([3360, 6432])); //vert
-    //entities.push(makeGate([5278, 3360])); //hori
-    //entities.push(makeGate([5792, 3232])); //vert
-    //entities.push(makeGate([6048, 2976])); //vert
-    //entities.push(makeGate([6304, 5662])); //hori
-    //entities.push(makeGate([6304, 5792])); //hori
-    //entities.push(makeGate([6304, 5920])); //hori
+    entities.push(makeGate([5, 48], true)); //hori
+    entities.push(makeGate([30, 10], false)); //vert
+    entities.push(makeGate([29, 94], false)); //vert
+    entities.push(makeGate([31, 94], true)); //hori
+    entities.push(makeGate([40, 57], false)); //vert
+    entities.push(makeGate([52, 98], false)); //vert
+    entities.push(makeGate([81, 52], true)); //hori
+    entities.push(makeGate([90, 48], false)); //vert
+    entities.push(makeGate([94, 44], false)); //vert
+    entities.push(makeGate([97, 88], true)); //hori
+    entities.push(makeGate([97, 90], true)); //hori
+    entities.push(makeGate([97, 92], true)); //hori
 
     entities.push(makeMatch([926, 4384]));
     entities.push(makeMatch([2340, 928]));

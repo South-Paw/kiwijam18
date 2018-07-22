@@ -67,24 +67,92 @@ function makeBrazier(pos, lit = false) {
 
 
 function makeRat(pos) {
+	let WALKING_SPEED = 5;
   let age = 0;
-  let frame = 0;
+	let frame = 0;
+	
+	let UP = 0;
+  let DOWN = 1;
+  let LEFT = 2;
+	let RIGHT = 3;	
+	let IDLE =4;
+
+	let anims = [Assets.ratWalkUp, Assets.ratWalkDown, Assets.ratWalkLeft, Assets.ratWalkRight,Assets.ratIdle];
+ 
+  let directions = [
+    [0, -1],
+    [0, 1],
+    [-1, 0],
+		[1, 0],
+		[0,0]
+  ];
+
+	let direction = RIGHT;
+
+	let characterBounding = [
+    [0, -16],
+    [0, 0],
+  ];
+
   let {
     getPos,
     setPos,
     blocking
   } = makeEntity(pos)
 
+	function look(way) {
+    let here = getPos();
+    let candidate = vadd(here, vscale(directions[way], 60));
+    return world.isSpace(candidate);
+  }
+
+  function consider(way) {
+    if (look(way)) {
+      if (probability(0.002)) {
+        direction = way;
+      }
+    }
+  }
+
+
   function draw(ctx, lctx) {
     let [x, y] = getPos();
-
-    lctx.drawSprite(Assets.baseLight, x, y, randInt(8));
+		
+    ctx.drawSprite(anims[direction], x, y, frame);
 
   }
 
   function move() {
-    let p = getPos();
-    age += 1;
+		age += 1;
+		frame = Math.floor(age/20) & 1;
+
+		let currentTile = gameToTile(getPos());
+    let step = vscale(directions[direction], WALKING_SPEED);
+    let p = vadd(getPos(), step);
+    let boundingPos = characterBounding.map(v => vadd(p, v));
+    if (!boundingPos.some(a => !world.isSpace(a))) {
+      setPos(p);
+    } else {
+      direction = randInt(5);
+    }
+    switch (direction) {
+      case DOWN:
+      case UP:
+        consider(LEFT);
+        consider(RIGHT);
+        break;
+
+      case LEFT:
+      case RIGHT:
+        consider(UP);
+        consider(DOWN);
+				break;
+			case IDLE:
+			  if ( (age % 400) == 0) {
+					direction=randInt(5);
+				}
+    }
+
   }
 
   return {

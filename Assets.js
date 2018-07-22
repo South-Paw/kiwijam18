@@ -12,6 +12,12 @@ imageList = [
   "character/playerWalkRight.png|4|1|[64,192]",
   "character/playerWalkUp.png|4|1|[64,192]",
   "character/playerWalkDown.png|4|1|[64,192]",
+  "rat/ratWalkDown.png|2|1|[32,56]",
+  "rat/ratWalkUp.png|2|1|[32,56]",
+  "rat/ratWalkLeft.png|2|1|[32,56]",
+  "rat/ratWalkRight.png|2|1|[32,56]",
+  "rat/ratIdle.png|2|1|[32,56]",
+ 
   "match.png|1",
   "key.png|1",
   "particle.png|1",

@@ -225,6 +225,8 @@ function init() {
     entities.push(player);
 
     entities.push(makeBrazier([640, 420]));
+    entities.push(makeRat([400, 520]));
+
     let key = makeKey([1024, 330]);
     entities.push(key);
     world.player = player;

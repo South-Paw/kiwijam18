@@ -227,7 +227,10 @@ function init() {
     entities.push(makeBrazier([640, 420]));
     entities.push(makeRat([400, 520]));
 
+    entities.push(makeMatch([1024, 530]));
+
     let key = makeKey([1024, 330]);
+
     entities.push(key);
     world.player = player;
   }
@@ -324,15 +327,25 @@ function init() {
     initLevel3
   ];
 
+  function addRats() {
+    let [w,h] = world.getSize();
+    let ratCount = Math.floor((w*h)/150);
+    for (let i=0; i<ratCount; i++) {
+      let pos = [randInt(w*tileSize),randInt(h*tileSize)];
+      if (world.isSpace(pos)) {
+        entities.push(makeRat(pos));
+      }
+    }
+  }
+
   function startLevel(n = 0) {
     stopAudioLoops();
     n %= allLevels.length;
 
-    let worldSize = 30;
     entities = [];
-
     allLevels[n]();
 
+    addRats();
     loopSound(Assets.DungeonGameAtmosphere);
 
     gameMode = mainGame;

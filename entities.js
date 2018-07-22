@@ -27,7 +27,7 @@ function makeMinotaur(pos) {
     [-1, 0],
     [1, 0]
 	];
-	
+
   let anims = [Assets.minotaurWalkUp, Assets.minotaurWalkDown, Assets.minotaurWalkLeft, Assets.minotaurWalkRight];
   let eyes = [null, Assets.minotaurWalkDownEyes, Assets.minotaurWalkLeftEyes, Assets.minotaurWalkRightEyes];
 
@@ -201,7 +201,7 @@ function makePlayer(pos) {
   }
 
   function lightMatch() {
-    if (inventory.matches > 0 && !editing) {
+    if (inventory.matches > 0) {
       matchLife = INITIAL_MATCH_LIFE;
       playSound(matchSounds[randInt(matchSounds.length)]);
       inventory.matches -= 1;

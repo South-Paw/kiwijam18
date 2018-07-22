@@ -4,14 +4,14 @@ var levelNumber = 0;
 
 window.lookupTable = [
   [34, 35, 46, 47],
-  [56, 57, 68, 69],
+  [84, 85, 96, 97],
   [76, 77, 88, 89],
   [104, 105, 116, 117],
   [52, 53, 64, 65],
   [98, 99, 110, 111],
   [28, 29, 40, 41],
   [102, 103, 114, 115],
-  [80, 81, 92, 93],
+  [24, 25, 36, 37],
   [78, 79, 90, 91],
   [32, 33, 44, 45],
   [54, 55, 66, 67],
@@ -242,18 +242,21 @@ function init() {
     entities.push(player);
     world.player = player;
 
+    entities.push(makeBrazier([544, 544], true));
+    entities.push(makeBrazier([544, 3870]));
     entities.push(makeBrazier([990, 5418], true));
-    entities.push(makeBrazier([5182, 660]));
-    entities.push(makeBrazier([2084, 1828]));
-    entities.push(makeBrazier([3110, 1056], true));
     entities.push(makeBrazier([1060, 1576], true));
-    entities.push(makeBrazier([1332, 2816]));
-    entities.push(makeBrazier([2500, 3619]));
-    entities.push(makeBrazier([3515, 3327], true));
-    entities.push(makeBrazier([5700, 4126]));
-    entities.push(makeBrazier([3424, 2336]));
-    entities.push(makeBrazier([4400, 4400], true));
+    entities.push(makeBrazier([2084, 544]));
+    entities.push(makeBrazier([2464, 3619], true));
+    entities.push(makeBrazier([2848, 4900]));
+    entities.push(makeBrazier([3110, 1056]));
+    entities.push(makeBrazier([3424, 2336], true));
+    entities.push(makeBrazier([3490, 3360]));
+    entities.push(makeBrazier([4400, 4400]));
+    entities.push(makeBrazier([5152, 670], true));
     entities.push(makeBrazier([5540, 5540]));
+    entities.push(makeBrazier([5540, 2080]));
+    entities.push(makeBrazier([5664, 4126], true));
 
     entities.push(makeMinotaur([400, 300]));
 
@@ -270,6 +273,18 @@ function init() {
     entities.push(player);
     world.player = player;
 
+    entities.push(makeBrazier([544, 544], true));
+    entities.push(makeBrazier([544, 2330]));
+    entities.push(makeBrazier([544, 6300], true));
+    entities.push(makeBrazier([1950, 3870]));
+    entities.push(makeBrazier([2720, 5530]));
+    entities.push(makeBrazier([2720, 1440]));
+    entities.push(makeBrazier([4510, 4510]));
+    entities.push(makeBrazier([4640, 2590]));
+    entities.push(makeBrazier([5920, 2590]));
+    entities.push(makeBrazier([6300, 6300], true));
+    entities.push(makeBrazier([6300, 544], true));
+
     entities.push(makeMinotaur([400, 300]));
 
     setViewPosition(tileToGame([30, 20]));
@@ -284,6 +299,18 @@ function init() {
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
+
+    entities.push(makeBrazier([544, 544], true));
+    entities.push(makeBrazier([926, 4256], true));
+    entities.push(makeBrazier([1310, 2720]));
+    entities.push(makeBrazier([2340, 800]));
+    entities.push(makeBrazier([2976, 3616], true));
+    entities.push(makeBrazier([2976, 6300]));
+    entities.push(makeBrazier([3870, 1950]));
+    entities.push(makeBrazier([4256, 5020]));
+    entities.push(makeBrazier([5020, 670]));
+    entities.push(makeBrazier([5410, 2976], true));
+    entities.push(makeBrazier([6300, 6300], true));
 
     entities.push(makeMinotaur([400, 300]));
 

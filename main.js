@@ -787,8 +787,8 @@ function init() {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
 
-    let s = 1+ Math.sin(ticker/100)*0.1;
-    ctx.drawSprite(Assets.controls,100,1000,0,s);
+    let s = 1+ Math.sin(ticker/100)*0.05;
+    ctx.drawSprite(Assets.controls,200,900,0,s*0.35);
   }
 
   function applyGameSpace(context) {
@@ -957,9 +957,9 @@ function init() {
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
-    ctx.fillText(note, 131, 51);
+  //  ctx.fillText(note, 131, 51);
     ctx.fillStyle = "white";
-    ctx.fillText(note, 130, 50);
+  //  ctx.fillText(note, 130, 50);
 
     requestAnimationFrame(update);
   }

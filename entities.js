@@ -26,7 +26,8 @@ function makeMinotaur(pos) {
     [0, 1],
     [-1, 0],
     [1, 0]
-  ];
+	];
+	
   let anims = [Assets.minotaurWalkUp, Assets.minotaurWalkDown, Assets.minotaurWalkLeft, Assets.minotaurWalkRight];
   let eyes = [null, Assets.minotaurWalkDownEyes, Assets.minotaurWalkLeftEyes, Assets.minotaurWalkRightEyes];
 

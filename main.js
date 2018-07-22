@@ -226,7 +226,7 @@ function init() {
 
     entities.push(makeBrazier([924, 420]));
 
-    //entities.push(makeGate([1310, 670]));
+    //entities.push(makeGate([1310, 670])); //hori
 
     entities.push(makeMatch([600, 420]));
 
@@ -262,6 +262,11 @@ function init() {
     entities.push(makeBrazier([5540, 5540]));
     entities.push(makeBrazier([5540, 2080]));
     entities.push(makeBrazier([5664, 4126]));
+
+    //entities.push(makeGate([674, 3348])); //vert
+    //entities.push(makeGate([1950, 3486])); //hori
+    //entities.push(makeGate([2110, 4254])); //vert
+
 
     entities.push(makeMatch([1050, 1690]));
     entities.push(makeMatch([990, 5536]));

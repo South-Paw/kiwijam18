@@ -1,5 +1,6 @@
 imageList = [
   "baseLight.png|8",
+  "baseLight2.png|8",
   "walls.png|12|32",
   "minotaur/minotaurWalkLeft.png|6|1|[64,192]",
   "minotaur/minotaurWalkRight.png|6|1|[64,192]",
@@ -68,9 +69,8 @@ var soundList = [
   // door
   "KeyUnlockDoor.ogg", // unused
   // trapdoor
-  "TrapDoorClose.ogg", // unused
-  "TrapDoorOpen1.ogg", // unused
-  "TrapDoorOpen2.ogg", // unused
+  "TrapDoorOpen1.ogg",
+  "TrapDoorOpen2.ogg",
   // death sounds
   "MonsterKillYou1.ogg", // unused
   "MonsterKillYou2.ogg", // unused
@@ -109,7 +109,7 @@ function imageDetailsFromString(s) {
 
 function playSound(buffer, offset = 0) {
   if (Array.isArray(buffer)) {
-    return playSound(buffer[randInt(buffer.length)],offset);  
+    return playSound(buffer[randInt(buffer.length)],offset);
   }
   var source = audioContext.createBufferSource();
   source.buffer = buffer;

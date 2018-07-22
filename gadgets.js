@@ -17,13 +17,13 @@ function makeBrazier(pos, lit = false) {
     if (lit) {
       ctx.drawSprite(Assets.brazierBurn, x, y, frame);
 
-      let flip = 1;
+      let flip = 0.5;
 
       if (probability(0.5)) {
-        flip = -flip
+        flip = -flip;
       };
 
-      lctx.drawSprite(Assets.baseLight, x, y, randInt(8), (7 + flicker(age)) * flip);
+      lctx.drawSprite(Assets.baseLight2, x, y, randInt(8), (7 + flicker(age)) * flip);
     } else {
       ctx.drawSprite(Assets.brazierEmber, x, y, randInt(6));
     }
@@ -213,7 +213,7 @@ function makeTrapdoor(pos) {
     blocking
   } = makeEntity(pos)
 
-  function draw(ctx, lctx) {    
+  function draw(ctx, lctx) {
     let [x, y] = getPos();
 
     ctx.drawSprite(Assets.trapdoor, x, y);
@@ -244,7 +244,7 @@ function makeTrapdoor(pos) {
     blocking,
     draw
 	};
-	
+
   let [tx, ty] = gameToTile(pos);
 
   //this is bad don't blindly put in 9 tiles,  fix when not tired
@@ -255,7 +255,7 @@ function makeTrapdoor(pos) {
   }
 
 
-  return result; 
+  return result;
 }
 
 function makeGate(tilePos,horizontal=true) {
@@ -349,7 +349,7 @@ function makeMatch(pos) {
     if (collected) return
     let [x, y] = getPos();
 
-    ctx.drawSprite(Assets.match, x, y, 0, 0.6);
+    ctx.drawSprite(Assets.match, x, y, 0, 0.35);
   }
 
   function move() {

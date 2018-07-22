@@ -190,7 +190,7 @@ function init() {
 
   function loadLevel(data) {
     world = makeWorld(data.width, data.height);
- 
+
     if (world.map.length !== data.tiles.length) {
       console.error("Map was Wrong size!");
       return;
@@ -218,20 +218,20 @@ function init() {
   function initTutorial() {
     loadLevel(levels.tutorial);
 
-    inventory.matches = 3;
+    inventory.matches = 0;
     inventory.keys = 0;
 
     let player = makePlayer([394, 430]);
     entities.push(player);
 
-    entities.push(makeBrazier([640, 420]));
+    entities.push(makeBrazier([990, 420]));
     entities.push(makeRat([400, 520]));
 
-    entities.push(makeMatch([1024, 530]));
+    entities.push(makeMatch([610, 420]));
 
-    entities.push(makeTrapdoor([418,928]));
+    entities.push(makeTrapdoor([250,928]));
 
-    let key = makeKey([1024, 330]);
+    let key = makeKey([1310, 610]);
     entities.push(key);
 
 
@@ -251,21 +251,62 @@ function init() {
 
     entities.push(makeBrazier([544, 544], true));
     entities.push(makeBrazier([544, 3870]));
-    entities.push(makeBrazier([990, 5418], true));
-    entities.push(makeBrazier([1060, 1576], true));
+    entities.push(makeBrazier([990, 5418]));
+    entities.push(makeBrazier([1060, 1576]));
     entities.push(makeBrazier([2084, 544]));
-    entities.push(makeBrazier([2464, 3619], true));
+    entities.push(makeBrazier([2464, 3619]));
     entities.push(makeBrazier([2848, 4900]));
     entities.push(makeBrazier([3110, 1056]));
-    entities.push(makeBrazier([3424, 2336], true));
+    entities.push(makeBrazier([3424, 2336]));
     entities.push(makeBrazier([3490, 3360]));
     entities.push(makeBrazier([4400, 4400]));
-    entities.push(makeBrazier([5152, 670], true));
+    entities.push(makeBrazier([5152, 670]));
     entities.push(makeBrazier([5540, 5540]));
     entities.push(makeBrazier([5540, 2080]));
-    entities.push(makeBrazier([5664, 4126], true));
+    entities.push(makeBrazier([5664, 4126]));
 
-    entities.push(makeMinotaur([400, 300]));
+    //entities.push(makeGate([674, 3348])); //vert
+    //entities.push(makeGate([1950, 3486])); //hori
+    //entities.push(makeGate([2110, 4254])); //vert
+    //entities.push(makeGate([2590, 4060])); //hori
+    //entities.push(makeGate([2980, 2206])); //vert
+    //entities.push(makeGate([3230, 2720])); //vert
+    //entities.push(makeGate([4255, 4890])); //vert
+    //entities.push(makeGate([4770, 2082])); //hori
+    //entities.push(makeGate([5150, 5538])); //vert
+    //entities.push(makeGate([5280, 5150])); //hori
+    //entities.push(makeGate([5920, 5408])); //vert
+    //entities.push(makeGate([6046, 5534])); //hori
+    //entities.push(makeGate([6050, 5278])); //hori
+    //entities.push(makeGate([6175, 2850])); //hori
+
+
+
+    entities.push(makeMatch([1050, 1690]));
+    entities.push(makeMatch([990, 5536]));
+    entities.push(makeMatch([3424, 2464]));
+    entities.push(makeMatch([5664, 4256]));
+    entities.push(makeMatch([2080, 674]));
+    entities.push(makeMatch([544, 674]));
+
+    entities.push(makeKey([280, 1050]));
+    entities.push(makeKey([224, 5664]));
+    entities.push(makeKey([1180, 4257]));
+    entities.push(makeKey([2690, 2600]));
+    entities.push(makeKey([2910, 260]));
+    entities.push(makeKey([3620, 5020]));
+    entities.push(makeKey([4250, 3490]));
+    entities.push(makeKey([4700, 2750]));
+    entities.push(makeKey([5760, 3350]));
+    entities.push(makeKey([4600, 5790]));
+    entities.push(makeKey([6690, 4290]));
+    entities.push(makeKey([6690, 290]));
+
+
+    entities.push(makeMinotaur([4100, 1450]));
+    entities.push(makeMinotaur([1700, 4250]));
+
+    entities.push(makeTrapdoor([6688, 5856]));
 
     setViewPosition(tileToGame([30, 20]));
   }
@@ -282,17 +323,54 @@ function init() {
 
     entities.push(makeBrazier([544, 544], true));
     entities.push(makeBrazier([544, 2330]));
-    entities.push(makeBrazier([544, 6300], true));
+    entities.push(makeBrazier([544, 6300]));
     entities.push(makeBrazier([1950, 3870]));
-    entities.push(makeBrazier([2720, 5530]));
     entities.push(makeBrazier([2720, 1440]));
+    entities.push(makeBrazier([2720, 5530]));
     entities.push(makeBrazier([4510, 4510]));
     entities.push(makeBrazier([4640, 2590]));
     entities.push(makeBrazier([5920, 2590]));
-    entities.push(makeBrazier([6300, 6300], true));
-    entities.push(makeBrazier([6300, 544], true));
+    entities.push(makeBrazier([6300, 544]));
+    entities.push(makeBrazier([6300, 6300]));
 
-    entities.push(makeMinotaur([400, 300]));
+    //entities.push(makeGate([544, 1950])); //hori
+    //entities.push(makeGate([670, 4130])); //hori
+    //entities.push(makeGate([1250, 5534])); //vert
+    //entities.push(makeGate([1694, 3230])); //hori
+    //entities.push(makeGate([3872, 3614])); //hori
+    //entities.push(makeGate([4130, 1440])); //vert
+    //entities.push(makeGate([4382, 2208])); //hori
+    //entities.push(makeGate([4320, 6176])); //vert
+    //entities.push(makeGate([4640, 5920])); //vert
+    //entities.push(makeGate([5024, 2464])); //vert
+    //entities.push(makeGate([5920, 206])); //hori
+    //entities.push(makeGate([5856, 6178])); //vert
+    //entities.push(makeGate([5856, 6432])); //vert
+    //entities.push(makeGate([6176, 5920])); //hori
+    //entities.push(makeGate([6558, 1440])); //hori
+
+    entities.push(makeMatch([544, 6428]));
+    entities.push(makeMatch([2720, 1568]));
+    entities.push(makeMatch([4510, 4638]));
+    entities.push(makeMatch([6300, 672]));
+
+    entities.push(makeKey([510, 1590]));
+    entities.push(makeKey([224, 4235]));
+    entities.push(makeKey([1400, 5150]));
+    entities.push(makeKey([2200, 3360]));
+    entities.push(makeKey([3230, 1880]));
+    entities.push(makeKey([4000, 580]));
+    entities.push(makeKey([4900, 290]));
+    entities.push(makeKey([5150, 1700]));
+    entities.push(makeKey([4830, 3770]));
+    entities.push(makeKey([3740, 6170]));
+    entities.push(makeKey([3490, 6050]));
+    entities.push(makeKey([2330, 6560]));
+
+    entities.push(makeMinotaur([2710, 5730]));
+    entities.push(makeMinotaur([4000, 2210]));
+
+    entities.push(makeTrapdoor([6558, 6688]));
 
     setViewPosition(tileToGame([30, 20]));
   }
@@ -300,7 +378,7 @@ function init() {
   function initLevel3() {
     loadLevel(levels.level3);
 
-    inventory.matches += 5;
+    inventory.matches += 3;
     inventory.keys = 0;
 
     let player = makePlayer([300, 300]);
@@ -308,18 +386,56 @@ function init() {
     world.player = player;
 
     entities.push(makeBrazier([544, 544], true));
-    entities.push(makeBrazier([926, 4256], true));
+    entities.push(makeBrazier([926, 4256]));
     entities.push(makeBrazier([1310, 2720]));
     entities.push(makeBrazier([2340, 800]));
-    entities.push(makeBrazier([2976, 3616], true));
+    entities.push(makeBrazier([2976, 3616]));
     entities.push(makeBrazier([2976, 6300]));
     entities.push(makeBrazier([3870, 1950]));
     entities.push(makeBrazier([4256, 5020]));
     entities.push(makeBrazier([5020, 670]));
-    entities.push(makeBrazier([5410, 2976], true));
-    entities.push(makeBrazier([6300, 6300], true));
+    entities.push(makeBrazier([5410, 2976]));
+    entities.push(makeBrazier([6300, 6300]));
 
-    entities.push(makeMinotaur([400, 300]));
+    //entities.push(makeGate([418, 3168])); //hori
+    //entities.push(makeGate([1950, 800])); //vert
+    //entities.push(makeGate([1950, 6176])); //vert
+    //entities.push(makeGate([2080, 6048])); //hori
+    //entities.push(makeGate([2590, 3744])); //vert
+    //entities.push(makeGate([3360, 6432])); //vert
+    //entities.push(makeGate([5278, 3360])); //hori
+    //entities.push(makeGate([5792, 3232])); //vert
+    //entities.push(makeGate([6048, 2976])); //vert
+    //entities.push(makeGate([6304, 5662])); //hori
+    //entities.push(makeGate([6304, 5792])); //hori
+    //entities.push(makeGate([6304, 5920])); //hori
+
+    entities.push(makeMatch([926, 4384]));
+    entities.push(makeMatch([2340, 928]));
+    entities.push(makeMatch([2976, 6428]));
+    entities.push(makeMatch([5020, 798]));
+
+    entities.push(makeKey([2330, 1570]));
+    entities.push(makeKey([3100, 1190]));
+    entities.push(makeKey([800, 6180]));
+    entities.push(makeKey([2080, 5560]));
+    entities.push(makeKey([2590, 4380]));
+    entities.push(makeKey([4510, 6300]));
+    entities.push(makeKey([5530, 5530]));
+    entities.push(makeKey([6560, 5790]));
+    entities.push(makeKey([5920, 3490]));
+    entities.push(makeKey([4900, 3740]));
+    entities.push(makeKey([3680, 3230]));
+    entities.push(makeKey([4760, 2340]));
+    entities.push(makeKey([6300, 2460]));
+    entities.push(makeKey([2080, 6560]));
+
+
+    entities.push(makeMinotaur([930, 4130]));
+    entities.push(makeMinotaur([3870, 1830]));
+    entities.push(makeMinotaur([4260, 4900]));
+
+    entities.push(makeTrapdoor([6304, 6688]));
 
     setViewPosition(tileToGame([30, 20]));
   }
@@ -331,25 +447,15 @@ function init() {
     initLevel3
   ];
 
-  function addRats() {
-    let [w,h] = world.getSize();
-    let ratCount = Math.floor((w*h)/150);
-    for (let i=0; i<ratCount; i++) {
-      let pos = [randInt(w*tileSize),randInt(h*tileSize)];
-      if (world.isSpace(pos)) {
-        entities.push(makeRat(pos));
-      }
-    }
-  }
-
   function startLevel(n = 0) {
     stopAudioLoops();
     n %= allLevels.length;
 
+    let worldSize = 30;
     entities = [];
+
     allLevels[n]();
 
-    addRats();
     loopSound(Assets.DungeonGameAtmosphere);
 
     world.success=false;
@@ -578,31 +684,41 @@ function init() {
       levelNumber++;
       startLevel(levelNumber);
     }
+
+    if (input.keyWentDown(32)) {
+      world.player.die();
+    }
+
     if (!editing) {
       desiredViewPosition = world.player.getPos();
     }
+
     panView();
+
     for (let ent of entities) {
       ent.move();
     }
+
     entities.sort((a, b) => (a.getPos()[1] - b.getPos()[1]));
 
     if (editing) {
       if (input.keyWentDown(68)) {
         paletteX = (paletteX + 1) % paletteWidth;
       }
+
       if (input.keyWentDown(65)) {
         paletteX -= 1;
         if (paletteX < 0) paletteX += paletteWidth;
       }
+
       if (input.keyWentDown(83)) {
         paletteY = (paletteY + 1) % paletteHeight;
       }
+
       if (input.keyWentDown(87)) {
         paletteY -= 1;
         if (paletteY < 0) paletteY += paletteHeight;
       }
-
     }
   }
 
@@ -704,6 +820,7 @@ function init() {
     }
 
     applyGameSpace(ctx);
+
     if (world.minotaur) {
       world.minotaur.drawEyes(ctx);
     }

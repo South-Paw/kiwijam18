@@ -17,7 +17,7 @@ imageList = [
   "rat/ratWalkLeft.png|2|1|[32,56]",
   "rat/ratWalkRight.png|2|1|[32,56]",
   "rat/ratIdle.png|2|1|[32,56]",
- 
+
   "match.png|1",
   "key.png|1",
   "particle.png|1",
@@ -53,6 +53,8 @@ var soundList = [
   // match
   "LightingAMatch1.ogg",
   "LightingAMatch2.ogg",
+  // brazier
+  "FireTorchLit.ogg",
   // key
   "KeyPickup.ogg",
   // door

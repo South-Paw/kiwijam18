@@ -308,7 +308,7 @@ function init() {
     entities.push(makeBrazier([4256, 5020]));
     entities.push(makeBrazier([5020, 670]));
     entities.push(makeBrazier([5410, 2976], true));
-    entities.push(makeBrazier([6300, 6300], true));
+    entities.push(makeBrazier([6300, 6300]));
 
     entities.push(makeMinotaur([400, 300]));
 

@@ -109,7 +109,7 @@ function makeMinotaur(pos) {
     }
     frame = Math.floor((age / 10) % anims[direction].framesWide);
 
-    // very loud and they always play...
+    // very loud and it will always play...
     // if ((age % 60) === 0) {
     //   playSound(footstepSounds[randInt(footstepSounds.length)]);
     // }
@@ -123,7 +123,9 @@ function makeMinotaur(pos) {
     move,
     draw
   };
+
   world.minotaur = result;
+
   return result;
 }
 
@@ -307,11 +309,16 @@ function makePlayer(pos) {
     return matchLife > 0;
   }
 
+  function die() {
+    console.log('player ded');
+  }
+
   return {
     getPos,
     setPos,
     blocking,
     hasFire,
+    die,
     move,
     draw
   };

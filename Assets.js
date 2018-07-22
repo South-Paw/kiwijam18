@@ -1,5 +1,6 @@
 imageList = [
   "baseLight.png|8",
+  "baseLight2.png|8",
   "walls.png|12|32",
   "minotaur/minotaurWalkLeft.png|6|1|[64,192]",
   "minotaur/minotaurWalkRight.png|6|1|[64,192]",

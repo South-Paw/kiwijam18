@@ -168,14 +168,12 @@ function makeRat(pos) {
 
 
 function makeKey(pos) {
-  let age = 0;
-  let frame = 0;
   let collected = false;
   let {
     getPos,
     setPos,
     blocking
-  } = makeEntity(pos)
+  } = makeEntity(pos);
 
   function draw(ctx, lctx) {
     if (collected) return
@@ -190,11 +188,44 @@ function makeKey(pos) {
 
     let p = getPos();
 
-    age += 1;
-
     if (vdistance(p, world.player.getPos()) < 64) {
       playSound(Assets.KeyPickup);
       inventory.keys += 1;
+      collected = true;
+    }
+  }
+  return {
+    getPos,
+    setPos,
+    move,
+    blocking,
+    draw
+  };
+}
+
+function makeMatch(pos) {
+  let collected = false;
+  let {
+    getPos,
+    setPos,
+    blocking
+  } = makeEntity(pos);
+
+  function draw(ctx, lctx) {
+    if (collected) return
+    let [x, y] = getPos();
+
+    ctx.drawSprite(Assets.match, x, y, 0, 0.6);
+  }
+
+  function move() {
+    if (collected) return;
+
+    let p = getPos();
+
+    if (vdistance(p, world.player.getPos()) < 64) {
+      playSound(Assets.KeyPickup);
+      inventory.matches += 1;
       collected = true;
     }
   }

@@ -233,6 +233,7 @@ function makeTrapdoor(pos) {
 		} else {
 			openAge= age-openTime;
 			frame= Math.min(3,Math.floor(openAge/10));
+			if (openAge>50) completeLevel();
 		}
 	}
 

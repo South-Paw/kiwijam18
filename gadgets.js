@@ -203,6 +203,96 @@ function makeKey(pos) {
   };
 }
 
+function makeTrapdoor(pos) {
+  let age = 0;
+	let frame = 0;
+	let openTime =0;
+  let {
+    getPos,
+    setPos,
+    blocking
+  } = makeEntity(pos)
+
+  function draw(ctx, lctx) {    
+    let [x, y] = getPos();
+
+    ctx.drawSprite(Assets.trapdoor, x, y);
+    ctx.drawSprite(Assets.doorHatch, x, y,frame);
+
+  }
+
+  function move() {
+    let p = getPos();
+    age += 1;
+
+		if (openTime==0) {
+			if (vdistance(p, world.player.getPos()) < 128) {
+				openTime=age;
+				playSound([Assets.TrapDoorOpen1,Assets.TrapDoorOpen2]);
+			}
+		} else {
+			openAge= age-openTime;
+			frame= Math.min(3,Math.floor(openAge/10));
+		}
+	}
+
+	let result={
+    getPos,
+    setPos,
+    move,
+    blocking,
+    draw
+	};
+	
+  let [tx, ty] = gameToTile(pos);
+
+  //this is bad don't blindly put in 9 tiles,  fix when not tired
+  for (let x = -1; x < 2; x++) {
+    for (let y = -1; y < 2; y++) {
+      world.tileAt([tx + x, ty + y]).contents.push(result);
+    }
+  }
+
+
+  return result; 
+}
+
+function makeGate(pos) {
+  let collected = false;
+  let {
+    getPos,
+    setPos,
+    blocking
+  } = makeEntity(pos);
+
+  function draw(ctx, lctx) {
+    if (collected) return
+    let [x, y] = getPos();
+
+    ctx.drawSprite(Assets.match, x, y);
+  }
+
+  function move() {
+    if (collected) return;
+
+    let p = getPos();
+
+    if (vdistance(p, world.player.getPos()) < 64) {
+      playSound(Assets.KeyPickup);
+      inventory.matches += 1;
+      collected = true;
+    }
+  }
+  return {
+    getPos,
+    setPos,
+    move,
+    blocking,
+    draw
+  };
+}
+
+
 function makeMatch(pos) {
   let collected = false;
   let {

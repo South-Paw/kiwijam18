@@ -190,7 +190,7 @@ function init() {
 
   function loadLevel(data) {
     world = makeWorld(data.width, data.height);
- 
+
     if (world.map.length !== data.tiles.length) {
       console.error("Map was Wrong size!");
       return;
@@ -231,10 +231,6 @@ function init() {
 
     entities.push(makeTrapdoor([418,928]));
 
-    //let key = makeKey([1024, 330]);
-
-    //entities.push(makeRat([400, 520]));
-
     let key = makeKey([1024, 330]);
     entities.push(key);
     world.player = player;
@@ -269,6 +265,18 @@ function init() {
     //entities.push(makeGate([674, 3348])); //vert
     //entities.push(makeGate([1950, 3486])); //hori
     //entities.push(makeGate([2110, 4254])); //vert
+    //entities.push(makeGate([2590, 4060])); //hori
+    //entities.push(makeGate([2980, 2206])); //vert
+    //entities.push(makeGate([3230, 2720])); //vert
+    //entities.push(makeGate([4255, 4890])); //vert
+    //entities.push(makeGate([4770, 2082])); //hori
+    //entities.push(makeGate([5150, 5538])); //vert
+    //entities.push(makeGate([5280, 5150])); //hori
+    //entities.push(makeGate([5920, 5408])); //vert
+    //entities.push(makeGate([6046, 5534])); //hori
+    //entities.push(makeGate([6050, 5278])); //hori
+    //entities.push(makeGate([6175, 2850])); //hori
+
 
 
     entities.push(makeMatch([1050, 1690]));
@@ -283,6 +291,7 @@ function init() {
     entities.push(makeKey([1180, 4257]));
     entities.push(makeKey([2690, 2600]));
     entities.push(makeKey([2910, 260]));
+    entities.push(makeKey([3620, 5020]));
     entities.push(makeKey([4250, 3490]));
     entities.push(makeKey([4700, 2750]));
     entities.push(makeKey([5760, 3350]));
@@ -318,6 +327,9 @@ function init() {
     entities.push(makeBrazier([5920, 2590]));
     entities.push(makeBrazier([6300, 544]));
     entities.push(makeBrazier([6300, 6300]));
+
+    //entities.push(makeGate([544, 1950])); //hori
+    //entities.push(makeGate([670, 4130])); //hori
 
     entities.push(makeMatch([544, 6428]));
     entities.push(makeMatch([2720, 1568]));

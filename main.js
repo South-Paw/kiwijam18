@@ -448,6 +448,20 @@ function init() {
     initLevel3
   ];
 
+  function addRats() {
+    let [w,h] = world.getSize();
+    let ratCount = Math.floor((w*h)/150);
+
+    for (let i=0; i<ratCount; i++) {
+      let pos = [randInt(w*tileSize),randInt(h*tileSize)];
+
+      if (world.isSpace(pos)) {
+        entities.push(makeRat(pos));
+      }
+    }
+  }
+
+
   function startLevel(n = 0) {
     stopAudioLoops();
     n %= allLevels.length;
@@ -457,6 +471,8 @@ function init() {
     minotaurs = [];
 
     allLevels[n]();
+
+    addRats();
 
     loopSound(Assets.DungeonGameAtmosphere);
 

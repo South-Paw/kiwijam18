@@ -102,6 +102,7 @@ var paletteY = 1;
 var paletteWidth = 12;
 var paletteHeight = 32;
 var entities = [];
+var minotaurs = [];
 
 var lightOverlay = document.createElement("canvas");
 
@@ -244,7 +245,7 @@ function init() {
 
     inventory.matches += 3;
     inventory.keys = 0;
-
+    
     let player = makePlayer([300, 300]);
     entities.push(player);
     world.player = player;
@@ -466,6 +467,7 @@ function init() {
 
     let worldSize = 30;
     entities = [];
+    minotaurs = [];
 
     allLevels[n]();
 
@@ -836,10 +838,10 @@ function init() {
 
     applyGameSpace(ctx);
 
-    if (world.minotaur) {
-      world.minotaur.drawEyes(ctx);
+    for (let m of minotaurs) {
+      m.drawEyes(ctx);
     }
-
+   
     drawParticles();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);

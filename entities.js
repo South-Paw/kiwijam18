@@ -84,7 +84,10 @@ function makeMinotaur(pos) {
   }
 
   function move() {
-    age += 1;
+		age += 1;
+		if (vdistance(world.player.getPos(),getPos()) < 64) {
+			world.player.die();
+		}
     let currentTile = gameToTile(getPos());
     let step = vscale(directions[direction], WALKING_SPEED);
     let p = vadd(getPos(), step);
@@ -179,6 +182,7 @@ function makePlayer(pos) {
     let [x, y] = getPos();
 
     if (timeOfDeath >0) {
+			frame = min(8,Math.floor((age-timeOfDeath)/8));
 			ctx.drawSprite(Assets.death, x, y, frame);
 			lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8),  1);
 		} else {
@@ -323,10 +327,15 @@ function makePlayer(pos) {
     console.log('player ded');
   }
 
+	function isDead() {
+		return timeOfDeath>0;
+	}
+
   return {
     getPos,
     setPos,
-    blocking,
+		blocking,
+		isDead,
     hasFire,
     die,
     move,

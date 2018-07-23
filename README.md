@@ -1,8 +1,8 @@
 # Dungeoneer - [kiwijam18 entry](https://itch.io/jam/kiwijam18)
 
-[![Play now on itch.io](https://img.shields.io/badge/itch.io-Play%20online!-green.svg)](https://southpawnz.itch.io/dungeoneer)
-
 🏰 Try to escape the dungeon with your life.
+
+[Play it now on itch.io!](https://southpawnz.itch.io/dungeoneer)
 
 ---
 

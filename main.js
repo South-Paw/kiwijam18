@@ -232,13 +232,13 @@ function init() {
 
     entities.push(makeMatch([610, 420]));
 
-    entities.push(makeTrapdoor([250,928]));
+    entities.push(makeTrapdoor([250, 928]));
 
     let key = makeKey([1310, 610]);
     entities.push(key);
 
 
-    entities.push(makeGate([18,12],false)) //false = is not horizontal
+    entities.push(makeGate([18, 12], false)) //false = is not horizontal
     world.player = player;
   }
 
@@ -450,11 +450,11 @@ function init() {
   ];
 
   function addRats() {
-    let [w,h] = world.getSize();
-    let ratCount = Math.floor((w*h)/150);
+    let [w, h] = world.getSize();
+    let ratCount = Math.floor((w * h) / 150);
 
-    for (let i=0; i<ratCount; i++) {
-      let pos = [randInt(w*tileSize),randInt(h*tileSize)];
+    for (let i = 0; i < ratCount; i++) {
+      let pos = [randInt(w * tileSize), randInt(h * tileSize)];
 
       if (world.isSpace(pos)) {
         entities.push(makeRat(pos));
@@ -477,7 +477,7 @@ function init() {
 
     loopSound(Assets.DungeonGameAtmosphere);
 
-    world.success=false;
+    world.success = false;
     gameMode = mainGame;
   }
 
@@ -699,14 +699,17 @@ function init() {
   let path = [];
 
   function mainUpdate() {
-    if (input.keyWentDown(48) ) {
+    if (input.keyWentDown(48)) {
       levelNumber++;
       startLevel(levelNumber);
     }
 
     if (input.keyWentDown(32)) {
       if (world.player.isDead()) {
-        inventory = { matches: 0, keys: 0 };
+        inventory = {
+          matches: 0,
+          keys: 0
+        };
         isPlayerDead = false;
 
         startLevel(levelNumber);
@@ -790,8 +793,8 @@ function init() {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
 
-    let s = 1+ Math.sin(ticker/100)*0.05;
-    ctx.drawSprite(Assets.controls,200,900,0,s*0.35);
+    let s = 1 + Math.sin(ticker / 100) * 0.05;
+    ctx.drawSprite(Assets.controls, 200, 900, 0, s * 0.35);
   }
 
   function applyGameSpace(context) {
@@ -906,7 +909,7 @@ function init() {
     successAge = 0;
     gameMode = levelSuccess;
   }
-  window.completeLevel=completeLevel;
+  window.completeLevel = completeLevel;
 
   function initializeGame() {
     startLevel(0);
@@ -927,7 +930,7 @@ function init() {
   }
 
   function levelSuccess(ticks) {
-    successAge+=1;
+    successAge += 1;
     if (successAge > 100) {
       levelNumber++;
       startLevel(levelNumber);
@@ -948,7 +951,7 @@ function init() {
     let ticks = Math.round(diff / 16);
     lastTime = thisTime;
     if (ticks > 10) ticks = 10;
-    ticker+=ticks;
+    ticker += ticks;
     for (let i = 0; i < ticks; i++) {
       gameMode();
       moveParticles();
@@ -960,9 +963,9 @@ function init() {
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
-  //  ctx.fillText(note, 131, 51);
+    //  ctx.fillText(note, 131, 51);
     ctx.fillStyle = "white";
-  //  ctx.fillText(note, 130, 50);
+    //  ctx.fillText(note, 130, 50);
 
     requestAnimationFrame(update);
   }

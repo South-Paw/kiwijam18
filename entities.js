@@ -128,7 +128,7 @@ function makeMinotaur(pos) {
   };
 
 	minotaurs.push(result);
-  
+
   return result;
 }
 
@@ -169,6 +169,12 @@ function makePlayer(pos) {
   let matchSounds = [
     Assets.LightingAMatch1,
     Assets.LightingAMatch2,
+  ];
+
+  let deathSounds = [
+    Assets.MonsterKillYou1,
+    Assets.MonsterKillYou2,
+    Assets.MonsterKillYou3,
   ];
 
   let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);
@@ -323,6 +329,12 @@ function makePlayer(pos) {
 
   function die() {
 		timeOfDeath=age;
+
+    if (!isPlayerDead) {
+      playSound(deathSounds[randInt(deathSounds.length)])
+    }
+
+    isPlayerDead=true;
 
     console.log('player ded');
   }

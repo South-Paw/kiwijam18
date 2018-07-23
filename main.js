@@ -144,6 +144,8 @@ function toggleFullScreen() {
 function init() {
   window.world = makeWorld(30, 30, 64);
 
+  window.isPlayerDead = false;
+
   window.inventory = {
     matches: 0,
     keys: 0,
@@ -705,6 +707,7 @@ function init() {
     if (input.keyWentDown(32)) {
       if (world.player.isDead()) {
         inventory = { matches: 0, keys: 0 };
+        isPlayerDead = false;
 
         startLevel(levelNumber);
       } else {

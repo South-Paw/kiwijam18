@@ -1,8 +1,8 @@
 function makeEntity(pos) {
-  let getPos = _ => pos;
+  let getPos = () => pos;
   let setPos = newpos => pos = newpos;
-  let move = _ => {};
-  let draw = _ => {};
+  let move = () => {};
+  let draw = () => {};
   let blocking = gamePos => false;
 
   return {
@@ -26,7 +26,7 @@ function makeMinotaur(pos) {
     [0, 1],
     [-1, 0],
     [1, 0]
-	];
+  ];
 
   let anims = [Assets.minotaurWalkUp, Assets.minotaurWalkDown, Assets.minotaurWalkLeft, Assets.minotaurWalkRight];
   let eyes = [null, Assets.minotaurWalkDownEyes, Assets.minotaurWalkLeftEyes, Assets.minotaurWalkRightEyes];
@@ -84,10 +84,10 @@ function makeMinotaur(pos) {
   }
 
   function move() {
-		age += 1;
-		if (vdistance(world.player.getPos(),getPos()) < 64) {
-			world.player.die();
-		}
+    age += 1;
+    if (vdistance(world.player.getPos(), getPos()) < 64) {
+      world.player.die();
+    }
     let currentTile = gameToTile(getPos());
     let step = vscale(directions[direction], WALKING_SPEED);
     let p = vadd(getPos(), step);
@@ -127,16 +127,16 @@ function makeMinotaur(pos) {
     draw
   };
 
-	minotaurs.push(result);
-  
+  minotaurs.push(result);
+
   return result;
 }
 
 function makePlayer(pos) {
   let WALKING_SPEED = 5;
   let INITIAL_MATCH_LIFE = 1000;
-	let walkAnim = Assets.playerWalkLeft;
-	let timeOfDeath =0;
+  let walkAnim = Assets.playerWalkLeft;
+  let timeOfDeath = 0;
   let age = 0;
   let frame = 0;
   let matchLife = 0;
@@ -171,6 +171,12 @@ function makePlayer(pos) {
     Assets.LightingAMatch2,
   ];
 
+  let deathSounds = [
+    Assets.MonsterKillYou1,
+    Assets.MonsterKillYou2,
+    Assets.MonsterKillYou3,
+  ];
+
   let burnFunction = a => Math.sin(a * a * 3) + (Math.sin(a * 80) + Math.sin(a * 100)) * (a * 0.1);
 
   function matchBrightness() {
@@ -181,14 +187,14 @@ function makePlayer(pos) {
   function draw(ctx, lctx) {
     let [x, y] = getPos();
 
-    if (timeOfDeath >0) {
-			frame = min(8,Math.floor((age-timeOfDeath)/8));
-			ctx.drawSprite(Assets.death, x, y, frame);
-			lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8),  1);
-		} else {
-			ctx.drawSprite(walkAnim, x, y, frame);
-			lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8), 4 * matchBrightness() + 1);
-		}
+    if (timeOfDeath > 0) {
+      frame = min(8, Math.floor((age - timeOfDeath) / 8));
+      ctx.drawSprite(Assets.death, x, y, frame);
+      lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8), 1);
+    } else {
+      ctx.drawSprite(walkAnim, x, y, frame);
+      lctx.drawSprite(Assets.baseLight2, x, y - 64, randInt(8), 4 * matchBrightness() + 1);
+    }
 
     // debug player bounding using circles
 
@@ -223,9 +229,9 @@ function makePlayer(pos) {
     let p = getPos();
     age += 1;
 
-		if (timeOfDeath > 0) {
-			return;
-		}
+    if (timeOfDeath > 0) {
+      return;
+    }
     let walking = false;
 
     // Move up
@@ -322,20 +328,26 @@ function makePlayer(pos) {
   }
 
   function die() {
-		timeOfDeath=age;
+    timeOfDeath = age;
+
+    if (!isPlayerDead) {
+      playSound(deathSounds[randInt(deathSounds.length)])
+    }
+
+    isPlayerDead = true;
 
     console.log('player ded');
   }
 
-	function isDead() {
-		return timeOfDeath>0;
-	}
+  function isDead() {
+    return timeOfDeath > 0;
+  }
 
   return {
     getPos,
     setPos,
-		blocking,
-		isDead,
+    blocking,
+    isDead,
     hasFire,
     die,
     move,

@@ -145,6 +145,8 @@ function init() {
   initInput();
   window.world = makeWorld(30, 30, 64);
 
+  window.isPlayerDead = false;
+
   window.inventory = {
     matches: 0,
     keys: 0,
@@ -226,13 +228,13 @@ function init() {
 
     entities.push(makeMatch([610, 420]));
 
-    entities.push(makeTrapdoor([250,928]));
+    entities.push(makeTrapdoor([250, 928]));
 
     let key = makeKey([1310, 610]);
     entities.push(key);
 
 
-    entities.push(makeGate([18,12],false)) //false = is not horizontal
+    entities.push(makeGate([18, 12], false)) //false = is not horizontal
     world.player = player;
   }
 
@@ -444,11 +446,11 @@ function init() {
   ];
 
   function addRats() {
-    let [w,h] = world.getSize();
-    let ratCount = Math.floor((w*h)/150);
+    let [w, h] = world.getSize();
+    let ratCount = Math.floor((w * h) / 150);
 
-    for (let i=0; i<ratCount; i++) {
-      let pos = [randInt(w*tileSize),randInt(h*tileSize)];
+    for (let i = 0; i < ratCount; i++) {
+      let pos = [randInt(w * tileSize), randInt(h * tileSize)];
 
       if (world.isSpace(pos)) {
         entities.push(makeRat(pos));
@@ -471,7 +473,7 @@ function init() {
 
     loopSound(Assets.DungeonGameAtmosphere);
 
-    world.success=false;
+    world.success = false;
     gameMode = mainGame;
   }
 
@@ -667,14 +669,18 @@ function init() {
   let path = [];
 
   function mainUpdate() {
-    if (input.keyWentDown(48) ) {
+    if (input.keyWentDown(48)) {
       levelNumber++;
       startLevel(levelNumber);
     }
 
     if (input.keyWentDown(32)) {
       if (world.player.isDead()) {
-        inventory = { matches: 0, keys: 0 };
+        inventory = {
+          matches: 0,
+          keys: 0
+        };
+        isPlayerDead = false;
 
         startLevel(levelNumber);
       } else {
@@ -898,7 +904,7 @@ function init() {
     successAge = 0;
     gameMode = levelSuccess;
   }
-  window.completeLevel=completeLevel;
+  window.completeLevel = completeLevel;
 
   function initializeGame() {
     startLevel(0);
@@ -919,7 +925,7 @@ function init() {
   }
 
   function levelSuccess(ticks) {
-    successAge+=1;
+    successAge += 1;
     if (successAge > 100) {
       levelNumber++;
       startLevel(levelNumber);
@@ -940,7 +946,7 @@ function init() {
     let ticks = Math.round(diff / 16);
     lastTime = thisTime;
     if (ticks > 10) ticks = 10;
-    ticker+=ticks;
+    ticker += ticks;
     for (let i = 0; i < ticks; i++) {
       gameMode();
       moveParticles();

@@ -1,12 +1,20 @@
-# Dungeoneer - kiwijam18
+# Dungeoneer - [kiwijam18 entry](https://itch.io/jam/kiwijam18)
 
 🏰 Try to escape the dungeon with your life.
 
-The kiwijam18 theme was 'single use', in our case the matches that you use to see around your character are all single use!
+[Play it now on itch.io!](https://southpawnz.itch.io/dungeoneer)
+
+---
+
+The Kiwijam18 theme was 'single use', in our game the matches and keys are single use items.
+
+**v0.4.2** was the version submitted for the gamejam. Check out the [releases](https://github.com/South-Paw/kiwijam18/releases) tab for other versions.
+
+If you want to run it locally, you'll need an http server running on localhost as loading the assets without one will create cross origin request issues.
 
 ## Contributors
 
-Various awesome people helped out during the jam to make this happen!
+A bunch of awesome people helped out during the jam to make this game happen!
 
 ### Programming and Gameplay Design
 

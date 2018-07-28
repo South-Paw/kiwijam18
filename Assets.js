@@ -30,7 +30,6 @@ imageList = [
   "gate/gateFrameRight.png",
   "gate/gateHorizontal.png|6",
   "gate/gateVertical.png|6",
-  
   "particle.png|1",
   "brazier/brazierBurn.png|3|1|[64,138]",
   "brazier/brazierEmber.png|3|2|[64,138]"
@@ -111,7 +110,7 @@ function imageDetailsFromString(s) {
 
 function playSound(buffer, offset = 0) {
   if (Array.isArray(buffer)) {
-    return playSound(buffer[randInt(buffer.length)],offset);
+    return playSound(buffer[randInt(buffer.length)], offset);
   }
   var source = audioContext.createBufferSource();
   source.buffer = buffer;

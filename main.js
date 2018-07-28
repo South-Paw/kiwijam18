@@ -142,6 +142,7 @@ function toggleFullScreen() {
 }
 
 function init() {
+  initInput();
   window.world = makeWorld(30, 30, 64);
 
   window.inventory = {
@@ -167,16 +168,11 @@ function init() {
 
   ctx.stroke();
 
-  window.keyboardState = {};
-  window.keysDown = {};
 
   canvas.addEventListener("mousemove", canvasMouseMove);
   canvas.addEventListener("mousedown", canvasMouseDown);
   canvas.addEventListener("mouseup", canvasMouseUp);
   canvas.addEventListener("contextmenu", e => e.preventDefault())
-
-  document.addEventListener('keydown', keyDownHandler);
-  document.addEventListener('keyup', keyUpHandler);
 
   window.gameMode = waitForImages;
 
@@ -589,32 +585,6 @@ function init() {
     }
   }
 
-  function keyDownHandler(event) {
-    keyboardState[event.keyCode] = true;
-    keysDown[event.keyCode] = true;
-  }
-
-  function keyUpHandler(event) {
-    keyboardState[event.keyCode] = false;
-  }
-
-  function isKeyDown(keyCode) {
-    return (keyboardState[keyCode] ? true : false);
-  }
-
-  function keyWentDown(keyCode) {
-    return (keysDown[keyCode] ? true : false);
-  }
-
-  function flushKeysDown() {
-    keysDown = {};
-  }
-
-  window.input = {
-    isKeyDown,
-    keyWentDown,
-    flushKeysDown
-  };
 
   let dragStartState;
   let dragDelta = [0, 0];
@@ -787,8 +757,33 @@ function init() {
       ctx.drawSprite(Assets.key, 1920 - (offset * i), 1080 - (offset + 100), 0, 0.8);
     }
 
-    let s = 1+ Math.sin(ticker/100)*0.05;
-    ctx.drawSprite(Assets.controls,200,900,0,s*0.35);
+    if (usingTouch ) {
+      ctx.strokeStyle="rgba(255,255,255,0.8)";
+      ctx.circle(200,900,100);
+      ctx.stroke();
+      ctx.circle(1820,980,80);
+      ctx.stroke();
+      ctx.circle(0,0,200);
+      ctx.stroke();
+     
+      for (let t of touchList) {
+        //ctx.circle(t.screenX,t.screenY,100);
+        //ctx.stroke();
+        let {clientX,clientY}=t;
+        let [x,y]=screenToCanvas([clientX,clientY])
+  
+        ctx.circle(x,y,50);
+        ctx.fill();     
+      }
+    
+    } else {
+      let s = 1+ Math.sin(ticker/100)*0.05;
+      ctx.drawSprite(Assets.controls,200,900,0,s*0.35);
+  
+    }
+  
+    
+   
   }
 
   function applyGameSpace(context) {
@@ -949,18 +944,19 @@ function init() {
     for (let i = 0; i < ticks; i++) {
       gameMode();
       moveParticles();
-      flushKeysDown();
+      input.flushKeysDown();
     }
 
     if (gameMode.draw) gameMode.draw();
 
+    /*
     ctx.font = "20px sans-serif";
     ctx.textAlign = "left";
     ctx.fillStyle = "black";
-  //  ctx.fillText(note, 131, 51);
+    ctx.fillText(note, 131, 51);
     ctx.fillStyle = "white";
-  //  ctx.fillText(note, 130, 50);
-
+    ctx.fillText(note, 130, 50);
+    */
     requestAnimationFrame(update);
   }
 }
